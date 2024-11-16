@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<style>
+    #name{
+        position:absolute;
+        top:10px;
+        left:10px;
+
+    }
+
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: Arial;
+    }
+
+    body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        background-color: #ffffff;
+    }
+
+    .container {
+        display: flex;
+        width: 80vw;
+        height: 80vh;
+        box-shadow: 0 4px 20px rgb(150, 150, 150);
+        background-color: #ffffff;
+        overflow: hidden;
+        border-radius: 20px;
+    }
+
+    .login-section, .welcome-section {
+        width: 50%;
+        padding: 40px;
+
+    }
+
+    .login-section {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    .login-section h2 {
+        display: flex;
+        font-size: 1.2em;
+        color: #916deb;
+        margin-bottom: 30px;
+        justify-content: center;
+    }
+
+    .input-group input {
+        width: 100%;
+        padding: 12px 40px 12px 15px;
+        border: 1px solid #916deb;
+        border-radius: 5px;
+        font-size: 1em;
+    }
+
+    .input-group {
+        position: relative;
+        margin-bottom: 20px;
+    }
+
+    .icon {
+        position: absolute;
+        right: 15px;
+        top: 30%;
+        font-size: 1em;
+        color: #916deb;
+    }
+
+    .actions {
+        display: flex;
+        justify-content: flex-end;
+        font-size: 1em;
+        margin-bottom: 20px;
+    }
+
+    .actions a{
+        color: #c48df6;
+        text-decoration: none;
+    }
+
+    .signup {
+        text-align: center;
+        margin-top: 20px;
+        font-size: 1em;
+    }
+
+    .signup a {
+        color: #c48df6;
+        text-decoration: none;
+    }
+
+    .welcome-section {
+        /*background: linear-gradient( #c48df6, #916deb);*/
+        background-image: url('images/icon/starback.svg') !important;
+        background-size: cover;
+        color: #ffffff;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+    }
+
+    .welcome-box {
+        text-align: center;
+    }
+
+    .welcome-section p {
+        font-size: 1em;
+        color: #ffffff;
+    }
+
+    button {
+        width: 100%;
+        padding: 12px;
+        font-size: 1em;
+        color: #ffffff;
+        background: linear-gradient( 90deg, #c48df6, #916deb);
+        border: none;
+        border-radius: 5px;
+        cursor:pointer;
+    }
+
+    .welcome-section h3 {
+        font-size: 1.4em;
+        margin-bottom: 10px;
+    }
+</style>
+<body>
+<span id="name"><strong>Hero</strong>Habit</span>
+
+<div class="container">
+
+    <div class="login-section">
+
+        <h2>USER LOGIN</h2>
+
+        <form>
+            <div class="input-group">
+                <input type="email" placeholder="Enter email" required>
+                <span class="icon"><img src="images/icon/email.svg" height="15"></span>
+            </div>
+            <div class="input-group">
+                <input type="password" placeholder="Enter password" required>
+                <span class="icon"><img src="images/icon/lock.svg" height="20"></span>
+            </div>
+            <div class="actions">
+                <a href="#">Forgot password?</a>
+            </div>
+            <button type="submit">Login</button>
+        </form>
+
+        <p class="signup">Don't have an account? <a href="#">Sign up</a></p>
+
+    </div>
+
+    <div class="welcome-section">
+
+        <div class="welcome-box">
+
+            <h3>Welcome back<br>to <strong>HeroHabit</strong></h3>
+            <p>please login to continue</p>
+        </div>
+
+    </div>
+
+</div>
+</body>
+</html>
