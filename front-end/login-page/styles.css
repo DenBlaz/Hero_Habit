@@ -136,3 +136,8 @@ button {
     font-size: 1.4em;
     margin-bottom: 10px;
 }
+
+button:hover {
+    background: linear-gradient(90deg, #c693f4, #8e69e8);
+    transform: scale(1.003);
+}
