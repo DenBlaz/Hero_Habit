@@ -1,0 +1,43 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page</title>
+    <link rel="stylesheet" href="{% static 'accounts/css/login.css' %}">
+</head>
+<body>
+    <div class="container">
+        <div class="login-section">
+            <span id="name"><strong>Hero</strong>Habit</span>
+            <h2>USER LOGIN</h2>
+
+            
+            <form method="post">
+                {% csrf_token %}
+                <div class="input-group">
+                    <input type="email" name="email" placeholder="Enter email" required>
+                    <span class="icon   "><img src="/static/accounts/image/email.svg" height="15"></span>
+                </div>
+                <div class="input-group">
+                    <input type="password" name="password" placeholder="Enter password" required>
+                    <span class="icon"><img src="/static/accounts/image/lock.svg" height="20"></span>
+                </div>
+                <div class="actions">
+                    <a href="#"><span style="color: #9c9c9c;">Forgot password?</span></a>
+                </div>
+                <button type="submit">Login</button>
+            </form>
+
+            <p class="signup">Don't have an account? <a href="{% url 'sign' %}"><span style="color: #c48df6;">Sign up</span></a></p>
+        </div>
+        <div class="welcome-section">
+            <div class="welcome-box">
+                <h3>Welcome back<br>to <strong>HeroHabit</strong></h3>
+                <p>please login to continue</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

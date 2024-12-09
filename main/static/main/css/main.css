@@ -1,0 +1,18 @@
+body {
+    background: hsl(121, 63%, 27%)
+}
+
+aside {
+    float: left;
+    background: #181218;
+    width: 20%;
+    padding: 2.5%;
+    height: 100vh;
+    color: #fff;
+    border-right: 5px solid #4d4d4d;
+}
+
+aside img {
+    width: 80px;
+    float: left;
+}
