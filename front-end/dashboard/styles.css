@@ -2,7 +2,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: Arial;
+  font-family: "Open Sans",Arial;
 }
 body {
   display: flex;
@@ -38,7 +38,7 @@ body {
   gap:10px;
 }
 .manage-section {
-  flex: 3; 
+  flex: 2; 
   display: flex;
   flex-direction: column;
   gap: 10px; 
@@ -53,10 +53,45 @@ body {
 }
 .welcome-section,
 .days-section {
-  background-color: #ffffff;
   border-radius: 8px;
   padding: 10px;
   height: 15%; 
+}
+
+.welcome-section {
+  background: linear-gradient(
+    90deg,
+    rgba(196, 141, 246, 0.8),
+    rgba(145, 109, 235, 0.8)
+  );
+}
+
+.days-section {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+}
+
+.Mon,
+.Tue,
+.Wed,
+.Thu {
+  background-color: #ffffff;
+  border-radius: 8px;
+  flex: 2;
+}
+
+.Tue {
+  flex: 2;
+}
+.Wed {
+  flex: 2;
+}
+.Thu {
+  flex: 2;
+}
+.other {
+  flex: 1;
 }
 
 .tasks-section {
@@ -88,6 +123,5 @@ li a {
 
 .active {
   text-decoration: underline;
-  font-family: Arial;
   font-size: 16px; 
 }
