@@ -22,16 +22,29 @@ body {
 
 .header1{
   display: flex;
-  padding: 10px;
   height:5%;
 }
 
 .header2{
   display: flex;
-  padding: 10px;
-  height:10%;
+  flex-direction: row;
+  gap:10px;
+  height:8%;
   
 }
+
+.navigation {
+  flex: 2;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.settings {
+  flex: 1;
+  background-color: #ffffff;
+  border-radius: 8px;
+}
+
 .content{
   display: flex;
   flex-grow:1;
@@ -54,16 +67,17 @@ body {
 .welcome-section,
 .days-section {
   border-radius: 8px;
-  padding: 10px;
   height: 15%; 
 }
 
 .welcome-section {
-  background: linear-gradient(
-    90deg,
-    rgba(196, 141, 246, 0.8),
-    rgba(145, 109, 235, 0.8)
-  );
+  padding: 10px;
+  background: linear-gradient(90deg, #c48df6, #916deb);
+  border-radius: 8px;
+  color: #ffffff;
+  text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  padding: 10px;
+  overflow: hidden;
 }
 
 .days-section {
@@ -72,26 +86,25 @@ body {
   gap: 10px;
 }
 
-.Mon,
-.Tue,
-.Wed,
-.Thu {
+.day {
   background-color: #ffffff;
   border-radius: 8px;
+  border: none;
   flex: 2;
+  justify-content: center;
+  cursor: pointer;
+  color: #916deb;
 }
 
-.Tue {
-  flex: 2;
-}
-.Wed {
-  flex: 2;
-}
-.Thu {
-  flex: 2;
-}
 .other {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   flex: 1;
+  cursor: pointer;
+  border-radius: 8px;
+  justify-content: center;
+  border: none;
 }
 
 .tasks-section {
@@ -124,4 +137,11 @@ li a {
 .active {
   text-decoration: underline;
   font-size: 16px; 
+}
+
+.sticky {
+  position: sticky;
+  top: 0;
+  background-color: #ffffff;
+  padding: 15px;
 }
