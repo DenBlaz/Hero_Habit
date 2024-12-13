@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-ai5x!z$6i7boxrhklvtop%9p$q*yz1zy8eq$!==_*biy5%o!2%
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["plannergame-7eb67d3cf09b.herokuapp.com"]
+ALLOWED_HOSTS = ["https://git.heroku.com/herohabit.git"]
 
 
 # Application definition
