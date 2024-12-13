@@ -3,10 +3,7 @@ from django.shortcuts import render, redirect
 from .forms import CustomUserCreationForm
 from django.contrib.auth import authenticate, login
 from .forms import LoginForm
-from django.contrib.auth.forms import AuthenticationForm
-from django.contrib.auth import login
 from django.contrib import messages
-from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 
 def sign_up(request):
@@ -14,7 +11,7 @@ def sign_up(request):
         form = CustomUserCreationForm(request.POST)
         if form.is_valid():
             user = form.save(commit=False)
-            user.set_password(form.cleaned_data["password"])  # Хешування пароля
+            user.set_password(form.cleaned_data["password"])
             user.save()
             messages.success(request, "Registration successful. Please log in.")
             return redirect("login")
@@ -35,7 +32,7 @@ def user_login(request):
             if user is not None:
                 login(request, user)
                 messages.success(request, f"Welcome back, {user.username}!")
-                return redirect('profile')  # Перенаправлення за іменем маршруту
+                return redirect('profile')
             else:
                 messages.error(request, "Invalid email or password.")
         else:
