@@ -12,13 +12,17 @@ from django.contrib.auth.decorators import login_required
 def sign_up(request):
     if request.method == "POST":
         form = CustomUserCreationForm(request.POST)
-        if form.is_valid():
-            user = form.save()
-            return redirect("login")
+        if form.is_valid():  # Проверяем валидность формы
+            user = form.save(commit=False)  # Сохраняем объект User без сохранения в БД
+            user.set_password(form.cleaned_data["password"])  # Хешируем пароль
+            user.save()  # Сохраняем пользователя в БД
+            messages.success(request, "Registration successful. Please log in.")
+            return redirect("login")  # Перенаправляем на страницу логина
     else:
-        form = CustomUserCreationForm()
+        form = CustomUserCreationForm()  # Если GET-запрос, показываем пустую форму
     
-    return render(request, "accounts/sign.html", {"form": form})
+    return render(request, "accounts/sign.html", {"form": form})  # Возвращаем шаблон с формой
+
 
 
 def user_login(request):
@@ -27,17 +31,13 @@ def user_login(request):
         if form.is_valid():
             email = form.cleaned_data.get('email')
             password = form.cleaned_data.get('password')
-            
-            # Аутентифікація через email і пароль
             user = authenticate(request, username=email, password=password)
             if user is not None:
                 login(request, user)
                 messages.success(request, f"Welcome back, {user.username}!")
-                return redirect('accounts/profile')
+                return redirect('profile')  # Имя маршрута
             else:
                 messages.error(request, "Invalid email or password.")
-        else:
-            messages.error(request, "Invalid email or password.")
     else:
         form = LoginForm()
     return render(request, "accounts/login.html", {"form": form})
