@@ -26,35 +26,28 @@ def sign_up(request):
 from django.contrib.auth import authenticate, login
 from django.contrib import messages
 from django.shortcuts import render, redirect
-from .forms import LoginForm
 from django.contrib.auth.models import User
 
 from django.contrib.auth import authenticate, login
 from django.contrib import messages
 from django.shortcuts import render, redirect
-from .forms import LoginForm
+from .forms import EmailLoginForm
 
-def user_login(request):
-    if request.method == "POST":
-        form = LoginForm(data=request.POST)
+def login_view(request):
+    if request.method == 'POST':
+        form = EmailLoginForm(request.POST)
         if form.is_valid():
-            email = form.cleaned_data.get('email')
-            password = form.cleaned_data.get('password')
-            
-            # Використовуємо кастомний бекенд для аутентифікації
-            user = authenticate(request, email=email, password=password)
+            email = form.cleaned_data['email']
+            password = form.cleaned_data['password']
+            user = authenticate(request, username=email, password=password)
             if user is not None:
                 login(request, user)
-                messages.success(request, f"Welcome back, {user.username}!")
                 return redirect('profile')
             else:
-                messages.error(request, "Invalid email or password.")
-        else:
-            messages.error(request, "Form is not valid.")
+                return render(request, 'users/login.html', {'form': form, 'error': 'Invalid credentials'})
     else:
-        form = LoginForm()
-    
-    return render(request, "accounts/login.html", {"form": form})
+        form = EmailLoginForm()
+    return render(request, 'users/login.html', {'form': form})
 
 
 
