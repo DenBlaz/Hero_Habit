@@ -5,6 +5,7 @@ from django.contrib.auth import authenticate, login
 from .forms import LoginForm
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.models import User
 
 def sign_up(request):
     if request.method == "POST":
@@ -28,14 +29,16 @@ def user_login(request):
         if form.is_valid():
             email = form.cleaned_data.get('email')
             password = form.cleaned_data.get('password')
-            user = authenticate(request, username=email, password=password)
-            if user is not None:
-                login(request, user)
-                messages.success(request, f"Welcome back, {user.username}!")
-                return redirect('profile')
-            else:
-                messages.error(request, "Invalid email or password.")
-        else:
+            
+            # Знайти користувача за email
+            user = User.objects.filter(email=email).first()
+            if user:
+                # Аутентифікувати за username
+                user = authenticate(request, username=user.username, password=password)
+                if user:
+                    login(request, user)
+                    messages.success(request, f"Welcome back, {user.username}!")
+                    return redirect('profile')
             messages.error(request, "Invalid email or password.")
     else:
         form = LoginForm()
