@@ -9,16 +9,12 @@ class CustomUserCreationForm(forms.ModelForm):
         model = User
         fields = ["username", "email", "password"]
 
-class LoginForm(forms.Form):
-    email = forms.EmailField()
-    password = forms.CharField(widget=forms.PasswordInput)
-
-    def clean_email(self):
-        email = self.cleaned_data.get('email')
-        if not User.objects.filter(email=email).exists():
-            raise ValidationError("User with this email does not exist.")
-        return email
-    
-class EmailLoginForm(forms.Form):
-    email = forms.EmailField(label="Email", max_length=254)
-    password = forms.CharField(widget=forms.PasswordInput, label="Password")
+class UserLoginForm(AuthenticationForm):
+    username = forms.EmailField(label="Email", widget=forms.EmailInput(attrs={
+        'class': 'form-control',
+        'placeholder': 'Enter your email'
+    }))
+    password = forms.CharField(label="Password", widget=forms.PasswordInput(attrs={
+        'class': 'form-control',
+        'placeholder': 'Enter your password'
+    }))

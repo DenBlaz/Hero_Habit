@@ -6,6 +6,12 @@ from .forms import LoginForm
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
+from django.contrib.auth.views import LoginView
+from .forms import UserLoginForm
+
+class UserLoginView(LoginView):
+    template_name = 'accounts/login.html'  # HTML-файл для логіну
+    authentication_form = UserLoginForm   # Ваша кастомна форма
 
 def sign_up(request):
     if request.method == "POST":
@@ -20,36 +26,6 @@ def sign_up(request):
         form = CustomUserCreationForm()
     
     return render(request, "accounts/sign.html", {"form": form})
-
-
-
-from django.contrib.auth import authenticate, login
-from django.contrib import messages
-from django.shortcuts import render, redirect
-from django.contrib.auth.models import User
-
-from django.contrib.auth import authenticate, login
-from django.contrib import messages
-from django.shortcuts import render, redirect
-from .forms import EmailLoginForm
-
-def login_view(request):
-    if request.method == 'POST':
-        form = EmailLoginForm(request.POST)
-        if form.is_valid():
-            email = form.cleaned_data['email']
-            password = form.cleaned_data['password']
-            user = authenticate(request, username=email, password=password)
-            if user is not None:
-                login(request, user)
-                return redirect('profile')
-            else:
-                return redirect('login')
-    else:
-        form = EmailLoginForm()
-    return redirect('login')
-
-
 
 @login_required
 def profile(request):
