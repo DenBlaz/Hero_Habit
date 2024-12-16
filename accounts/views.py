@@ -44,10 +44,10 @@ def login_view(request):
                 login(request, user)
                 return redirect('profile')
             else:
-                return render(request, 'templates/accounts/login.html', {'form': form, 'error': 'Invalid credentials'})
+                return redirect('login')
     else:
         form = EmailLoginForm()
-    return render(request, 'templates/accounts/login.html', {'form': form})
+    return redirect('login')
 
 
 
