@@ -40,6 +40,7 @@ body {
   flex-direction: row;
   justify-content:flex-start;
   align-items: end;
+  font-size: 0.9rem;
 }
 
 .settings {
@@ -88,6 +89,8 @@ body {
   background-position: right center, center; 
   background-repeat: no-repeat; 
   background-size: contain, cover;
+  padding:10px 10px 10px 20px;
+  font-size:1.5rem;
 }
 
 .days-section {
@@ -102,6 +105,7 @@ body {
   cursor: pointer;
   background-color: #ffffff;
   font-weight:bold ;
+  font-size: 1.2rem;
 
 }
 .active-day{
