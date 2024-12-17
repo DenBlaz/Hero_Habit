@@ -1,0 +1,119 @@
+a{
+  text-decoration: none;
+}
+
+h1, h2, p {
+  margin: 5px;
+}
+
+body {
+  font-family: "Open Sans", serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 97vh;
+  background-color: #ffffff;
+}
+
+input {
+  background-color: #ebebeb;
+  color: #9C9C9C;
+  border: none;
+  border-radius: 10px;
+  height: 45px;
+  width: 100%;
+  font-size: 17px;
+  padding-left: 10px;
+  box-sizing: border-box;
+}
+
+input::placeholder {
+  color: #a6a6a6;
+}
+
+button {
+  background: linear-gradient(90deg, #d397fa, #8364e8);
+  border: none;
+  font-weight: bold;
+  font-size: 22px;
+  font-family: "Open Sans", serif;
+  color: white;
+  height: 45px;
+  width: 65%;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+button:hover {
+  background: linear-gradient(90deg, #d397fa, #8364e8);
+  transform: scale(1.02);
+}
+
+.container {
+  display: grid;
+  box-shadow: 0 4px 20px rgb(150, 150, 150);
+  grid-template-columns: 1fr 1fr;
+  width: 80vw;
+  height: 80vh;
+  border-radius: 20px;
+  overflow: hidden;
+}
+
+.welcome-layout {
+  /*background: linear-gradient(#c48df6, #916deb);*/
+  background-image: url('../images/icon/starback.svg') !important;
+  background-size: cover;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: white;
+}
+
+.main-logo{
+  width: 70px;
+}
+
+.content-layout {
+  background-color: white;
+}
+
+.content-section {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 65vh;
+}
+
+.main-text{
+  font-size: 23px;
+  font-weight: bold;
+  color: #AB7EF1;
+}
+
+.input-field{
+  position: relative;
+  display: inline-block;
+  width: 65%;
+  margin-top: 20px;
+}
+
+.icon-input {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 20px;
+}
+
+.account-change{
+  font-size: 20px;
+  margin-top: 15px
+}
+
+.forgot-password{
+  text-align: right;
+  width: 65%;
+  color: #9C9C9C;
+  font-size: 13px;
+}
