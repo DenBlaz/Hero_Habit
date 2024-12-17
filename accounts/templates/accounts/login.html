@@ -17,24 +17,25 @@
         <div class="content-section">
             <p class="main-text">USER LOGIN</p>
 
-            <div class="input-field">
-                <input type="email" placeholder="Enter email" required>
-                <span><img class="icon-input" style="top: 14px" src="/static/accounts/image/email.svg" alt="Email Icon"></span>
-            </div>
+            <form method="post">
+                {% csrf_token %}
+                <div class="input-field">
+                    <input type="email" placeholder="Enter email" required>
+                    <span><img class="icon-input" style="top: 14px" src="/static/accounts/image/email.svg" alt="Email Icon"></span>
+                </div>
+                <div class="input-field">
+                    <input type="password" placeholder="Enter password" required>
+                    <span><img class="icon-input" src="/static/accounts/image/lock.svg"></span>
+                </div>
 
-            <div class="input-field">
-                <input type="text" placeholder="Enter password" required>
-                <span><img class="icon-input" src="/static/accounts/image/lock.svg"></span>
-            </div>
+                <div class="forgot-password" style="margin-top: 5px; margin-bottom: 15px">
+                    <a href="#" class="forgot-password">Forgot password?</a><!--In the future we could add an option to send your password on your email-->
+                </div>
 
-            <div class="forgot-password" style="margin-top: 5px; margin-bottom: 15px">
-                <a href="#" class="forgot-password">Forgot password?</a><!--In the future we could add an option to send your password on your email-->
-            </div>
+                <button type="submit">Login</button>
+            </form>
 
-            <button onclick="window.location.href='https://www.youtube.com/'">Login</button><!--Redirecting you to the main page-->
-
-            <p class="account-change">Don't have an account? <a href="https://www.youtube.com/"><span style="color: #AB7EF1;">Sign up</span></a></p><!--Redirecting you to the sign-up page-->
-
+            <p class="signup">Don't have an account? <a href="{% url 'sign' %}"><span style="color: #AB7EF1;">Sign up</span></a></p>
         </div>
 
 
