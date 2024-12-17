@@ -8,35 +8,41 @@
     <link rel="stylesheet" href="{% static 'accounts/css/login.css' %}">
 </head>
 <body>
-    <div class="container">
-        <div class="login-section">
-            <span id="name"><strong>Hero</strong>Habit</span>
-            <h2>USER LOGIN</h2>
+<div class="container">
 
+    <div class="content-layout">
+        <p style="text-align: start; margin: 17px"><strong>Hero</strong>Habit</p>
+    
+        <div class="content-section">
+            <p class="main-text">USER LOGIN</p>
             
             <form method="post">
                 {% csrf_token %}
                 <div class="input-group">
-                    <input type="email" name="email" placeholder="Enter email" required>
-                    <span class="icon   "><img src="/static/accounts/image/email.svg" height="15"></span>
+                    <input type="email" placeholder="Enter email" required>
+                    <span><img class="icon-input" style="top: 14px" src="/static/accounts/image/email.svg" alt="Email Icon"></span>
                 </div>
                 <div class="input-group">
-                    <input type="password" name="password" placeholder="Enter password" required>
-                    <span class="icon"><img src="/static/accounts/image/lock.svg" height="20"></span>
+                    <input type="password" placeholder="Enter password" required>
+                    <span><img class="icon-input" src="/static/accounts/image/lock.svg"></span>
                 </div>
-                <div class="actions">
-                    <a href="#"><span style="color: #9c9c9c;">Forgot password?</span></a>
+
+
+                <div class="forgot-password" style="margin-top: 5px; margin-bottom: 15px">
+                    <a href="#" class="forgot-password">Forgot password?</a><!--In the future we could add an option to send your password on your email-->
                 </div>
+
                 <button type="submit">Login</button>
             </form>
 
-            <p class="signup">Don't have an account? <a href="{% url 'sign' %}"><span style="color: #c48df6;">Sign up</span></a></p>
+            <p class="signup">Don't have an account? <a href="{% url 'sign' %}"><span style="color: #AB7EF1;">Sign up</span></a></p>
         </div>
-        <div class="welcome-section">
-            <div class="welcome-box">
-                <h3>Welcome back<br>to <strong>HeroHabit</strong></h3>
-                <p>please login to continue</p>
-            </div>
+        <div class="welcome-layout">
+
+            <img src="images/icon/logo.svg" class="main-logo">
+            <h1>Welcome back</h1>
+            <p style="font-size: 2em"><strong>To Hero</strong>Habit</p>
+            <p style="font-size: 18px">please login to continue</p>
         </div>
     </div>
 </body>
