@@ -5,45 +5,50 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login Page</title>
-    <link rel="stylesheet" href="{% static 'accounts/css/auth.css' %}">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/auth.css">
 </head>
 <body>
 <div class="container">
 
     <div class="content-layout">
         <p style="text-align: start; margin: 17px"><strong>Hero</strong>Habit</p>
-    
+
         <div class="content-section">
             <p class="main-text">USER LOGIN</p>
-            
-            <form method="post">
-                {% csrf_token %}
-                <div class="input-group">
-                    <input type="email" placeholder="Enter email" required>
-                    <span><img class="icon-input" style="top: 14px" src="/static/accounts/image/email.svg" alt="Email Icon"></span>
-                </div>
-                <div class="input-group">
-                    <input type="password" placeholder="Enter password" required>
-                    <span><img class="icon-input" src="/static/accounts/image/lock.svg"></span>
-                </div>
 
+            <div class="input-field">
+                <input type="email" placeholder="Enter email" required>
+                <span><img class="icon-input" style="top: 14px" src="/static/accounts/image/email.svg" alt="Email Icon"></span>
+            </div>
 
-                <div class="forgot-password" style="margin-top: 5px; margin-bottom: 15px">
-                    <a href="#" class="forgot-password">Forgot password?</a><!--In the future we could add an option to send your password on your email-->
-                </div>
+            <div class="input-field">
+                <input type="text" placeholder="Enter password" required>
+                <span><img class="icon-input" src="/static/accounts/image/ock.svg"></span>
+            </div>
 
-                <button type="submit">Login</button>
-            </form>
+            <div class="forgot-password" style="margin-top: 5px; margin-bottom: 15px">
+                <a href="https://www.youtube.com/" class="forgot-password">Forgot password?</a><!--In the future we could add an option to send your password on your email-->
+            </div>
 
-            <p class="signup">Don't have an account? <a href="{% url 'sign' %}"><span style="color: #AB7EF1;">Sign up</span></a></p>
+            <button onclick="window.location.href='https://www.youtube.com/'">Login</button><!--Redirecting you to the main page-->
+
+            <p class="account-change">Don't have an account? <a href="https://www.youtube.com/"><span style="color: #AB7EF1;">Sign up</span></a></p><!--Redirecting you to the sign-up page-->
+
         </div>
-        <div class="welcome-layout">
 
-            <img src="/static/accounts/image/logo.svg" class="main-logo">
-            <h1>Welcome back</h1>
-            <p style="font-size: 2em"><strong>To Hero</strong>Habit</p>
-            <p style="font-size: 18px">please login to continue</p>
-        </div>
+
     </div>
+
+    <div class="welcome-layout">
+
+        <img src="/static/accounts/image/logo.svg" class="main-logo">
+        <h1>Welcome back</h1>
+        <p style="font-size: 2em"><strong>To Hero</strong>Habit</p>
+        <p style="font-size: 18px">please login to continue</p>
+
+    </div>
+
+</div>
 </body>
 </html>
