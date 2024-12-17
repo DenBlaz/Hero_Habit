@@ -61,7 +61,7 @@ a{
   
   .welcome-layout {
     /*background: linear-gradient(#c48df6, #916deb);*/
-    background-image: url('../images/icon/starback.svg') !important;
+    background-image: url('/static/accounts/image/starback.svg') !important;
     background-size: cover;
     display: flex;
     flex-direction: column;
