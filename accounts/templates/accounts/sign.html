@@ -11,7 +11,7 @@
     <div class="container">
 
         <div class="welcome-layout">
-            <img src="images/icon/logo.svg" class="main-logo">
+            <img src="/static/accounts/image/logo.svg" class="main-logo">
             <h1>Welcome to</h1>
             <p style="font-size: 30px"><strong>Hero</strong>Habit</p>
             <p style="font-size: 18px">please sign up to continue</p>
@@ -27,18 +27,18 @@
                     {% csrf_token %}
                     <div class="input-field">
                         <input type="email" placeholder="Enter email" required>
-                        <span><img class="icon-input" style="top: 14px" src="/staticfiles/accounts/image/email.svg" alt="Email Icon"></span>
+                        <span><img class="icon-input" style="top: 14px" src="/static/accounts/image/email.svg" alt="Email Icon"></span>
                     </div>
 
                     <div class="input-field">
                         <input type="password" placeholder="Enter password" required>
-                        <span><img class="icon-input" src="/staticfiles/accounts/image/lock.svg"></span>
+                        <span><img class="icon-input" src="/static/accounts/image/lock.svg"></span>
                     </div>
 
 
                     <div class="input-field">
                         <input type="username" placeholder="Enter username" required>
-                        <span><img class="icon-input" src="/staticfiles/accounts/image/user.svg"></span>
+                        <span><img class="icon-input" src="/static/accounts/image/user.svg"></span>
                     </div>
                     
                     <button type="submit" class="button_1" style="margin-top: 20px">Sign up</button>
