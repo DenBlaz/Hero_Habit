@@ -13,7 +13,7 @@
 <body>
    <div class="container">
       <div class="header1">
-        <span id="name"><strong>Hero</strong>Habit</span>
+        <span id="name"><span class="bold">Hero</span>Habit</span>
       </div>
 
        <div class="header2">
@@ -38,17 +38,16 @@
             <p id="user-name">Name</p>  <!--'Name' has to be replaced with an actual name of the user-->
            </div>
 
-            <div class="days-section">
+            <div class="days-section" id="days-section">
             <button class="active-day rounded">Mon</button>
             <button class="day rounded">Tue</button>
             <button class="day rounded">Wed</button>
             <button class="day rounded">Thu</button>
-            <a class="other" href="#"><img src="arrow.svg"/></a> <!--Has to redirect to the page with dashboard including tasks for days from friday-->
+            <a class="other" href="#"><img src="arrow1.svg"/></a> <!--Redirects to the page with dashboard including tasks for days from friday-->
           </div>
            
            <div class="tasks-section">
               <p class="sticky bold">Assigned tasks</p>
-               <p class="">Create a task</p>
            </div>
        </div>
        
@@ -57,5 +56,54 @@
            </div>
       </div>
     </div>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const daysSection = document.getElementById("days-section");
+        const arrowButton = document.getElementById("arrow-btn");
+
+        let showingWeekdays = true;
+
+        arrowButton.addEventListener("click", (e) => {
+          e.preventDefault(); 
+
+          if (showingWeekdays) {
+            
+            daysSection.innerHTML = `
+        <button class="active-day rounded">Fri</button>
+        <button class="day rounded">Sat</button>
+        <button class="day rounded">Sun</button>
+        <div class="blank"></div>
+        <a class="other" href="#" id="arrow-btn">
+          <img src="arrow2.svg" alt="arrow" />
+        </a>
+      `;
+          } else {
+        
+            daysSection.innerHTML = `
+        <button class="active-day rounded">Mon</button>
+        <button class="day rounded">Tue</button>
+        <button class="day rounded">Wed</button>
+        <button class="day rounded">Thu</button>
+        <a class="other" href="#" id="arrow-btn">
+          <img src="arrow1.svg" alt="arrow" "/>
+        </a>
+      `;
+          }
+
+          
+          assignArrowClick();
+          showingWeekdays = !showingWeekdays; 
+        });
+
+        function assignArrowClick() {
+          const newArrowButton = document.getElementById("arrow-btn");
+          newArrowButton.addEventListener("click", (e) => {
+            e.preventDefault();
+            arrowButton.click(); 
+          });
+        }
+      });
+    </script>
 </body>
 </html>
