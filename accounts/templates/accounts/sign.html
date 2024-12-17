@@ -1,5 +1,4 @@
 {% load static %}
-<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -9,44 +8,39 @@
     <link rel="stylesheet" href="{% static 'accounts/css/auth.css' %}">
 </head>
 <body>
-    <div class="container">
+<div class="container">
 
-        <div class="welcome-layout">
-            <img src="/static/accounts/image/logo.svg" class="main-logo">
-            <h1>Welcome to</h1>
-            <p style="font-size: 30px"><strong>Hero</strong>Habit</p>
-            <p style="font-size: 18px">please sign up to continue</p>
-        </div>
-    
-        <div class="content-layout">
-            <p style="text-align: end; margin: 17px"><strong>Hero</strong>Habit</p>
-    
-            <div class="content-section" >
-                <p class="main-text">SIGN UP</p>
+    <div class="welcome-layout">
+        <img src="/static/accounts/image/logo.svg" class="main-logo">
+        <h1>Welcome to</h1>
+        <p style="font-size: 30px"><strong>Hero</strong>Habit</p>
+        <p style="font-size: 18px">please sign up to continue</p>
+    </div>
 
-                <form method="post">
-                    {% csrf_token %}
-                    <div class="input-field">
-                        <input type="email" placeholder="Enter email" required>
-                        <span><img class="icon-input" style="top: 14px" src="/static/accounts/image/email.svg" alt="Email Icon"></span>
-                    </div>
+    <div class="content-layout">
+        <p style="text-align: end; margin: 17px"><strong>Hero</strong>Habit</p>
 
-                    <div class="input-field">
-                        <input type="password" placeholder="Enter password" required>
-                        <span><img class="icon-input" src="/static/accounts/image/lock.svg"></span>
-                    </div>
+        <div class="content-section" >
+            <p class="main-text">SIGN UP</p>
 
-
-                    <div class="input-field">
-                        <input type="username" placeholder="Enter username" required>
-                        <span><img class="icon-input" src="/static/accounts/image/user.svg"></span>
-                    </div>
-                    
-                    <button type="submit" class="button_1" style="margin-top: 20px">Sign up</button>
-                </form>
-
-                <p style="margin-left: 130px; font-size: 18px">Already have an account? <a href="{% url 'login' %}" style="color: #ab7ef1">Login</a></p>
+            <div class="input-field">
+                <input type="email" placeholder="Enter email" required>
+                <span><img class="icon-input" style="top: 14px" src="/static/accounts/image/email.svg" alt="Email Icon"></span>
             </div>
+
+            <div class="input-field">
+                <input type="text" placeholder="Enter password" required>
+                <span><img class="icon-input" src="/static/accounts/image/lock.svg"></span>
+            </div>
+
+            <div class="input-field">
+                <input type="text" placeholder="Enter username" required>
+                <span><img class="icon-input" src="/static/accounts/image/user.svg"></span>
+            </div>
+
+            <button onclick="window.location.href='https://www.youtube.com/'" style="margin-top: 20px">Sign up</button><!-- It has to create account and redirect to log in page -->
+
+            <p class="account-change">Already have an account? <a href="https://www.youtube.com/" style="color: #ab7ef1">Login</a></p> <!-- it has to redirect to log in page -->
         </div>
     </div>
 </div>
