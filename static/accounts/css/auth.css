@@ -117,3 +117,11 @@ a{
     color: #9C9C9C;
     font-size: 13px;
   }
+
+
+  form {
+    margin: 0;
+    padding: 0;
+    border: none;
+    display: contents; /* Вимикає вплив контейнера форми на верстку */
+}
