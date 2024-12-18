@@ -25,7 +25,6 @@
 
 
             <form method="post">
-                {% csrf_token %}
                 <div class="input-field">
                     <input type="email" placeholder="Enter email" required>
                     <span><img class="icon-input" style="top: 14px" src="/static/accounts/image/email.svg" alt="Email Icon"></span>
@@ -44,7 +43,7 @@
                 
                 <button type="submit" class="button_1" style="margin-top: 20px">Sign up</button>
             </form>
-            
+
             <p class="account-change">Already have an account? <a href="{% url 'login' %}"  style="color: #ab7ef1">Login</a></p> <!-- it has to redirect to log in page -->
         </div>
     </div>
