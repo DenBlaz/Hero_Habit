@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login Page</title>
-    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
+    <licdnk href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{% static 'accounts/css/auth.css' %}">
 </head>
 <body>
@@ -24,7 +24,7 @@
                     <span><img class="icon-input" style="top: 14px" src="/static/accounts/image/email.svg" alt="Email Icon"></span>
                 </div>
                 <div class="input-field">
-                    <input type="text" placeholder="Enter password" required>
+                    <input type="password" placeholder="Enter password" required>
                     <span><img class="icon-input" src="/static/accounts/image/lock.svg"></span>
                 </div>
 
@@ -37,8 +37,6 @@
 
             <p class="signup">Don't have an account? <a href="{% url 'sign' %}"><span style="color: #AB7EF1;">Sign up</span></a></p>
         </div>
-
-
     </div>
 
     <div class="welcome-layout">

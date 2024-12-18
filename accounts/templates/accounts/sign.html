@@ -23,24 +23,31 @@
         <div class="content-section" >
             <p class="main-text">SIGN UP</p>
 
-            <div class="input-field">
-                <input type="email" placeholder="Enter email" required>
-                <span><img class="icon-input" style="top: 14px" src="/static/accounts/image/email.svg" alt="Email Icon"></span>
-            </div>
 
-            <div class="input-field">
-                <input type="text" placeholder="Enter password" required>
-                <span><img class="icon-input" src="/static/accounts/image/lock.svg"></span>
-            </div>
+            <form method="post">
+                {% csrf_token %}
+                <div class="input-field">
+                    <input type="email" placeholder="Enter email" required>
+                    <span><img class="icon-input" style="top: 14px" src="/static/accounts/image/email.svg" alt="Email Icon"></span>
+                </div>
 
-            <div class="input-field">
-                <input type="text" placeholder="Enter username" required>
-                <span><img class="icon-input" src="/static/accounts/image/user.svg"></span>
-            </div>
+                <div class="input-field">
+                    <input type="password" placeholder="Enter password" required>
+                    <span><img class="icon-input" src="/static/accounts/image/lock.svg"></span>
+                </div>
+
+
+                <div class="input-field">
+                    <input type="username" placeholder="Enter username" required>
+                    <span><img class="icon-input" src="/static/accounts/image/user.svg"></span>
+                </div>
+                
+                <button type="submit" class="button_1" style="margin-top: 20px">Sign up</button>
+            </form>
 
             <button onclick="window.location.href='https://www.youtube.com/'" style="margin-top: 20px">Sign up</button><!-- It has to create account and redirect to log in page -->
 
-            <p class="account-change">Already have an account? <a href="https://www.youtube.com/" style="color: #ab7ef1">Login</a></p> <!-- it has to redirect to log in page -->
+            <p class="account-change">Already have an account? <a href="{% url 'login' %}"  style="color: #ab7ef1">Login</a></p> <!-- it has to redirect to log in page -->
         </div>
     </div>
 </div>
