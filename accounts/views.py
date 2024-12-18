@@ -7,11 +7,11 @@ from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.contrib.auth.views import LoginView
-from .forms import UserLoginForm
+from .forms import LoginForm
 
 class UserLoginView(LoginView):
     template_name = 'accounts/login.html'  # HTML-файл для логіну
-    authentication_form = UserLoginForm   # Ваша кастомна форма
+    authentication_form = LoginForm   # Ваша кастомна форма
 
 def sign_up(request):
     if request.method == "POST":
