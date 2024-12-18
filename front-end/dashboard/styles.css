@@ -4,6 +4,7 @@
   box-sizing: border-box;
   font-family: "Open Sans",Arial;
 }
+
 body {
   display: flex;
   justify-content: center;
@@ -12,25 +13,28 @@ body {
   background-color: #f1ebfb;
   overflow-y: auto;
 }
+
 .container {
   display: flex;
   flex-direction: column;
-  width: 95vw;
-  height: 95vh;
-  gap: 10px; 
+  width: 98vw;
+  height: 98vh;
+  gap: 5px; 
 }
 
 .header1{
   display: flex;
-  height:5%;
+  height:8%;
+  flex-direction: column;
+  padding:20px 0px 0px 10px; 
 }
 
 .header2{
   display: flex;
   flex-direction: row;
   gap:15px;
-  height:5%;
-  
+  height:7%;
+  padding:0px 0px 0px 10px;
 }
 
 .navigation {
@@ -40,12 +44,11 @@ body {
   flex-direction: row;
   justify-content:flex-start;
   align-items: end;
-  font-size: 0.9rem;
 }
 
 .settings {
   flex: 1;
-   display: flex;
+  display: flex;
   flex-direction: row;
   justify-content:flex-end;
   align-items: end;
@@ -60,7 +63,7 @@ body {
 .content {
   display: flex;
   flex-grow: 1;
-  gap: 15px;
+  gap: 20px;
 }
 
 .manage-section {
@@ -69,45 +72,56 @@ body {
   flex-direction: column;
   gap: 10px; 
 }
+
 .stats-section {
   flex: 1; 
   max-height: 100%;
   background-color: #ffffff;
   overflow: auto; 
 }
-.welcome-section,
-.days-section {
-  height: 15%; 
-}
 
 .welcome-section {
- background-image: url("All_stars.svg"), linear-gradient(90deg, #D397FA, #8364E8); 
-  color: #ffffff;
-  text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-  overflow: hidden;
+  height:15%;
+  background-image: url("All_stars.svg"),
+  linear-gradient(90deg, #D397FA, #8364E8); 
+  color:rgba(255, 255, 255, 0.9);
+  display: flex; 
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
   font-weight:bold ;
   background-position: right center, center; 
   background-repeat: no-repeat; 
   background-size: contain, cover;
+  overflow: hidden;
   padding:10px 10px 10px 20px;
   font-size:1.5rem;
 }
 
 .days-section {
+  height: 12.5%;
   display: flex;
   flex-direction: row;
   gap: 10px;
+  font-size:1.5rem;
+  font-weight:bold;
 }
 
-.active-day, .day{
+.welcome-section p,
+.days-section button{
+  letter-spacing: 1px;
+}
+
+.active-day,
+.day{
   flex: 2;
   justify-content: center;
   cursor: pointer;
   background-color: #ffffff;
   font-weight:bold ;
   font-size: 1.2rem;
-
 }
+
 .active-day{
   border-color: #916deb;
   color: #916deb;
@@ -117,9 +131,9 @@ body {
   border:none;
   color: #8364E8;
 }
+
 .blank {
   flex: 2;
- 
 }
 
 .other {
@@ -138,6 +152,18 @@ body {
   border-radius: 8px;
   padding: 0 10px 10px 10px;
   overflow: auto; 
+  display: flex;
+  flex-direction: column;
+  font-size: 0.9rem;
+}
+
+.no-tasks{
+  display:flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  justify-content: flex-start;
+  font-size: 0.8rem;
 }
 
 ul {
@@ -168,11 +194,25 @@ li a {
   position: sticky;
   top: 0;
   background-color: #ffffff;
-  padding:20px 10px 15px 10px;
+  padding:20px 10px 10px 10px;
+  color:#4e4e4e;
+}
+
+.pad {
+  padding:0px 0px 5px 5px;
+  display: inline-flex; 
+  align-items: center; 
+  font-size: 0.8rem;
+  cursor: pointer; 
+}
+
+.pad img {
+  display: inline-block; 
+  vertical-align: middle; 
 }
 
 .rounded {
-  border-radius: 8px;
+  border-radius: 10px;
 }
 
 .padded {
@@ -184,5 +224,5 @@ li a {
 }
 
 .bold{
-  font-weight:bold ;
+  font-weight:700 ;
 }
