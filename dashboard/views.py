@@ -1,5 +1,5 @@
-from django.shortcuts import redirect
+from django.shortcuts import render
 
 # Create your views here.
 def dashboard(request):
-    return redirect("dashboard")  
+    return render(request, "dashboard/dashboard.html")
