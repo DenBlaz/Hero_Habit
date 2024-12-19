@@ -4,6 +4,113 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login Page</title>
-    <link rel="stylesheet" href="{% static 'accounts/css/login.css' %}">
+    <title>Dashboard</title>
+    <link
+      href="https://fonts.googleapis.com/css?family=Open Sans"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="{% static 'dashboard/css/dashboard.css' %}">
 </head>
+<body>
+   <div class="container">
+      <div class="header1">
+        <span><span class="bold">Hero</span>Habit</span>
+      </div>
+
+       <div class="header2">
+       <div class="navigation">
+          <ul>
+            <li><a class="active-page" href="#">Dashboard</a></li>    <!--Active page-->
+            <li><a href="#">Statistics</a></li>  <!--Has to redirect to statisctics page-->
+            <li><a href="#">Calendar</a></li>  <!--Has to redirect to calendar page-->
+            <li><a href="#">Achievements</a></li>  <!--Has to redirect to achievements page-->
+          </ul>
+        </div>
+        <div class="settings">
+            <a class="icon" href="#"><img src="dashboard/image/settings.svg" height="30px"/></a>
+            <a id="user-profile" class="icon" href="#"><img src="dashboard/image/account.svg" height="30px"/></a> 
+        </div>
+       </div>
+
+      <div class="content">
+       <div class="manage-section">
+           <div class="welcome-section rounded">
+            <p>Welcome back,</p>
+            <p id="user-name">Name</p>  <!--'Name' has to be replaced with an actual name in the future-->
+           </div>
+
+            <div class="days-section" id="days-section">
+            <button class="active-day rounded">Mon</button>
+            <button class="day rounded">Tue</button>
+            <button class="day rounded">Wed</button>
+            <button class="day rounded">Thu</button>
+            <a class="other" href="#" id="arrow-btn"><img src="dashboard/image/arrow1.svg"/></a> <!--Changes days-section to include days from Friday to Sunday-->
+          </div>
+           
+           <div class="tasks-section">
+              <p class="sticky bold">Assigned tasks</p>
+               <p class="pad" > <a ><img src="dashboard/image/plus.svg" height="25px" /></a>Create a task</p>
+           <div class="no-tasks">
+            <img src="dashboard/image/illustration.svg" height="130px" /></a>
+            <p><br />Every hero deserves a rest! <br />
+             Maybe it`s time for new adventures?</p>
+               </div>
+           </div>
+       </div>
+       
+           <div class="stats-section rounded padded">
+
+           </div>
+      </div>
+    </div>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const daysSection = document.getElementById("days-section");
+        const arrowButton = document.getElementById("arrow-btn");
+
+        let showingWeekdays = true;
+
+        arrowButton.addEventListener("click", (e) => {
+          e.preventDefault(); 
+
+          if (showingWeekdays) {
+            
+            daysSection.innerHTML = `
+        <button class="active-day rounded">Fri</button>
+        <button class="day rounded">Sat</button>
+        <button class="day rounded">Sun</button>
+        <div class="blank"></div>
+        <a class="other" href="#" id="arrow-btn">
+          <img src="dashboard/image/arrow2.svg" alt="arrow" />
+        </a>
+      `;
+          } else {
+        
+            daysSection.innerHTML = `
+        <button class="active-day rounded">Mon</button>
+        <button class="day rounded">Tue</button>
+        <button class="day rounded">Wed</button>
+        <button class="day rounded">Thu</button>
+        <a class="other" href="#" id="arrow-btn">
+          <img src="dashboard/image/arrow1.svg" alt="arrow" "/>
+        </a>
+      `;
+          }
+
+          
+          assignArrowClick();
+          showingWeekdays = !showingWeekdays; 
+        });
+
+        function assignArrowClick() {
+          const newArrowButton = document.getElementById("arrow-btn");
+          newArrowButton.addEventListener("click", (e) => {
+            e.preventDefault();
+            arrowButton.click(); 
+          });
+        }
+      });
+    </script>
+</body>
+</html>
