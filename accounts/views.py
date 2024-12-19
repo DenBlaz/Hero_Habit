@@ -13,7 +13,7 @@ class UserLoginView(LoginView):
     authentication_form = LoginForm
 
 def login(request):
-    return redirect("login")
+    return render(request, "accounts/login.html")
 
 def sign_up(request):
     if request.method == "POST":
