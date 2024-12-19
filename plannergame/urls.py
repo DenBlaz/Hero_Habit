@@ -24,4 +24,7 @@ urlpatterns = [
     path('', include('main.urls')),
     path('accounts/', include('accounts.urls')),
     path('dashboard/', include('dashboard.urls')),
+    path('statistics/', include('stats.urls')),
+    path('calendar/', include('calend.urls')),
+    path('achievements/', include('achievements.urls')),
 ] + static(settings.STATIC_URL, document_root = settings.STATIC_ROOT)
