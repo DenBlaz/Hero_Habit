@@ -34,6 +34,7 @@ ALLOWED_HOSTS = ["herohabit-374f14dbfb12.herokuapp.com",]
 INSTALLED_APPS = [
     'main',
     'accounts',
+    'dashboard',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
