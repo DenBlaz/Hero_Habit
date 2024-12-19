@@ -30,14 +30,12 @@ class LoginForm(forms.Form):
         email = cleaned_data.get('email')
         password = cleaned_data.get('password')
 
-        # Перевіряємо, чи існує користувач з вказаним email
         if not User.objects.filter(email=email).exists():
             raise forms.ValidationError("User with this email does not exist.")
 
-        # Аутентифікація користувача
         user = authenticate(email=email, password=password)
         if user is None:
             raise forms.ValidationError("Invalid email or password.")
         
-        cleaned_data['user'] = user  # Зберігаємо користувача для подальшого використання
+        cleaned_data['user'] = user
         return cleaned_data

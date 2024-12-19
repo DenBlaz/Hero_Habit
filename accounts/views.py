@@ -1,7 +1,6 @@
 
 from django.shortcuts import render, redirect
 from .forms import CustomUserCreationForm
-from django.contrib.auth import authenticate, login
 from .forms import LoginForm
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
@@ -10,8 +9,11 @@ from django.contrib.auth.views import LoginView
 from .forms import LoginForm
 
 class UserLoginView(LoginView):
-    template_name = 'accounts/login.html'  # HTML-файл для логіну
-    authentication_form = LoginForm   # Ваша кастомна форма
+    template_name = 'accounts/login.html'
+    authentication_form = LoginForm
+
+def login(request):
+    return redirect("login")
 
 def sign_up(request):
     if request.method == "POST":
