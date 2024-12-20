@@ -40,10 +40,17 @@
            </div>
 
             <div class="days-section" id="days-section">
-            <button class="active-day rounded">Mon</button>
-            <button class="day rounded">Tue</button>
-            <button class="day rounded">Wed</button>
-            <button class="day rounded">Thu</button>
+            <form method="post">
+                {% csrf_token %}
+                <button class="{% if active_day == 'Mon' %}active-day rounded{% else %}day rounded{% endif %}" 
+                  type="submit" name="day" value="Mon">Mon</button>
+                <button class="{% if active_day == 'Tue' %}active-day rounded{% else %}day rounded{% endif %}" 
+                  type="submit" name="day" value="Tue">Tue</button>
+                <button class="{% if active_day == 'Wed' %}active-day rounded{% else %}day rounded{% endif %}" 
+                  type="submit" name="day" value="Wed">Wed</button>
+                <button class="{% if active_day == 'Thu' %}active-day rounded{% else %}day rounded{% endif %}" 
+                  type="submit" name="day" value="Thu">Thu</button>
+            </form>
             <a class="other" href="#" id="arrow-btn"><img src="/static/dashboard/image/arrow1.svg"/></a> <!--Changes days-section to include days from Friday to Sunday-->
           </div>
            
@@ -68,49 +75,52 @@
       document.addEventListener("DOMContentLoaded", () => {
         const daysSection = document.getElementById("days-section");
         const arrowButton = document.getElementById("arrow-btn");
-
+    
         let showingWeekdays = true;
-
+    
         arrowButton.addEventListener("click", (e) => {
-          e.preventDefault(); 
-
-          if (showingWeekdays) {
-            
-            daysSection.innerHTML = `
-        <button class="active-day rounded">Fri</button>
-        <button class="day rounded">Sat</button>
-        <button class="day rounded">Sun</button>
-        <div class="blank"></div>
-        <a class="other" href="#" id="arrow-btn">
-          <img src="/static/dashboard/image/arrow2.svg" alt="arrow" />
-        </a>
-      `;
-          } else {
-        
-            daysSection.innerHTML = `
-        <button class="active-day rounded">Mon</button>
-        <button class="day rounded">Tue</button>
-        <button class="day rounded">Wed</button>
-        <button class="day rounded">Thu</button>
-        <a class="other" href="#" id="arrow-btn">
-          <img src="/static/dashboard/image/arrow1.svg" alt="arrow" "/>
-        </a>
-      `;
-          }
-
-          
-          assignArrowClick();
-          showingWeekdays = !showingWeekdays; 
+            e.preventDefault(); 
+    
+            if (showingWeekdays) {
+                daysSection.innerHTML = `
+                    <button class="{% if active_day == 'Fri' %}active-day rounded{% else %}day rounded{% endif %}" 
+                            type="submit" name="day" value="Fri">Fri</button>
+                    <button class="{% if active_day == 'Sat' %}active-day rounded{% else %}day rounded{% endif %}" 
+                            type="submit" name="day" value="Sat">Sat</button>
+                    <button class="{% if active_day == 'Sun' %}active-day rounded{% else %}day rounded{% endif %}" 
+                            type="submit" name="day" value="Sun">Sun</button>
+                    <a href="#" id="arrow-btn">
+                        <img src="/static/dashboard/image/arrow2.svg" alt="arrow">
+                    </a>
+                `;
+            } else {
+                daysSection.innerHTML = `
+                    <button class="{% if active_day == 'Mon' %}active-day rounded{% else %}day rounded{% endif %}" 
+                            type="submit" name="day" value="Mon">Mon</button>
+                    <button class="{% if active_day == 'Tue' %}active-day rounded{% else %}day rounded{% endif %}" 
+                            type="submit" name="day" value="Tue">Tue</button>
+                    <button class="{% if active_day == 'Wed' %}active-day rounded{% else %}day rounded{% endif %}" 
+                            type="submit" name="day" value="Wed">Wed</button>
+                    <button class="{% if active_day == 'Thu' %}active-day rounded{% else %}day rounded{% endif %}" 
+                            type="submit" name="day" value="Thu">Thu</button>
+                    <a href="#" id="arrow-btn">
+                        <img src="/static/dashboard/image/arrow1.svg" alt="arrow">
+                    </a>
+                `;
+            }
+    
+            showingWeekdays = !showingWeekdays;
+            assignArrowClick();
         });
-
+    
         function assignArrowClick() {
-          const newArrowButton = document.getElementById("arrow-btn");
-          newArrowButton.addEventListener("click", (e) => {
-            e.preventDefault();
-            arrowButton.click(); 
-          });
+            const newArrowButton = document.getElementById("arrow-btn");
+            newArrowButton.addEventListener("click", (e) => {
+                e.preventDefault();
+                arrowButton.click();
+            });
         }
-      });
+    });
     </script>
 </body>
 </html>
