@@ -26,8 +26,8 @@
           </ul>
         </div>
         <div class="settings">
-            <a class="icon" href="#"><img src="settings.svg" height="30px"/></a>
-            <a id="user-profile" class="icon" href="#"><img src="account.svg" height="30px"/></a> 
+            <button class="icon"><img src="settings.svg" height="30px"/></button>
+            <button id="user-profile" class="icon"><img src="account.svg" height="40px"/></button> 
         </div>
        </div>
 
@@ -43,12 +43,12 @@
             <button class="day rounded">Tue</button>
             <button class="day rounded">Wed</button>
             <button class="day rounded">Thu</button>
-            <a class="other" href="#" id="arrow-btn"><img src="arrow1.svg"/></a> <!--Changes days-section to include days from Friday to Sunday-->
+            <button class="other" id="arrow-btn"><img src="arrow1.svg"/></button> <!--Changes days-section to include days from Friday to Sunday-->
           </div>
            
            <div class="tasks-section">
               <p class="sticky bold">Assigned tasks</p>
-               <p class="pad" > <a ><img src="plus.svg" height="25px" /></a>Create a task</p>
+               <p  > <a href="#" class="pad"><img src="plus.svg" height="25px" />Create a task</a></p>
            <div class="no-tasks">
             <img src="illustration.svg" height="130px" /></a>
             <p><br />Every hero deserves a rest! <br />
@@ -60,6 +60,24 @@
            <div class="stats-section rounded padded">
 
            </div>
+
+          <div id="profile-modal" class="modal">
+          <div class="modal-content rounded">
+        
+            <p >Account</p>
+            
+            <div class="flex-center">
+              <img src="account.svg" height="35px" />
+              <div class="account-info light grey ">
+                <p >Username</p><!--Has to be replaced by actual username-->
+                <p >email123456789@gmail.com</p><!--Has to be replaced by actual email-->
+                
+              </div>
+            </div>
+            <hr />
+            <p ><a href="#" class="inline">Log out<img src="logOutSign.svg" height="25px" /></a></p>
+          </div>
+        </div>
       </div>
     </div>
 
@@ -110,6 +128,19 @@
           });
         }
       });
+        const modal = document.getElementById("profile-modal");
+const openModalBtn = document.getElementById("open-modal");
+
+
+openModalBtn.addEventListener("click", () => {
+  modal.style.display = "flex"; 
+});
+
+window.addEventListener("click", (event) => {
+  if (event.target === modal) {
+    modal.style.display = "none"; 
+  }
+});
     </script>
 </body>
 </html>
