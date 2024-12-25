@@ -142,8 +142,6 @@ body {
   justify-content: center;
   flex: 1;
   cursor: pointer;
-  border: none;
-  background-color: transparent;
 }
 
 .tasks-section {
@@ -254,8 +252,9 @@ li a {
   margin: 0px -15px;
 }
 
-.settings button {
+button {
   border:none;
+  background-color: transparent;
 }
 
 .flex-center{
