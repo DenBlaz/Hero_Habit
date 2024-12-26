@@ -41,7 +41,6 @@
 
             <div class="days-section" id="days-section">
             <form method="post">
-                {% csrf_token %}
                 <button class="{% if active_day == 'Mon' %}active-day rounded{% else %}day rounded{% endif %}" 
                   type="submit" name="day" value="Mon">Mon</button>
                 <button class="{% if active_day == 'Tue' %}active-day rounded{% else %}day rounded{% endif %}" 
