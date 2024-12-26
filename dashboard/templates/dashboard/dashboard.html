@@ -41,13 +41,14 @@
 
             <div class="days-section" id="days-section">
             <form method="post">
-                <button class="{% if active_day == 'Mon' %}active-day rounded{% else %}day rounded{% endif %}" 
+                {% csrf_token %}
+                <button class="{% if active_day == 'Mon' %}active-day rounded{% else %}day rounded{% endif %}day rounded" 
                   type="submit" name="day" value="Mon">Mon</button>
-                <button class="{% if active_day == 'Tue' %}active-day rounded{% else %}day rounded{% endif %}" 
+                <button class="{% if active_day == 'Tue' %}active-day rounded{% else %}day rounded{% endif %}day rounded" 
                   type="submit" name="day" value="Tue">Tue</button>
-                <button class="{% if active_day == 'Wed' %}active-day rounded{% else %}day rounded{% endif %}" 
+                <button class="{% if active_day == 'Wed' %}active-day rounded{% else %}day rounded{% endif %}day rounded" 
                   type="submit" name="day" value="Wed">Wed</button>
-                <button class="{% if active_day == 'Thu' %}active-day rounded{% else %}day rounded{% endif %}" 
+                <button class="{% if active_day == 'Thu' %}active-day rounded{% else %}day rounded{% endif %}day rounded" 
                   type="submit" name="day" value="Thu">Thu</button>
             </form>
             <a class="other" href="#" id="arrow-btn"><img src="/static/dashboard/image/arrow1.svg"/></a> <!--Changes days-section to include days from Friday to Sunday-->
