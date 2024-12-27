@@ -11,7 +11,7 @@ def register(request):
             return redirect('dashboard:dashboard')  # Замените 'home' на вашу целевую страницу
     else:
         form = CustomUserCreationForm()
-    return render(request, 'sign.html', {'form': form})
+    return render(request, 'accounts/sign.html', {'form': form})
 
 def user_login(request):
     if request.method == 'POST':
@@ -22,4 +22,4 @@ def user_login(request):
             return redirect('dashboard:dashboard')  # Замените 'home' на вашу целевую страницу
     else:
         form = EmailAuthenticationForm()
-    return render(request, 'login.html', {'form': form})
+    return render(request, 'accounts/login.html', {'form': form})
