@@ -19,11 +19,11 @@
 
             <form method="post">
                 {% csrf_token %}
-                {{ form.as_p }}
                 <div class="input-field">
-                    <input type="email" placeholder="Enter email" required>
+                    <input type="email" name="username" placeholder="Enter email" required>
                     <span><img class="icon-input" style="top: 14px" src="/static/accounts/image/email.svg" alt="Email Icon"></span>
                 </div>
+
                 <div class="input-field">
                     <input type="password" placeholder="Enter password" required>
                     <span><img class="icon-input" src="/static/accounts/image/lock.svg"></span>

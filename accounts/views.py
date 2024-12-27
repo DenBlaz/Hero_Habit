@@ -1,23 +1,25 @@
 from django.shortcuts import render, redirect
-from django.contrib.auth import login, authenticate
-from django.contrib.auth.views import LoginView
-from .forms import RegisterForm, LoginForm
+from django.contrib.auth import login
+from .forms import CustomUserCreationForm, EmailAuthenticationForm
 
 def register(request):
     if request.method == 'POST':
-        form = RegisterForm(request.POST)
+        form = CustomUserCreationForm(request.POST)
         if form.is_valid():
             user = form.save()
-            return redirect('login')
+            login(request, user)
+            return redirect('dashboard:dashboard')  # Замените 'home' на вашу целевую страницу
     else:
-        form = RegisterForm()
-    return render(request, "accounts/sign.html", {'form': form})
+        form = CustomUserCreationForm()
+    return render(request, 'sign.html', {'form': form})
 
-class CustomLoginView(LoginView):
-    template_name = 'login.html'
-    authentication_form = LoginForm
-
-    def form_valid(self, form):
-        user = form.get_user()
-        login(self.request, user)
-        return redirect('dashboard:dashboard')  # Перекидає на сайт після входу
+def user_login(request):
+    if request.method == 'POST':
+        form = EmailAuthenticationForm(data=request.POST)
+        if form.is_valid():
+            user = form.get_user()
+            login(request, user)
+            return redirect('dashboard:dashboard')  # Замените 'home' на вашу целевую страницу
+    else:
+        form = EmailAuthenticationForm()
+    return render(request, 'login.html', {'form': form})
