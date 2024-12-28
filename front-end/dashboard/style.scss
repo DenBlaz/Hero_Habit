@@ -1,0 +1,330 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Open Sans",Arial;
+}
+
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background-color: #f1ebfb;
+  overflow-y: auto;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  width: 98vw;
+  height: 98vh;
+  gap: 5px;
+}
+
+.header1{
+  display: flex;
+  height:8%;
+  flex-direction: column;
+  padding:20px 0px 0px 10px;
+}
+
+.header2{
+  display: flex;
+  flex-direction: row;
+  gap:15px;
+  height:7%;
+  padding:0px 0px 0px 10px;
+}
+
+.navigation {
+  flex: 2;
+  overflow: hidden;
+  display: flex;
+  flex-direction: row;
+  justify-content:flex-start;
+  align-items: end;
+}
+
+.settings {
+  flex: 1;
+  display: flex;
+  flex-direction: row;
+  justify-content:flex-end;
+  align-items: end;
+  padding: 0 10px;
+  gap: 10px;
+}
+
+.icon{
+  cursor: pointer;
+}
+
+.content {
+  display: flex;
+  flex-grow: 1;
+  gap: 20px;
+}
+
+.manage-section {
+  flex: 2;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.stats-section {
+  flex: 1;
+  max-height: 100%;
+  background-color: #ffffff;
+  overflow: auto;
+}
+
+.welcome-section {
+  height:15%;
+  background-image: url("All_stars.svg"),
+  linear-gradient(90deg, #D397FA, #8364E8);
+  color:rgba(255, 255, 255, 0.9);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  font-weight:bold ;
+  background-position: right center, center;
+  background-repeat: no-repeat;
+  background-size: contain, cover;
+  overflow: hidden;
+  padding:10px 10px 10px 20px;
+  font-size:1.5rem;
+}
+
+.days-section {
+  height: 12.5%;
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  font-size:1.5rem;
+  font-weight:bold;
+}
+
+.welcome-section p,
+.days-section button{
+  letter-spacing: 1px;
+}
+
+.active-day,
+.day{
+  flex: 2;
+  justify-content: center;
+  cursor: pointer;
+  background-color: #ffffff;
+  font-weight:bold ;
+  font-size: 1.2rem;
+}
+
+.active-day{
+  border-color: #916deb;
+  color: #916deb;
+}
+
+.day {
+  border:none;
+  color: #8364E8;
+}
+
+.blank {
+  flex: 2;
+}
+
+.other {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 1;
+  cursor: pointer;
+  border: none;
+}
+
+.tasks-section {
+  flex-grow: 1;
+  max-height: 100%;
+  background-color: #ffffff;
+  border-radius: 8px;
+  padding: 0 10px 10px 10px;
+  overflow: auto;
+  display: flex;
+  flex-direction: column;
+  font-size: 0.9rem;
+}
+
+.no-tasks{
+  display:flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  justify-content: flex-start;
+  font-size: 0.8rem;
+}
+
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+li {
+  float: left;
+}
+
+li a {
+  display: block;
+  color: rgb(0, 0, 0);
+  text-align: center;
+  padding: 10px 10px;
+  text-decoration: none;
+}
+
+.active-page {
+  text-decoration: underline;
+  text-underline-offset: 5px;
+  text-decoration-thickness: 1px;
+}
+
+.pad {
+  padding:0px 0px 5px 5px;
+  display: inline-flex;
+  align-items: center;
+  font-size: 0.8rem;
+  cursor: pointer;
+}
+
+.pad img {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.rounded {
+  border-radius: 10px;
+}
+
+.padded {
+  padding: 10px;
+}
+
+.semi-bold{
+  font-weight:600 ;
+}
+
+.bold{
+  font-weight:700 ;
+}
+
+
+////Davyd's code:
+#overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 998;
+}
+
+.panel {
+  display: none;
+  position: fixed;
+  width: 60%;
+  height: 70%;
+  font-weight: bolder;
+  top: 15%;
+  left: 20%;
+  background-color: white;
+  border: 1px solid #ccc;
+  border-radius: 20px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  z-index: 999; /* Above the overlay */
+}
+
+.title-settings{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 2px solid #ddd;
+}
+
+.title{
+  display: flex;
+}
+
+.settings-options{
+  width:25%;
+  font-size: 20px;
+  font-weight: normal;
+  border-right: 2px solid #ddd;
+}
+
+.settings-profile-usage,
+.settings-change-password{
+  width:73%;
+  padding: 20px;
+}
+
+.settings-container{
+  display: flex;
+  height: 84.9%;
+  flex-direction: row;
+}
+
+.settings-profile-section,
+.settings-username-section,
+.settings-password-section{
+  border-bottom: 2px solid #ddd;
+}
+
+input {
+  background-color: #ebebeb;
+  color: #9C9C9C;
+
+  border: none;
+  border-radius: 10px;
+  height: 2rem;
+  width: 20rem;
+  font-size: 14px;
+  padding-left: 10px;
+  box-sizing: border-box;
+}
+
+input::placeholder {
+  color: #9C9C9C;
+}
+
+.settings-button {
+  background: #D397FA;
+  border: none;
+  text-align: center;
+  font-weight: bolder;
+  color: white;
+  font-size: 21px;
+  width: 105px;
+  height: 30px;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.options{
+  display: flex;
+  flex-direction: column;
+  cursor: pointer;
+}
+
+.option{
+  height: 4%;
+  padding: 10px;
+}
+
+.active{
+  background-color: #f0dbfe;
+  border-right: 5px solid #d397fa;
+}

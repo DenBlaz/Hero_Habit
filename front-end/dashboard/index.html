@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <link
+            href="https://fonts.googleapis.com/css?family=Open Sans"
+            rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<div class="container">
+    <div class="header1">
+        <span><span class="bold">Hero</span>Habit</span>
+    </div>
+
+    <div class="header2">
+        <div class="navigation">
+            <ul>
+                <li><a class="active-page" href="#">Dashboard</a></li>    <!--Active page-->
+                <li><a href="#">Statistics</a></li>  <!--Has to redirect to statisctics page-->
+                <li><a href="#">Calendar</a></li>  <!--Has to redirect to calendar page-->
+                <li><a href="#">Achievements</a></li>  <!--Has to redirect to achievements page-->
+            </ul>
+        </div>
+        <div class="settings">
+            <a class="icon" id="toggle-icon"><img src="images/icons/settings.svg" height="30px"/></a>
+            <div class="panel" id="toggle-panel">
+                <div class="title-settings">
+                    <div class="title">
+                        <img class="icon" src="images/icons/settings.svg" style="margin:15px">
+                        <p style="font-size: 34px; margin-top: 15px">Settings</p>
+                    </div>
+                    <a class="icon" id="close" style="margin: 15px"><img src="images/icons/cross.svg"></a>
+                </div>
+
+                <div class="settings-container">
+                    <div class="settings-options">
+                        <ul class="options">
+                            <li id="ViewProfileOption" class="option">View profile</li>
+                            <li id="ChangePassword" class="option">Change password</li>
+                        </ul>
+                    </div>
+
+                    <div class="settings-profile-usage">
+                        <div class="settings-profile-section">
+                            <p>Profile picture</p>
+                            <img style="padding: 2% 0 1% 0;width: 80px" src="images/icons/account.svg">
+                        </div>
+                        <div class="settings-username-section" style="padding: 1% 0 3% 0">
+                            <p style="padding: 1% 0 1% 0">Username</p>
+                            <input placeholder="Username" >
+                        </div>
+                        <div class="settings-email-settings" style="padding-bottom: 4%">
+                            <p style="padding: 1% 0 1% 0">Email</p>
+                            <input placeholder="Email">
+                        </div>
+                        <button class="settings-button"><img style="width: 14%" src="images/icons/pen.svg"> Edit</button>
+                    </div>
+
+                    <div class="settings-change-password">
+                        <div class="settings-password-section" style="padding: 0 0 1.5% 0">
+                            <p style="padding: 0 0 1% 0">Current password</p>
+                            <input placeholder="Password">
+                        </div>
+                        <div class="settings-change-section">
+                            <p style="padding: 2% 0 1% 0">New password</p>
+                            <input placeholder="Password">
+                        </div>
+                        <div class="settings-change-section" style="padding: 0 0 4% 0">
+                            <p style="padding: 3% 0 1% 0">Confirm new password</p>
+                            <input placeholder="Password">
+                        </div>
+                        <button class="settings-button"><img src="images/icons/pen.svg"> Save</button>
+                    </div>
+                </div>
+            </div>
+            <a id="user-profile" class="icon" href="#"><img src="images/icons/account.svg" height="30px"/></a>
+        </div> <!-- Basically everything in here (in header2) is new -->
+        <div id="overlay"></div>
+
+    </div>
+
+    <div class="content">
+        <div class="manage-section">
+            <div class="welcome-section rounded">
+                <p>Welcome back,</p>
+                <p id="user-name">Name</p>  <!--'Name' has to be replaced with an actual name in the future-->
+            </div>
+
+            <div class="days-section" id="days-section">
+                <button class="active-day rounded">Mon</button>
+                <button class="day rounded">Tue</button>
+                <button class="day rounded">Wed</button>
+                <button class="day rounded">Thu</button>
+                <a class="other" href="#" id="arrow-btn"><img src="images/icons/arrow1.svg"/></a> <!--Changes days-section to include days from Friday to Sunday-->
+            </div>
+
+            <div class="tasks-section">
+                <p class="sticky bold">Assigned tasks</p>
+                <p class="pad" > <a ><img src="images/icons/plus.svg" height="25px" /></a>Create a task</p>
+                <div class="no-tasks">
+                    <img src="images/icons/illustration.svg" height="130px" /></a>
+                    <p><br />Every hero deserves a rest! <br />
+                        Maybe it`s time for new adventures?</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="stats-section rounded padded">
+
+        </div>
+    </div>
+
+    <script src="js/script.js"></script>
+</div>
+</body>
+</html>
