@@ -40,17 +40,11 @@
            </div>
 
             <div class="days-section" id="days-section">
-            <form method="post">
-                {% csrf_token %}
-                <button class="{% if active_day == 'Mon' %}active-day rounded{% else %}day rounded{% endif %}day rounded" 
-                  type="submit" name="day" value="Mon">Mon</button>
-                <button class="{% if active_day == 'Tue' %}active-day rounded{% else %}day rounded{% endif %}day rounded" 
-                  type="submit" name="day" value="Tue">Tue</button>
-                <button class="{% if active_day == 'Wed' %}active-day rounded{% else %}day rounded{% endif %}day rounded" 
-                  type="submit" name="day" value="Wed">Wed</button>
-                <button class="{% if active_day == 'Thu' %}active-day rounded{% else %}day rounded{% endif %}day rounded" 
-                  type="submit" name="day" value="Thu">Thu</button>
-            </form>
+              <div class="day rounded {% if active_day == 'Mon' %}active-day{% endif %}" data-day="Mon">Mon</div>
+              <div class="day rounded {% if active_day == 'Tue' %}active-day{% endif %}" data-day="Tue">Tue</div>
+              <div class="day rounded {% if active_day == 'Wed' %}active-day{% endif %}" data-day="Wed">Wed</div>
+              <div class="day rounded {% if active_day == 'Thu' %}active-day{% endif %}" data-day="Thu">Thu</div>
+          </div>
             <a class="other" href="#" id="arrow-btn"><img src="/static/dashboard/image/arrow1.svg"/></a> <!--Changes days-section to include days from Friday to Sunday-->
           </div>
            
@@ -107,7 +101,7 @@
           <button class="day rounded">Sun</button>
           <div class="blank"></div>
           <a class="other" href="#" id="arrow-btn">
-            <img src="images/icons/arrow2.svg" alt="arrow" />
+            <img src="/static/dashboard/image/arrow2.svg" alt="arrow" />
           </a>
         `;
           } else {
@@ -118,7 +112,7 @@
           <button class="day rounded">Wed</button>
           <button class="day rounded">Thu</button>
           <a class="other" href="#" id="arrow-btn">
-            <img src="images/icons/arrow1.svg" alt="arrow" "/>
+            <img src="/static/dashboard/image/arrow1.svg" alt="arrow" "/>
           </a>
         `;}
   
@@ -135,8 +129,8 @@
           });
       }
   });
-  // JavaScript to toggle content display based on list item clicks
-  
+</script>
+<script>
   //Davyd's code:
   document.addEventListener("DOMContentLoaded", function () {
       const toggleIcon = document.getElementById("toggle-icon");
@@ -186,6 +180,39 @@
   
           profileSection.style.display = "none";
           passwordSection.style.display = "block";
+      });
+  });
+  </script>
+
+
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const daysSection = document.getElementById("days-section");
+  
+      daysSection.addEventListener("click", (e) => {
+          if (e.target.dataset.day) {
+              const selectedDay = e.target.dataset.day;
+  
+              fetch("{% url 'dashboard:dashboard' %}", {
+                  method: "POST",
+                  headers: {
+                      "X-CSRFToken": "{{ csrf_token }}",
+                      "Content-Type": "application/json",
+                  },
+                  body: JSON.stringify({ day: selectedDay }),
+              })
+                  .then((response) => response.json())
+                  .then((data) => {
+                      console.log(data.message);
+                  })
+                  .catch((error) => console.error("Error:", error));
+  
+              // Обновление активной кнопки
+              document.querySelectorAll(".day").forEach((el) => {
+                  el.classList.remove("active-day");
+              });
+              e.target.classList.add("active-day");
+          }
       });
   });
   </script>
