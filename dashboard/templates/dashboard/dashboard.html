@@ -122,8 +122,8 @@
       <div class="flex-center">
         <img src="account.svg" height="35px" />
         <div class="account-info light grey ">
-          <p >Username</p><!--Has to be replaced by actual username-->
-          <p >email123456789@gmail.com</p><!--Has to be replaced by actual email-->
+          <p >{{ request.user.nickname }}</p>
+          <p >{{ request.user.email }}</p>
           
         </div>
       </div>
@@ -225,7 +225,7 @@
       if (event.target === modal) {
         modal.style.display = "none"; 
       }
-  });
+    });
 </script>
 
 <script>
