@@ -47,7 +47,6 @@ body {
 }
 
 .settings {
-  flex: 1;
   display: flex;
   flex-direction: row;
   justify-content:flex-end;
@@ -243,7 +242,7 @@ li a {
   border: 1px solid #ccc;
   border-radius: 20px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-  z-index: 999;
+  z-index: 999; /* Above the overlay */
 }
 
 .title-settings{
