@@ -15,7 +15,7 @@ def register(request):
 
     return render(request, 'accounts/sign.html', {'form': form})
 
-def login(request):
+def user_login(request):
     if request.method == 'POST':
         email = request.POST['username']
         password = request.POST['password']
