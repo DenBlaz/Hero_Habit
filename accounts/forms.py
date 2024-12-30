@@ -1,12 +1,21 @@
 from django import forms
-from .models import CustomUser
+from .models import Account
 
-class CustomUserCreationForm(forms.ModelForm):
-    password = forms.CharField(label='Password', widget=forms.PasswordInput)
+
+class RegistrationForm(forms.ModelForm):
+    password = forms.CharField(widget=forms.PasswordInput(attrs={
+        'placeholder': 'Enter password'
+    }))
+    email = forms.EmailField(widget=forms.EmailInput(attrs={
+        'placeholder': 'Enter email'
+    }))
+    nickname = forms.CharField(widget=forms.TextInput(attrs={
+        'placeholder': 'Enter username'
+    }))
 
     class Meta:
-        model = CustomUser
-        fields = ['email', 'username', 'password']
+        model = Account
+        fields = ['email', 'nickname', 'password']
 
     def save(self, commit=True):
         user = super().save(commit=False)
@@ -14,8 +23,3 @@ class CustomUserCreationForm(forms.ModelForm):
         if commit:
             user.save()
         return user
-    
-from django.contrib.auth.forms import AuthenticationForm
-
-class EmailAuthenticationForm(AuthenticationForm):
-    username = forms.EmailField(label='Email', required=True)
