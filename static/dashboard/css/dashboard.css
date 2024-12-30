@@ -47,7 +47,7 @@ body {
 }
 
 .settings {
-  width: 200px;
+  height: 30px;
   flex: 1;
   display: flex;
   flex-direction: row;
