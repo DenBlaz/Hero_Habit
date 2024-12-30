@@ -40,17 +40,10 @@
            </div>
 
             <div class="days-section" id="days-section">
-              <form method="post">
-                {% csrf_token %}
-                <button class="{% if active_day == 'Mon' %}active-day rounded{% else %}day rounded{% endif %}day rounded" 
-                  type="submit" name="day" value="Mon">Mon</button>
-                <button class="{% if active_day == 'Tue' %}active-day rounded{% else %}day rounded{% endif %}day rounded" 
-                  type="submit" name="day" value="Tue">Tue</button>
-                <button class="{% if active_day == 'Wed' %}active-day rounded{% else %}day rounded{% endif %}day rounded" 
-                  type="submit" name="day" value="Wed">Wed</button>
-                <button class="{% if active_day == 'Thu' %}active-day rounded{% else %}day rounded{% endif %}day rounded" 
-                  type="submit" name="day" value="Thu">Thu</button>
-            </form>
+              <div class="day rounded {% if active_day == 'Mon' %}active-day{% endif %}" data-day="Mon">Mon</div>
+              <div class="day rounded {% if active_day == 'Tue' %}active-day{% endif %}" data-day="Tue">Tue</div>
+              <div class="day rounded {% if active_day == 'Wed' %}active-day{% endif %}" data-day="Wed">Wed</div>
+              <div class="day rounded {% if active_day == 'Thu' %}active-day{% endif %}" data-day="Thu">Thu</div>
           </div>
             <a class="other" href="#" id="arrow-btn"><img src="/static/dashboard/image/arrow1.svg"/></a> <!--Changes days-section to include days from Friday to Sunday-->
           </div>
@@ -149,6 +142,29 @@ window.addEventListener("click", (event) => {
 if (event.target === modal) {
   modal.style.display = "none"; 
 }
+});
+  </script>
+
+<script>
+  document.querySelectorAll(".day").forEach((button) => {
+    button.addEventListener("click", (e) => {
+        e.preventDefault();
+        const formData = new FormData();
+        formData.append("day", e.target.value);
+
+        fetch("{% url 'dashboard:dashboard' %}", {
+            method: "POST",
+            headers: {
+                "X-CSRFToken": "{{ csrf_token }}",
+            },
+            body: formData,
+        })
+            .then((response) => response.json())
+            .then((data) => {
+                console.log(data.message);
+            })
+            .catch((error) => console.error("Error:", error));
+    });
 });
   </script>
 </body>
