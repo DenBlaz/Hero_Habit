@@ -86,7 +86,7 @@
        <div class="manage-section">
            <div class="welcome-section rounded">
             <p>Welcome back,</p>
-            <p id="user-name">{{ request.user.nickname }}</p>  <!--'Name' has to be replaced with an actual name in the future-->
+            <p id="user-name">{{ request.user.nickname }}</p>
            </div>
 
             <div class="days-section" id="days-section">
@@ -248,6 +248,7 @@
         profileSection.style.display = "none";
         passwordSection.style.display = "block";
     });
-});</script>
+  });
+</script>
 </body>
 </html>
