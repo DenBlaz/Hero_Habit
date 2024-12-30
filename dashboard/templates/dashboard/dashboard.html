@@ -36,7 +36,7 @@
        <div class="manage-section">
            <div class="welcome-section rounded">
             <p>Welcome back,</p>
-            <p id="user-name">{{ nickname }}</p>  <!--'Name' has to be replaced with an actual name in the future-->
+            <p id="user-name">{{ request.user.nickname }}</p>  <!--'Name' has to be replaced with an actual name in the future-->
            </div>
 
             <div class="days-section" id="days-section">
