@@ -40,7 +40,7 @@
            </div>
 
             <div class="days-section" id="days-section">
-            <button class="active-day rounded">Mon</button>
+            <button class="day rounded">Mon</button>
             <button class="day rounded">Tue</button>
             <button class="day rounded">Wed</button>
             <button class="day rounded">Thu</button>
@@ -81,6 +81,32 @@
       </div>
     </div>
   </div>
+
+
+  <script>
+    const dayContent = {
+        Mon: "",
+        Tue: "",
+        Wed: "",
+        Thu: ""
+    };
+
+    const buttons = document.querySelectorAll('#buttons button');
+    const contentParagraph = document.querySelector('#content p');
+
+    buttons.forEach(button => {
+        button.addEventListener('click', () => {
+            buttons.forEach(btn => btn.classList.remove('active-day'));
+            buttons.forEach(btn => btn.classList.add('day'));
+
+            button.classList.remove('day');
+            button.classList.add('active-day');
+
+            const day = button.getAttribute('data-day');
+            contentParagraph.textContent = dayContent[day];
+        });
+    });
+</script>
 
   <script>
     document.addEventListener("DOMContentLoaded", () => {
