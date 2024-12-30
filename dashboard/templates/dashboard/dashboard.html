@@ -183,38 +183,5 @@
       });
   });
   </script>
-
-
-  <script>
-    document.addEventListener("DOMContentLoaded", () => {
-      const daysSection = document.getElementById("days-section");
-  
-      daysSection.addEventListener("click", (e) => {
-          if (e.target.dataset.day) {
-              const selectedDay = e.target.dataset.day;
-  
-              fetch("{% url 'dashboard:dashboard' %}", {
-                  method: "POST",
-                  headers: {
-                      "X-CSRFToken": "{{ csrf_token }}",
-                      "Content-Type": "application/json",
-                  },
-                  body: JSON.stringify({ day: selectedDay }),
-              })
-                  .then((response) => response.json())
-                  .then((data) => {
-                      console.log(data.message);
-                  })
-                  .catch((error) => console.error("Error:", error));
-  
-              // Обновление активной кнопки
-              document.querySelectorAll(".day").forEach((el) => {
-                  el.classList.remove("active-day");
-              });
-              e.target.classList.add("active-day");
-          }
-      });
-  });
-  </script>
 </body>
 </html>
