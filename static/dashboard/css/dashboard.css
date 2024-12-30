@@ -307,3 +307,111 @@ li a {
   padding-left: 5px; 
  
 }
+
+#overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 998;
+}
+
+.panel {
+  display: none;
+  position: fixed;
+  width: 60%;
+  height: 70%;
+  font-weight: bolder;
+  top: 15%;
+  left: 20%;
+  background-color: white;
+  border: 1px solid #ccc;
+  border-radius: 20px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  z-index: 999; /* Above the overlay */
+}
+
+.title-settings{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 2px solid #ddd;
+}
+
+.title{
+  display: flex;
+}
+
+.settings-options{
+  width:25%;
+  font-size: 20px;
+  font-weight: normal;
+  border-right: 2px solid #ddd;
+}
+
+.settings-profile-usage,
+.settings-change-password{
+  width:73%;
+  padding: 20px;
+}
+
+.settings-container{
+  display: flex;
+  height: 84.9%;
+  flex-direction: row;
+}
+
+.settings-profile-section,
+.settings-username-section,
+.settings-password-section{
+  border-bottom: 2px solid #ddd;
+}
+
+input {
+  background-color: #ebebeb;
+  color: #9C9C9C;
+
+  border: none;
+  border-radius: 10px;
+  height: 2rem;
+  width: 20rem;
+  font-size: 14px;
+  padding-left: 10px;
+  box-sizing: border-box;
+}
+
+input::placeholder {
+  color: #9C9C9C;
+}
+
+.settings-button {
+  background: #D397FA;
+  border: none;
+  text-align: center;
+  font-weight: bolder;
+  color: white;
+  font-size: 21px;
+  width: 105px;
+  height: 30px;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.options{
+  display: flex;
+  flex-direction: column;
+  cursor: pointer;
+}
+
+.option{
+  height: 4%;
+  padding: 10px;
+}
+
+.active{
+  background-color: #f0dbfe;
+  border-right: 5px solid #d397fa;
+}
