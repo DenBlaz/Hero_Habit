@@ -3,6 +3,6 @@ from django.contrib.auth.decorators import login_required
 
 def home(request):
     if request.user.is_authenticated:
-        return redirect('profile')
+        return redirect('dashboard')
     else:
         return redirect('login')
