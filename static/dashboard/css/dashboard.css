@@ -234,7 +234,7 @@ li a {
 .panel {
   display: none;
   position: fixed;
-  width: 20%;
+  width: 60%;
   height: 70%;
   font-weight: bolder;
   top: 15%;
