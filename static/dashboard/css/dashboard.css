@@ -130,7 +130,7 @@ body {
 
 .welcome-section {
   height: 15%;
-  background-image: url("All_stars.svg"),
+  background-image: url("/static/dashboard/image/All_stars.svg"),
     linear-gradient(90deg, #d397fa, #8364e8);
   color: rgba(255, 255, 255, 0.9);
   display: flex;
