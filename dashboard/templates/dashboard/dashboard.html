@@ -112,6 +112,27 @@
 
      </div>
 
+     <div class="stats-section rounded paddedx2">
+        <div class="hero-stats rounded">
+          <img class="level" src="level.svg" height="60px" />
+        </div>
+        <div class="activity-stats rounded padded">
+          <p class="semi-bold">Task report of the week:</p>
+          <p class="right font16px">50/100</p>
+          <div class="progress-bar">
+            <div class="progress-fill" style="width: 50%"></div>
+          </div>
+          <p class="font12px">50% completed</p>
+        </div>
+        <div class="achievement-stats rounded padded">
+          <p class="semi-bold">Your last achievement:</p>
+          <p class="inline cup font16px">
+            <img src="cup.svg" height="25px" />Description of achievement...
+          </p>
+        </div>
+      </div>
+
+
     <div id="profile-modal" class="modal">
     <div class="modal-content rounded">
   
@@ -226,56 +247,56 @@
 </script>
 
 <script>
-  document.addEventListener("DOMContentLoaded", function () {
-    const toggleIcon = document.getElementById("toggle-icon");
-    const closeIcon = document.getElementById("close");
-    const panel = document.getElementById("toggle-panel");
-    const overlay = document.getElementById("overlay");
-    const profileOption = document.getElementById("ViewProfileOption");
-    const passwordOption = document.getElementById("ChangePassword");
-
-    const profileSection = document.querySelector(".settings-profile-usage");
-    const passwordSection = document.querySelector(".settings-change-password");
-
-    // Initially show 'Change Password' section
-    profileOption.classList.add("active");
-    profileSection.style.display = "block";
-    passwordSection.style.display = "none";
-
-    // Open Settings Panel
-    toggleIcon.addEventListener("click", () => {
-        panel.style.display = "block";
-        overlay.style.display = "block";
-    });
-
-    // Close Settings Panel
-    closeIcon.addEventListener("click", () => {
-        panel.style.display = "none";
-        overlay.style.display = "none";
-    });
-
-    overlay.addEventListener("click", () => {
-        panel.style.display = "none";
-        overlay.style.display = "none";
-    });
-
-    // Toggle Between Profile and Password Sections
-    profileOption.addEventListener("click", function () {
+    document.addEventListener("DOMContentLoaded", function () {
+        const toggleIcon = document.getElementById("toggle-icon");
+        const closeIcon = document.getElementById("close");
+        const panel = document.getElementById("toggle-panel");
+        const overlay = document.getElementById("overlay");
+        const profileOption = document.getElementById("ViewProfileOption");
+        const passwordOption = document.getElementById("ChangePassword");
+    
+        const profileSection = document.querySelector(".settings-profile-usage");
+        const passwordSection = document.querySelector(".settings-change-password");
+    
+        // Initially show 'Change Password' section
         profileOption.classList.add("active");
-        passwordOption.classList.remove("active");
-
         profileSection.style.display = "block";
         passwordSection.style.display = "none";
+    
+        // Open Settings Panel
+        toggleIcon.addEventListener("click", () => {
+            panel.style.display = "block";
+            overlay.style.display = "block";
+        });
+    
+        // Close Settings Panel
+        closeIcon.addEventListener("click", () => {
+            panel.style.display = "none";
+            overlay.style.display = "none";
+        });
+    
+        overlay.addEventListener("click", () => {
+            panel.style.display = "none";
+            overlay.style.display = "none";
+        });
+    
+        // Toggle Between Profile and Password Sections
+        profileOption.addEventListener("click", function () {
+            profileOption.classList.add("active");
+            passwordOption.classList.remove("active");
+    
+            profileSection.style.display = "block";
+            passwordSection.style.display = "none";
+        });
+    
+        passwordOption.addEventListener("click", function () {
+            passwordOption.classList.add("active");
+            profileOption.classList.remove("active");
+    
+            profileSection.style.display = "none";
+            passwordSection.style.display = "block";
+        });
     });
-
-    passwordOption.addEventListener("click", function () {
-        passwordOption.classList.add("active");
-        profileOption.classList.remove("active");
-
-        profileSection.style.display = "none";
-        passwordSection.style.display = "block";
-    });
-  });
 </script>
 </body>
 </html>
