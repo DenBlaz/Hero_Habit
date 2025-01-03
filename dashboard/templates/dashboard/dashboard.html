@@ -145,7 +145,15 @@
         </div>
       </div>
       <hr />
-      <p ><a href="{% url 'accounts:logout' %}" class="inline">Log out<img src="/static/dashboard/image/logOutSign.svg" height="25px" /></a></p>
+      <p>
+        <form method="post" action="{% url 'accounts:logout' %}" style="display: inline;">
+            {% csrf_token %}
+            <button type="submit" class="inline" style="border: none; background: none; padding: 0; cursor: pointer;">
+                Log out
+                <img src="/static/dashboard/image/logOutSign.svg" height="25px" />
+            </button>
+        </form>
+      </p>
     </div>
   </div>
 </div>
