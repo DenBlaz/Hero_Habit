@@ -7,5 +7,5 @@ app_name = 'accounts'
 urlpatterns = [
     path('sign/', views.register, name = "sign"),
     path('login/', views.user_login, name = "login"),
-    path('logout/', LogoutView.as_view(next_page='login'), name='logout'),
+    path('logout/', LogoutView.as_view(next_page='login/'), name='logout'),
 ]
