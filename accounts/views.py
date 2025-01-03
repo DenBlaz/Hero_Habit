@@ -3,7 +3,6 @@ from .forms import RegistrationForm
 from django.contrib.auth import authenticate, login
 from django.contrib import messages
 
-
 def register(request):
     if request.method == 'POST':
         form = RegistrationForm(request.POST)
