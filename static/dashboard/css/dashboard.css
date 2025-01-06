@@ -432,7 +432,12 @@ li a {
   border-radius: 20px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
   z-index: 999; /* Above the overlay */
+  overflow: auto;
 }
+
+.panel::-webkit-scrollbar {
+  display: none;
+} 
 
 .title-settings {
   display: flex;
