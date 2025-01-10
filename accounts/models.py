@@ -18,7 +18,6 @@ class CustomAccountManager(BaseUserManager):
         user.save(using=self._db)
         return user
 
-
 class Account(AbstractBaseUser, PermissionsMixin):
     email = models.EmailField(unique=True)
     nickname = models.CharField(max_length=50, unique=True)

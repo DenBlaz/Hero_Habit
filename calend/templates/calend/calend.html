@@ -1,15 +1,16 @@
 {% load static %}
+<link rel="icon" href="{% static 'dashboard/image/logo_b.png' %}" type="image/png">
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard</title>
+    <title>HeroHabit</title>
     <link
       href="https://fonts.googleapis.com/css?family=Open Sans"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="{% static 'dashboard/css/dashboard.css' %}">
+    <link rel="stylesheet" href="{% static 'css/calend.css' %}">
 </head>
 <body>
    <div class="container">
@@ -27,90 +28,136 @@
         </ul>
         </div>
         <div class="settings">
-            <a class="icon" href="#"><img src="/static/dashboard/image/settings.svg" height="30px"/></a>
-            <a id="user-profile" class="icon" href="#"><img src="/static/dashboard/image/account.svg" height="30px"/></a> 
-        </div>
-       </div>
+          <a class="icon" id="toggle-icon"><img src="/static/images/settings.svg" height="30px"/></a>
+          <div class="panel" id="toggle-panel">
+              <div class="title-settings">
+                  <div class="title">
+                      <img class="icon" src="/static/images/settings.svg" style="margin:15px">
+                      <p style="font-size: 34px; margin-top: 15px">Settings</p>
+                  </div>
+                  <a class="icon" id="close" style="margin: 15px"><img src="/static/images/cross.svg"></a>
+              </div>
 
-      <div class="content">
-       <div class="manage-section">
-           <div class="welcome-section rounded">
-            <p>Welcome back,</p>
-            <p id="user-name">Name</p>  <!--'Name' has to be replaced with an actual name in the future-->
-           </div>
+              <div class="settings-container">
+                  <div class="settings-options">
+                      <ul class="options">
+                          <li id="ViewProfileOption" class="option">View profile</li>
+                          <li id="ChangePassword" class="option">Change password</li>
+                      </ul>
+                  </div>
 
-            <div class="days-section" id="days-section">
-            <button class="active-day rounded">Mon</button>
-            <button class="day rounded">Tue</button>
-            <button class="day rounded">Wed</button>
-            <button class="day rounded">Thu</button>
-            <a class="other" href="#" id="arrow-btn"><img src="/static/dashboard/image/arrow1.svg"/></a> <!--Changes days-section to include days from Friday to Sunday-->
+                  <div class="settings-profile-usage">
+                      <div class="settings-profile-section">
+                          <p>Profile picture</p>
+                          <img style="padding: 2% 0 1% 0;width: 80px" src="/static/images/account.svg">
+                      </div>
+                      <div class="settings-username-section" style="padding: 1% 0 3% 0">
+                          <p style="padding: 1% 0 1% 0">Username</p>
+                          <input placeholder="Username" >
+                      </div>
+                      <div class="settings-email-settings" style="padding-bottom: 4%">
+                          <p style="padding: 1% 0 1% 0">Email</p>
+                          <input placeholder="Email">
+                      </div>
+                      <button class="settings-button"><img style="width: 14%" src="/static/images/pen.svg"> Edit</button>
+                  </div>
+
+                  <div class="settings-change-password">
+                      <div class="settings-password-section" style="padding: 0 0 1.5% 0">
+                          <p style="padding: 0 0 1% 0">Current password</p>
+                          <input placeholder="Password">
+                      </div>
+                      <div class="settings-change-section">
+                          <p style="padding: 2% 0 1% 0">New password</p>
+                          <input placeholder="Password">
+                      </div>
+                      <div class="settings-change-section" style="padding: 0 0 4% 0">
+                          <p style="padding: 3% 0 1% 0">Confirm new password</p>
+                          <input placeholder="Password">
+                      </div>
+                      <button class="settings-button"><img src="/static/images/pen.svg"> Save</button>
+                  </div>
+              </div>
           </div>
-           
-           <div class="tasks-section">
-              <p class="sticky bold">Assigned tasks</p>
-               <p class="pad" > <a ><img src="/static/dashboard/image/plus.svg" height="25px" /></a>Create a task</p>
-           <div class="no-tasks">
-            <img src="/static/dashboard/image/illustration.svg" height="130px" /></a>
-            <p><br />Every hero deserves a rest! <br />
-             Maybe it`s time for new adventures?</p>
-               </div>
-           </div>
-       </div>
-       
-           <div class="stats-section rounded padded">
-
-           </div>
+          <a id="user-profile" class="icon" href="#"><img src="/static/images/account.svg" height="30px"/></a>
       </div>
+      <div id="overlay"></div>
+  </div>
+  <div class="container-calendar">
+    <div class="left-layout">
+        <div class="lil-calendar">
+            <div class="lil-container">
+                <button class="change-month"><img class="change-month-icon" src="/static/images/arrow2.svg"></button>
+                <p><strong>January 2025</strong></p>
+                <button class="change-month"><img class="change-month-icon" src="/static/images/arrow1.svg"></button>
+            </div> <!-- when clicked one of the arrows, it should change the month -->
+
+            <ul class="days" style="margin-top: 15px; margin-bottom: 10px">
+                <li>Mon</li><li>Tue</li><li>Wed</li>
+                <li>Thu</li><li>Fri</li><li>Sat</li>
+                <li>Sun</li>
+            </ul>
+
+            <div class="dates selected-week">
+                <button class="previous-month">30</button><button class="previous-month">31</button><button class="selected-day">1</button>
+                <button>2</button><button>3</button><button>4</button>
+                <button>5</button>
+            </div>
+            <div class="dates">
+                <button>6</button><button>7</button><button>8</button>
+                <button>9</button><button>10</button><button>11</button>
+                <button>12</button>
+            </div>
+            <div class="dates">
+                <button>13</button><button>14</button><button>15</button>
+                <button>16</button><button>17</button><button>18</button>
+                <button>19</button>
+            </div>
+            <div class="dates">
+                <button>20</button><button>21</button><button>22</button>
+                <button>23</button><button>24</button><button>25</button>
+                <button>26</button>
+            </div>
+            <div class="dates">
+                <button>27</button><button>28</button><button>29</button>
+                <button>30</button><button>31</button><button class="next-month">1</button>
+                <button class="next-month">2</button>
+            </div><!-- When clicked on some day, it should change
+            the places of selected week and selected day -->
+        </div>
+
+        <div class="categories-section">
+            <p style="padding: 1px 1px 0 10px; font-weight: 600; font-size: 20px"><strong>Categories</strong></p>
+            <div class="category">
+                <img src="/static/images/Ellipse15.svg">
+                <p>Creativity</p>
+            </div>
+            <div class="category">
+                <img src="/static/images/Ellipse18.svg">
+                <p>Strength</p>
+            </div>
+            <div class="category">
+                <img src="/static/images/Ellipse17.svg">
+                <p>Intelligence</p>
+            </div>
+        </div> <!-- this just exists -->
+
+        <div class="button-section">
+            <button class="invisible-button"><img style="padding: 0 10px 0 10px" src="/static/images/plus.svg">Add a task</button>
+        </div><!-- this is going to open task menu -->
+
+        <div class="show-month-tasks">
+            <button class="invisible-button"><img style="padding: 0 10px 0 12px" src="/static/images/leftarrow.svg">Show tasks for month</button>
+        </div> <!-- this has to redirect to tasks for month  -->
     </div>
 
-    <script>
-      document.addEventListener("DOMContentLoaded", () => {
-        const daysSection = document.getElementById("days-section");
-        const arrowButton = document.getElementById("arrow-btn");
+    <div class="right-layout">
+        <p>asd</p>
+    </div> <!-- this is Nastya's part-->
 
-        let showingWeekdays = true;
+</div> <!-- basically all this is new -->
 
-        arrowButton.addEventListener("click", (e) => {
-          e.preventDefault(); 
-
-          if (showingWeekdays) {
-            
-            daysSection.innerHTML = `
-        <button class="active-day rounded">Fri</button>
-        <button class="day rounded">Sat</button>
-        <button class="day rounded">Sun</button>
-        <div class="blank"></div>
-        <a class="other" href="#" id="arrow-btn">
-          <img src="/static/dashboard/image/arrow2.svg" alt="arrow" />
-        </a>
-      `;
-          } else {
-        
-            daysSection.innerHTML = `
-        <button class="active-day rounded">Mon</button>
-        <button class="day rounded">Tue</button>
-        <button class="day rounded">Wed</button>
-        <button class="day rounded">Thu</button>
-        <a class="other" href="#" id="arrow-btn">
-          <img src="/static/dashboard/image/arrow1.svg" alt="arrow" "/>
-        </a>
-      `;
-          }
-
-          
-          assignArrowClick();
-          showingWeekdays = !showingWeekdays; 
-        });
-
-        function assignArrowClick() {
-          const newArrowButton = document.getElementById("arrow-btn");
-          newArrowButton.addEventListener("click", (e) => {
-            e.preventDefault();
-            arrowButton.click(); 
-          });
-        }
-      });
-    </script>
+<script src="{% static 'js/script.js' %}"></script>
+</div>
 </body>
 </html>
