@@ -5,4 +5,4 @@ def home(request):
     if request.user.is_authenticated:
         return redirect('dashboard:dashboard')
     else:
-        return redirect('login')
+        return redirect('accounts:login')
