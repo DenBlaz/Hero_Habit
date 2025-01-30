@@ -128,22 +128,63 @@
             <div class="categories-section">
                 <p style="padding: 1px 1px 0 10px; font-weight: 600; font-size: 20px"><strong>Categories</strong></p>
                 <div class="category">
-                    <img src="images/icons/Ellipse15.svg">
+                    <img src="images/icons/pink-ellipse.svg">
                     <p>Creativity</p>
                 </div>
                 <div class="category">
-                    <img src="images/icons/Ellipse18.svg">
+                    <img src="images/icons/green-ellipse.svg">
                     <p>Strength</p>
                 </div>
                 <div class="category">
-                    <img src="images/icons/Ellipse17.svg">
+                    <img src="images/icons/blue-ellipse.svg">
                     <p>Intelligence</p>
                 </div>
-            </div> <!-- this just exists -->
+            </div>
 
             <div class="button-section">
-                <button class="invisible-button"><img style="padding: 0 10px 0 10px" src="images/icons/plus.svg">Add a task</button>
-            </div><!-- this is going to open task menu -->
+                <button class="invisible-button" id="addTaskButton"><img style="padding: 0 10px 0 10px" src="images/icons/plus.svg">Add a task</button>
+            </div>
+
+            <div class="add-task" id="addTaskForm">
+                <div class="title-task">
+                    <p>Add a task</p>
+                    <img src="images/icons/at-cross.svg" class="icon" style="width: 23px">
+                </div>
+
+                <div class="at-work">
+                    <p style="padding: 5px 0 5px 0">Title & Description</p>
+
+                    <input class="at-input" placeholder="New task title">
+                    <input class="at-input-i" placeholder="Description"
+                           style="  background: url('images/icons/lines-input.svg') no-repeat 8px 65%;">
+
+                    <p style="padding: 1px 0 0 0">Date & Time</p>
+
+                    <input class="at-input-i" placeholder="DD.MM.YYYY"
+                           style="margin: 10px 0 0 0; background: url('images/icons/date-icon.svg') no-repeat 8px center;">
+
+                    <div class="task-time" style="margin-top: 5px">
+                        <input class="at-input-i" placeholder="00:00"
+                               style="background: url('images/icons/clock-icon.svg') no-repeat 8px center; margin-right: 10px">
+                        <img src="images/icons/—.svg">
+                        <input class="at-input-i" placeholder="23:59"
+                               style="background: url('images/icons/clock-icon.svg') no-repeat 8px center; margin-left: 10px">
+                    </div>
+
+                    <p style="margin: 10px 0 0 0">Categorie</p>
+
+                    <div class="change-stats">
+                        <img src="images/icons/pink-ellipse.svg" data-chosen="images/icons/Ch-R-ellipse.svg" data-default="images/icons/pink-ellipse.svg" class="at-icon chosen">
+                        <img src="images/icons/green-ellipse.svg" data-chosen="images/icons/Ch-Gr-ellipse.svg" data-default="images/icons/green-ellipse.svg" class="at-icon">
+                        <img src="images/icons/blue-ellipse.svg" data-chosen="images/icons/Ch-B-ellipse.svg" data-default="images/icons/blue-ellipse.svg" class="at-icon">
+                    </div>
+
+                    <div class="buttons">
+                        <button class="cancel-button" style="margin-right: 10px">Cancel</button>
+                        <button class="save-button">Save</button>
+                    </div>
+                </div>
+            </div><!-- added new class -->
 
             <div class="show-month-tasks">
                 <button class="invisible-button"><img style="padding: 0 10px 0 12px" src="images/icons/leftarrow.svg">Show tasks for month</button>
