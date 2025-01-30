@@ -313,3 +313,115 @@ input::placeholder {
   background-color: #FDFCFE;
   border-radius: 10px;
 }
+
+/////new
+.add-task {
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  top: 15%;
+  left: 35%;
+  width: 404px;
+  height: 470px;
+  font-size: 16px;
+  font-weight: 400;
+  background-color: white;
+  border: 1px solid #ccc;
+  border-radius: 20px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  z-index: 996;
+  overflow: auto;
+}
+
+.add-task::-webkit-scrollbar{
+  display: none;
+}
+
+.task-time{
+  display: flex;
+}
+
+.title-task{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px;
+  font-weight: 400;
+  font-size: 24px;
+  border-bottom: 1.5px solid #ddd;
+}
+
+.at-work{
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+}
+
+.at-input, .at-input-i{
+  display: flex;
+  background-color: white;
+  color: black;
+  width: 100%;
+  height: 40px;
+  margin: 5px 0 5px 0;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.at-input::placeholder, .at-input-i::placeholder{
+  color:#D9D9D9;
+}
+
+.at-input-i:focus, .at-input:focus{
+  outline-color: #8364E8;
+}
+
+.task-time{
+  align-items: center;
+  justify-content: space-between;
+}
+
+.buttons{
+  display: flex;
+  flex-direction: row;
+  height: 30px;
+  justify-content: right;
+  margin-top: 15px;
+}
+
+.cancel-button, .save-button{
+  width: 25%;
+  height: 100%;
+  border-radius: 10px;
+  cursor: pointer;
+  border-color: #8364E8;
+  border-width: 1px;
+}
+
+.cancel-button{
+  background-color: white;
+  color:#8364E8;
+}
+
+.save-button{
+  background-color: #8364E8;
+  color: white;
+}
+
+.change-stats{
+  display: flex;
+  flex-direction: row;
+  justify-content: start;
+  align-items: center;
+  margin-top: 5px;
+}
+
+.at-icon{
+  padding: 1px 15px 1px 2px;
+  cursor: pointer;
+}
+
+.at-input-i{
+  background-size: 20px;
+  padding-left: 40px;
+}
