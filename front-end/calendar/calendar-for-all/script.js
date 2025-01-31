@@ -236,6 +236,7 @@ document.querySelector('.cancel-button').addEventListener('click', function() {
 document.getElementById("toggleView").addEventListener("click", function () {
   const calendarView = document.getElementById("calendarView");
   const taskView = document.getElementById("taskView");
+  const icon = document.getElementById("toggleIcon");
   const button = this;
 
   if (calendarView.classList.contains("hidden")) {
