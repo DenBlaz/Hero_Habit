@@ -12,7 +12,7 @@ document.addEventListener("DOMContentLoaded", () => {
     <button class="active-day rounded">Fri</button>
     <button class="day rounded">Sat</button>
     <button class="day rounded">Sun</button>
-    <div class="blank"></div>
+    <button class="day rounded">Tasks for month</button>
     <button class="other" id="arrow-btn">
       <img src="arrow2.svg" />
     </button>
@@ -109,3 +109,15 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 });
 
+
+//new code for text that shows up if user has zero achievements
+let achievements = getUserAchievements();
+
+if (achievements.length === 0) {
+  document.getElementById("achievement-description").innerHTML =
+    "There is yet a lot to achieve, Name!";
+} //Name replaced with actual username
+
+function getUserAchievements() {
+  return []; // Needs to be replaced with actual logic from backend
+}
