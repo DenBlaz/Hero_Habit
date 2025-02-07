@@ -1,163 +1,314 @@
 {% load static %}
-<link rel="icon" href="{% static 'dashboard/image/logo_b.png' %}" type="image/png">
+<link rel="icon" href="{% static 'dashboard/image/logo_b.png' %}" type="image/png" />
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>HeroHabit</title>
-    <link
-      href="https://fonts.googleapis.com/css?family=Open Sans"
-      rel="stylesheet"
-    />
-    <link rel="stylesheet" href="{% static 'calend/css/calend.css' %}">
-</head>
-<body>
-   <div class="container">
+    <link href="https://fonts.googleapis.com/css?family=Open Sans" rel="stylesheet" />
+    <link rel="stylesheet" href="{% static 'calend/css/calend.css' %}" />
+  </head>
+  <body>
+    <div class="container">
       <div class="header1">
         <span><span class="bold">Hero</span>Habit</span>
       </div>
 
-       <div class="header2">
-       <div class="navigation">
-        <ul>
-          <li><a href="{% url 'dashboard:dashboard' %}">Dashboard</a></li>
-          <li><a href="{% url 'stats:stats' %}">Statistics</a></li>
-          <li><a class="active-page" href="{% url 'calend:calend' %}">Calendar</a></li>
-          <li><a href="{% url 'achievements:achiev' %}">Achievements</a></li>
-        </ul>
+      <div class="header2">
+        <div class="navigation">
+          <ul>
+            <li>
+              <a href="{% url 'dashboard:dashboard' %}">Dashboard</a>
+            </li>
+            <li>
+              <a href="{% url 'stats:stats' %}">Statistics</a>
+            </li>
+            <li>
+              <a class="active-page" href="{% url 'calend:calend' %}">Calendar</a>
+            </li>
+            <li>
+              <a href="{% url 'achievements:achiev' %}">Achievements</a>
+            </li>
+          </ul>
         </div>
         <div class="settings">
-          <a class="icon" id="toggle-icon"><img src="/static/calend/images/settings.svg" height="30px"/></a>
+          <a class="icon" id="toggle-icon"><img src="/static/calend/images/settings.svg" height="30px" /></a>
           <div class="panel" id="toggle-panel">
-              <div class="title-settings">
-                  <div class="title">
-                      <img class="icon" src="/static/calend/images/settings.svg" style="margin:15px">
-                      <p style="font-size: 34px; margin-top: 15px">Settings</p>
-                  </div>
-                  <a class="icon" id="close" style="margin: 15px"><img src="/static/calend/images/cross.svg"></a>
+            <div class="title-settings">
+              <div class="title">
+                <img class="icon" src="/static/calend/images/settings.svg" style="margin:15px" />
+                <p style="font-size: 34px; margin-top: 15px">Settings</p>
+              </div>
+              <a class="icon" id="close" style="margin: 15px"><img src="/static/calend/images/cross.svg" /></a>
+            </div>
+
+            <div class="settings-container">
+              <div class="settings-options">
+                <ul class="options">
+                  <li id="ViewProfileOption" class="option">View profile</li>
+                  <li id="ChangePassword" class="option">Change password</li>
+                </ul>
               </div>
 
-              <div class="settings-container">
-                  <div class="settings-options">
-                      <ul class="options">
-                          <li id="ViewProfileOption" class="option">View profile</li>
-                          <li id="ChangePassword" class="option">Change password</li>
-                      </ul>
-                  </div>
-
-                  <div class="settings-profile-usage">
-                      <div class="settings-profile-section">
-                          <p>Profile picture</p>
-                          <img style="padding: 2% 0 1% 0;width: 80px" src="/static/calend/images/account.svg">
-                      </div>
-                      <div class="settings-username-section" style="padding: 1% 0 3% 0">
-                          <p style="padding: 1% 0 1% 0">Username</p>
-                          <input placeholder="Username" >
-                      </div>
-                      <div class="settings-email-settings" style="padding-bottom: 4%">
-                          <p style="padding: 1% 0 1% 0">Email</p>
-                          <input placeholder="Email">
-                      </div>
-                      <button class="settings-button"><img style="width: 14%" src="/static/calend/images/pen.svg"> Edit</button>
-                  </div>
-
-                  <div class="settings-change-password">
-                      <div class="settings-password-section" style="padding: 0 0 1.5% 0">
-                          <p style="padding: 0 0 1% 0">Current password</p>
-                          <input placeholder="Password">
-                      </div>
-                      <div class="settings-change-section">
-                          <p style="padding: 2% 0 1% 0">New password</p>
-                          <input placeholder="Password">
-                      </div>
-                      <div class="settings-change-section" style="padding: 0 0 4% 0">
-                          <p style="padding: 3% 0 1% 0">Confirm new password</p>
-                          <input placeholder="Password">
-                      </div>
-                      <button class="settings-button"><img src="/static/calend/images/pen.svg"> Save</button>
-                  </div>
+              <div class="settings-profile-usage">
+                <div class="settings-profile-section">
+                  <p>Profile picture</p>
+                  <img style="padding: 2% 0 1% 0;width: 80px" src="/static/calend/images/account.svg" />
+                </div>
+                <div class="settings-username-section" style="padding: 1% 0 3% 0">
+                  <p style="padding: 1% 0 1% 0">Username</p>
+                  <input placeholder="Username" />
+                </div>
+                <div class="settings-email-settings" style="padding-bottom: 4%">
+                  <p style="padding: 1% 0 1% 0">Email</p>
+                  <input placeholder="Email" />
+                </div>
+                <button class="settings-button"><img style="width: 14%" src="/static/calend/images/pen.svg" /> Edit</button>
               </div>
+
+              <div class="settings-change-password">
+                <div class="settings-password-section" style="padding: 0 0 1.5% 0">
+                  <p style="padding: 0 0 1% 0">Current password</p>
+                  <input placeholder="Password" />
+                </div>
+                <div class="settings-change-section">
+                  <p style="padding: 2% 0 1% 0">New password</p>
+                  <input placeholder="Password" />
+                </div>
+                <div class="settings-change-section" style="padding: 0 0 4% 0">
+                  <p style="padding: 3% 0 1% 0">Confirm new password</p>
+                  <input placeholder="Password" />
+                </div>
+                <button class="settings-button"><img src="/static/calend/images/pen.svg" /> Save</button>
+              </div>
+            </div>
           </div>
-          <a id="user-profile" class="icon" href="#"><img src="/static/calend/images/account.svg" height="30px"/></a>
+          <button id="open-modal" class="icon"><img src=" account.svg" height="40px" /></button>
+          {% comment %} <a id="user-profile" class="icon" href="#"><img src="/static/calend/images/account.svg" height="30px" /></a> {% endcomment %}
+        </div>
+        <div id="overlay"></div>
       </div>
-      <div id="overlay"></div>
-  </div>
-  <div class="container-calendar">
-    <div class="left-layout">
-        <div class="lil-calendar">
-            <div class="lil-container">
-                <button class="change-month"><img class="change-month-icon" src="/static/calend/images/arrow2.svg"></button>
-                <p><strong>January 2025</strong></p>
-                <button class="change-month"><img class="change-month-icon" src="/static/calend/images/arrow1.svg"></button>
-            </div> <!-- when clicked one of the arrows, it should change the month -->
+      <div class="content">
+        <div class="manage-section rounded">
+          <div class="left-layout">
+            <div class="lil-calendar">
+              <div class="lil-container">
+                <button class="change-month"><img class="change-month-icon" src="/static/calend/images/arrow2.svg" /></button>
+                <p>
+                  <strong>January 2025</strong>
+                </p>
+                <button class="change-month"><img class="change-month-icon" src="/static/calend/images/arrow1.svg" /></button>
+              </div> <!-- when clicked one of the arrows, it should change the month -->
 
-            <ul class="days" style="margin-top: 15px; margin-bottom: 10px">
-                <li>Mon</li><li>Tue</li><li>Wed</li>
-                <li>Thu</li><li>Fri</li><li>Sat</li>
+              <ul class="days" style="margin-top: 15px; margin-bottom: 10px">
+                <li>Mon</li>
+                <li>Tue</li>
+                <li>Wed</li>
+                <li>Thu</li>
+                <li>Fri</li>
+                <li>Sat</li>
                 <li>Sun</li>
-            </ul>
+              </ul>
 
-            <div class="dates selected-week">
+              <div class="dates selected-week">
                 <button class="previous-month">30</button><button class="previous-month">31</button><button class="selected-day">1</button>
                 <button>2</button><button>3</button><button>4</button>
                 <button>5</button>
-            </div>
-            <div class="dates">
+              </div>
+              <div class="dates">
                 <button>6</button><button>7</button><button>8</button>
                 <button>9</button><button>10</button><button>11</button>
                 <button>12</button>
-            </div>
-            <div class="dates">
+              </div>
+              <div class="dates">
                 <button>13</button><button>14</button><button>15</button>
                 <button>16</button><button>17</button><button>18</button>
                 <button>19</button>
-            </div>
-            <div class="dates">
+              </div>
+              <div class="dates">
                 <button>20</button><button>21</button><button>22</button>
                 <button>23</button><button>24</button><button>25</button>
                 <button>26</button>
-            </div>
-            <div class="dates">
+              </div>
+              <div class="dates">
                 <button>27</button><button>28</button><button>29</button>
                 <button>30</button><button>31</button><button class="next-month">1</button>
                 <button class="next-month">2</button>
-            </div><!-- When clicked on some day, it should change
-            the places of selected week and selected day -->
-        </div>
+              </div>
+              <!--  When clicked on some day, it should change
+            the places of selected week and selected day  -->
+            </div>
 
-        <div class="categories-section">
-            <p style="padding: 1px 1px 0 10px; font-weight: 600; font-size: 20px"><strong>Categories</strong></p>
-            <div class="category">
-                <img src="/static/calend/images/green-ellipse.svg">
+            <div class="categories-section">
+              <p style="padding: 1px 1px 0 10px; font-weight: 600; font-size: 20px">
+                <strong>Categories</strong>
+              </p>
+              <div class="category">
+                <img src="/static/calend/images/green-ellipse.svg" />
                 <p>Creativity</p>
-            </div>
-            <div class="category">
-                <img src="/static/calend/images/pink-ellipse.svg">
+              </div>
+              <div class="category">
+                <img src="/static/calend/images/pink-ellipse.svg" />
                 <p>Strength</p>
-            </div>
-            <div class="category">
-                <img src="/static/calend/images/blue-ellipse.svg">
+              </div>
+              <div class="category">
+                <img src="/static/calend/images/blue-ellipse.svg" />
                 <p>Intelligence</p>
+              </div>
+            </div> <!-- this just exists -->
+
+            <div class="button-section">
+              <button class="invisible-button"><img style="padding: 0 10px 0 10px" src="/static/calend/images/plus.svg" />Add a task</button>
             </div>
-        </div> <!-- this just exists -->
+            <!-- this is going to open task menu -->
 
-        <div class="button-section">
-            <button class="invisible-button"><img style="padding: 0 10px 0 10px" src="/static/calend/images/plus.svg">Add a task</button>
-        </div><!-- this is going to open task menu -->
+            <div class="add-task" id="addTaskForm">
+              <div class="title-task">
+                <p>Add a task</p>
+                <img src="/static/calend/images/at-cross.svg" class="icon" style="width: 23px" />
+              </div>
+              <div class="at-work">
+                <p style="padding: 5px 0 5px 0">Title & Description</p>
+                <input class="at-input" placeholder="New task title" />
+                <input class="at-input-i" placeholder="Description" style="
+                  background: url('/static/calend/images/lines-input.svg') no-repeat
+                    8px 65%;
+                " />
+                <p style="padding: 1px 0 0 0">Date & Time</p>
+                <input class="at-input-i" placeholder="DD.MM.YYYY" style="
+                  margin: 10px 0 0 0;
+                  background: url('/static/calend/images/date-icon.svg') no-repeat 8px
+                    center;
+                " />
+                <div class="task-time" style="margin-top: 5px">
+                  <input class="at-input-i" placeholder="00:00" style="
+                    background: url('/static/calend/images/clock-icon.svg') no-repeat
+                      8px center;
+                    margin-right: 10px;
+                  " />
+                  <img src="/static/calend/images/—.svg" />
+                  <input class="at-input-i" placeholder="23:59" style="
+                    background: url('/static/calend/images/clock-icon.svg') no-repeat
+                      8px center;
+                    margin-left: 10px;
+                  " />
+                </div>
+                <p style="margin: 10px 0 0 0">Categorie</p>
+                <div class="change-stats">
+                  <img src="/static/calend/images/pink-ellipse.svg" data-chosen="/static/calend/images/Ch-R-ellipse.svg" data-default="/static/calend/images/pink-ellipse.svg" class="at-icon chosen" />
+                  <img src="/static/calend/images/green-ellipse.svg" data-chosen="/static/calend/images/Ch-Gr-ellipse.svg" data-default="/static/calend/images/green-ellipse.svg" class="at-icon" />
+                  <img src="/static/calend/images/blue-ellipse.svg" data-chosen="/static/calend/images/Ch-B-ellipse.svg" data-default="/static/calend/images/blue-ellipse.svg" class="at-icon" />
+                </div>
+                <div class="buttons">
+                  <button class="cancel-button" style="margin-right: 10px">Cancel</button>
+                  <button class="save-button">Save</button>
+                </div>
+              </div>
+            </div>
+            <!-- added new class -->
 
-        <div class="show-month-tasks">
-            <button class="invisible-button"><img style="padding: 0 10px 0 12px" src="/static/calend/images/leftarrow.svg">Show tasks for month</button>
-        </div> <!-- this has to redirect to tasks for month  -->
+            <div class="show-month-tasks" id="toggleView">
+              <button class="invisible-button"><img id="toggleIcon" style="padding: 0 10px 0 12px" src="/static/calend/images/leftarrow.svg" height="18px" />Show tasks for month</button>
+            </div>
+          </div>
+        </div> <!-- basically all this is new -->
+
+        <div class="calendar-section" id="calendarView">
+          <div class="days-section">
+            <div class="day" style="border-top-left-radius: 10px"></div>
+            <button class="space" id="Monday">Monday 1</button>
+            <button class="space" id="Tuesday">Tuesday 2</button>
+            <button class="space" id="Wednesday">Wednesday 3</button>
+            <button class="space" id="Thursday">Thursday 4</button>
+            <button class="space" id="Friday">Friday 5</button>
+            <button class="space" id="Saturday">Saturday 6</button>
+            <button class="space" id="Sunday" style="border-top-right-radius: 10px">Sunday 7</button>
+          </div>
+          <div class="time-section" id="time-section"></div>
+        </div>
+        <!-- calendar for days -->
+
+        <div class="calendar-section1 rounded hidden" id="taskView">
+          <div class="task-section">
+            <div class="task"></div>
+            <button class="task">
+              <p class="semi-bold font16px">Name of task</p>
+              <p class="font12px">01.01.2025 - 10.02.2025</p>
+              <p class="font12px">20 pt</p>
+            </button>
+            <div class="blank"></div>
+          </div>
+          <div class="month-section">
+            <div class="month">
+              <div class="months">January</div>
+              <div class="months active-month">February</div>
+              <div class="months">March</div>
+              <div class="months">April</div>
+              <div class="months">May</div>
+              <div class="months">June</div>
+              <div class="months">July</div>
+              <div class="months">August</div>
+              <div class="months">September</div>
+              <div class="months">October</div>
+              <div class="months">November</div>
+              <div class="months">December</div>
+            </div>
+
+            <div class="month">
+              <div class="months"></div>
+              <div class="months"></div>
+              <div class="months"></div>
+              <div class="months"></div>
+              <div class="months"></div>
+              <div class="months"></div>
+              <div class="months"></div>
+              <div class="months"></div>
+              <div class="months"></div>
+              <div class="months"></div>
+              <div class="months"></div>
+              <div class="months"></div>
+            </div>
+
+            <div class="blankmonth">
+              <div class="months"></div>
+              <div class="months"></div>
+              <div class="months"></div>
+              <div class="months"></div>
+              <div class="months"></div>
+              <div class="months"></div>
+              <div class="months"></div>
+              <div class="months"></div>
+              <div class="months"></div>
+              <div class="months"></div>
+              <div class="months"></div>
+              <div class="months"></div>
+            </div>
+          </div>
+          <!-- calendar for months -->
+        </div>
+        <div id="profile-modal" class="modal">
+          <div class="modal-content rounded">
+            <p>Account</p>
+
+            <div class="flex-center">
+              <img src="/static/calend/images/account.svg" height="35px" />
+              <div class="account-info light grey">
+                <p>Username</p>
+                <!-- Has to be replaced by actual username -->
+                <p>email123456789@gmail.com</p>
+                <!-- Has to be replaced by actual email -->
+              </div>
+            </div>
+            <hr />
+            <p>
+              <a href="#" class="inline log-out">Log out<img src="/static/calend/images/logOutSign.svg" height="25px" /></a>
+            </p>
+          </div>
+        </div>
+      </div>
     </div>
 
-    <div class="right-layout">
-        <p>asd</p>
-    </div> <!-- this is Nastya's part-->
-
-</div> <!-- basically all this is new -->
-
-<script src="{% static 'calend/js/script.js' %}"></script>
-</div>
-</body>
+    <script src="{% static 'calend/js/script.js' %}"></script>
+  </body>
 </html>
