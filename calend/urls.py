@@ -5,5 +5,5 @@ app_name = 'calend'
 
 urlpatterns = [
     path('', views.calend, name = "calend"),
-    path('', views.calendall, name = "calendall"),
+    path('all/', views.calendall, name = "calendall"),
 ]
