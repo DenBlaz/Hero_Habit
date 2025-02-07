@@ -135,8 +135,8 @@
               <button>30</button><button>31</button><button class="next-month">1</button>
               <button class="next-month">2</button>
             </div>
-            <!--  When clicked on some day, it should change
-                the places of selected week and selected day  -->
+            <!--   When clicked on some day, it should change
+                the places of selected week and selected day   -->
           </div>
 
           <div class="categories-section">
@@ -199,9 +199,10 @@
           </div>
           <!-- added new class -->
 
-          <div class="show-month-tasks">
-            <button class="invisible-button"><img style="padding: 0 10px 0 12px" src="/static/calend/images/leftarrow.svg" />Show tasks for month</button>
-          </div> <!-- this has to redirect to tasks for month -->
+          <a href="{% url 'calend:calendall' %}" class="invisible-button">
+            <img style="padding: 0 10px 0 12px" src="/static/calend/images/leftarrow.svg" />
+            Show tasks for month
+          </a>
         </div>
 
         <div class="right-layout">
