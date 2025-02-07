@@ -4,4 +4,4 @@ def calend(request):
     return render(request, "calend/calend.html")
 
 def calendall(request):
-    return render(request, "calent/calend-for-all.html")
+    return render(request, "calend/calend-for-all.html")
