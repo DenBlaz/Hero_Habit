@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Dashboard</title>
     <link
             href="https://fonts.googleapis.com/css?family=Open Sans"
@@ -19,21 +19,29 @@
     <div class="header2">
         <div class="navigation">
             <ul>
-                <li><a class="active-page" href="#">Dashboard</a></li>    <!--Active page-->
-                <li><a href="#">Statistics</a></li>  <!--Has to redirect to statisctics page-->
-                <li><a href="#">Calendar</a></li>  <!--Has to redirect to calendar page-->
-                <li><a href="#">Achievements</a></li>  <!--Has to redirect to achievements page-->
+                <li><a class="active-page" href="#">Dashboard</a></li>
+                <!--Active page-->
+                <li><a href="#">Statistics</a></li>
+                <!--Has to redirect to statisctics page-->
+                <li><a href="#">Calendar</a></li>
+                <!--Has to redirect to calendar page-->
+                <li><a href="#">Achievements</a></li>
+                <!--Has to redirect to achievements page-->
             </ul>
         </div>
         <div class="settings">
-            <a class="icon" id="toggle-icon"><img src="images/icons/settings.svg" height="30px"/></a>
+            <button id="toggle-icon" class="icon">
+                <img src="images/icons/settings.svg" height="30px" />
+            </button>
             <div class="panel" id="toggle-panel">
                 <div class="title-settings">
                     <div class="title">
-                        <img class="icon" src="images/icons/settings.svg" style="margin:15px">
+                        <img class="icon" src="images/icons/settings.svg" style="margin: 15px" />
                         <p style="font-size: 34px; margin-top: 15px">Settings</p>
                     </div>
-                    <a class="icon" id="close" style="margin: 15px"><img src="images/icons/cross.svg"></a>
+                    <a class="icon" id="close" style="margin: 15px"
+                    ><img src="images/icons/cross.svg"
+                    /></a>
                 </div>
 
                 <div class="settings-container">
@@ -47,47 +55,64 @@
                     <div class="settings-profile-usage">
                         <div class="settings-profile-section">
                             <p>Profile picture</p>
-                            <img style="padding: 2% 0 1% 0;width: 80px" src="images/icons/account.svg">
+                            <img
+                                    style="padding: 2% 0 1% 0; width: 80px"
+                                    src="images/icons/account.svg"
+                            />
                         </div>
-                        <div class="settings-username-section" style="padding: 1% 0 3% 0">
+                        <div
+                                class="settings-username-section"
+                                style="padding: 1% 0 3% 0"
+                        >
                             <p style="padding: 1% 0 1% 0">Username</p>
-                            <input placeholder="Username" >
+                            <input placeholder="Username" />
                         </div>
                         <div class="settings-email-settings" style="padding-bottom: 4%">
                             <p style="padding: 1% 0 1% 0">Email</p>
-                            <input placeholder="Email">
+                            <input placeholder="Email" />
                         </div>
-                        <button class="settings-button"><img style="width: 14%" src="images/icons/pen.svg"> Edit</button>
+                        <button class="settings-button">
+                            <img style="width: 14%" src="images/icons/pen.svg" /> Edit
+                        </button>
                     </div>
 
                     <div class="settings-change-password">
-                        <div class="settings-password-section" style="padding: 0 0 1.5% 0">
+                        <div
+                                class="settings-password-section"
+                                style="padding: 0 0 1.5% 0"
+                        >
                             <p style="padding: 0 0 1% 0">Current password</p>
-                            <input placeholder="Password">
+                            <input placeholder="Password" />
                         </div>
                         <div class="settings-change-section">
                             <p style="padding: 2% 0 1% 0">New password</p>
-                            <input placeholder="Password">
+                            <input placeholder="Password" />
                         </div>
                         <div class="settings-change-section" style="padding: 0 0 4% 0">
                             <p style="padding: 3% 0 1% 0">Confirm new password</p>
-                            <input placeholder="Password">
+                            <input placeholder="Password" />
                         </div>
-                        <button class="settings-button"><img src="images/icons/pen.svg"> Save</button>
+                        <button class="settings-button">
+                            <img src="images/icons/pen.svg" /> Save
+                        </button>
                     </div>
                 </div>
             </div>
-            <a id="user-profile" class="icon" href="#"><img src="images/icons/account.svg" height="30px"/></a>
-        </div> <!-- Basically everything in here (in header2) is new -->
-        <div id="overlay"></div>
 
+            <button id="open-modal" class="icon">
+                <img src="images/icons/account.svg" height="40px" />
+            </button>
+            <!--Actual user profile photo has to replace default picture-->
+            <div id="overlay"></div>
+        </div>
     </div>
 
     <div class="content">
         <div class="manage-section">
             <div class="welcome-section rounded">
                 <p>Welcome back,</p>
-                <p id="user-name">Name</p>  <!--'Name' has to be replaced with an actual name in the future-->
+                <p id="user-name">Name</p>
+                <!--'Name' has to be replaced with an actual name of the user-->
             </div>
 
             <div class="days-section" id="days-section">
@@ -95,26 +120,74 @@
                 <button class="day rounded">Tue</button>
                 <button class="day rounded">Wed</button>
                 <button class="day rounded">Thu</button>
-                <a class="other" href="#" id="arrow-btn"><img src="images/icons/arrow1.svg"/></a> <!--Changes days-section to include days from Friday to Sunday-->
+                <button class="other" id="arrow-btn">
+                    <img src="images/icons/arrow1.svg" />
+                </button>
+                <!--Has to redirect to the page with dashboard including tasks for days from friday to sunday-->
             </div>
 
             <div class="tasks-section">
                 <p class="sticky bold">Assigned tasks</p>
-                <p class="pad" > <a ><img src="images/icons/plus.svg" height="25px" /></a>Create a task</p>
+                <p>
+                    <a href="#" class="inline create-task"
+                    ><img src="images/icons/plus.svg" height="25px" />Create a task</a
+                    >
+                </p>
                 <div class="no-tasks">
-                    <img src="images/icons/illustration.svg" height="130px" /></a>
-                    <p><br />Every hero deserves a rest! <br />
-                        Maybe it`s time for new adventures?</p>
+                    <img src="images/icons/illustration.svg" height="130px" />
+                    <p>
+                        <br />Every hero deserves a rest! <br />
+                        Maybe it`s time for new adventures?
+                    </p>
                 </div>
             </div>
         </div>
 
-        <div class="stats-section rounded padded">
+        <div class="stats-section rounded paddedx2">
+            <div class="hero-stats rounded">
+                <img class="levelimg" src="images/icons/level.svg" height="60px" />
+                <div class="level bold">0</div><!--Has to be replaced by an actual level-->
+            </div>
+            <div class="activity-stats rounded padded">
+                <p class="semi-bold">Task report of the week:</p>
+                <p class="right font16px">50/100</p>
+                <div class="progress-bar">
+                    <div class="progress-fill" style="width: 50%"></div>
+                </div>
+                <p class="font12px">50% completed</p>
+            </div>
+            <div class="achievement-stats rounded padded">
+                <p class="semi-bold">Your last achievement:</p>
+                <p class="inline cup font16px">
+                    <img src="images/icons/cup.svg" height="25px" />Description of achievement...
+                </p>
+            </div>
+        </div><!-- modified this class -->
 
+        <div id="profile-modal" class="modal">
+            <div class="modal-content rounded">
+                <p>Account</p>
+
+                <div class="flex-center">
+                    <img src="images/icons/account.svg" height="35px" />
+                    <div class="account-info light grey">
+                        <p>Username</p>
+                        <!--Has to be replaced by actual username-->
+                        <p>email123456789@gmail.com</p>
+                        <!--Has to be replaced by actual email-->
+                    </div>
+                </div>
+                <hr />
+                <p>
+                    <a href="#" class="inline log-out"
+                    >Log out<img src="images/icons/logOutSign.svg" height="25px"
+                    /></a>
+                </p>
+            </div>
         </div>
     </div>
-
-    <script src="js/script.js"></script>
 </div>
+
+<script src="js/script.js"></script>
 </body>
 </html>
