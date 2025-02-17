@@ -15,6 +15,7 @@ import os
 import dj_database_url
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
+
 PORT = os.environ.get('PORT', 8000)
 
 # Quick-start development settings - unsuitable for production
@@ -84,20 +85,12 @@ WSGI_APPLICATION = 'plannergame.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': os.environ.get('DB_NAME'),
-        'USER': os.environ.get('DB_USER'),
-        'PASSWORD': os.environ.get('DB_PASSWORD'),
-        'HOST': os.environ.get('DB_HOST'),
-        'PORT': os.environ.get('DB_PORT', '5432'),
+        'NAME': os.environ.get('herohabitbase'),
+        'USER': os.environ.get('herohabitbase_user'),
+        'PASSWORD': os.environ.get('Nk73AX1twLjXEkwZ0U7aSTikPchTS8K3'),
+        'HOST': os.environ.get('dpg-cupl5hq3esus738fotjg-a.frankfurt-postgres.render.com'),
+        'PORT': os.environ.get('5432'),
     }
-}
-3
-
-
-DATABASES = {
-    'default': dj_database_url.config(
-        default=os.getenv('DATABASE_URL', 'postgresql://myuser:mypassword@localhost:5432/testdb')
-    )
 }
 
 # Password validation
