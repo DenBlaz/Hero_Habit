@@ -85,11 +85,11 @@ WSGI_APPLICATION = 'plannergame.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': os.environ.get('herohabitbase'),
-        'USER': os.environ.get('herohabitbase_user'),
-        'PASSWORD': os.environ.get('Nk73AX1twLjXEkwZ0U7aSTikPchTS8K3'),
-        'HOST': os.environ.get('dpg-cupl5hq3esus738fotjg-a.frankfurt-postgres.render.com'),
-        'PORT': os.environ.get('5432'),
+        'NAME': 'herohabitbase',
+        'USER': 'herohabitbase_user',
+        'PASSWORD': 'Nk73AX1twLjXEkwZ0U7aSTikPchTS8K3',
+        'HOST': 'dpg-cupl5hq3esus738fotjg-a.frankfurt-postgres.render.com',
+        'PORT': '5432',
     }
 }
 
