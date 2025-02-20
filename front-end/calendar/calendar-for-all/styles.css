@@ -95,11 +95,10 @@ body {
   display: flex;
   height: 90%;
   max-height: 100%;
-  flex-direction: column;
+  flex-direction: row;
   background-color: #d9d9d9;
   overflow: auto;
   scrollbar-width: none;
-
   gap: 1px;
   border-bottom-right-radius: 10px;
   border-bottom-left-radius: 10px;
@@ -111,7 +110,7 @@ body {
   flex: 1;
   justify-content: center;
   align-items: center;
-
+  position: relative;
   width: calc(100% / 8);
   background-color: #ffffff;
   font-weight: 300;
@@ -127,7 +126,7 @@ body {
 
   width: calc(100% / 8);
   background-color: #ffffff;
-
+  overflow: hidden;
   max-height: 100%;
 }
 
@@ -139,13 +138,58 @@ body {
 .days-section button:hover {
   background-color: rgba(228, 222, 249);
 }
-.time-row {
+.time-column {
+  position: relative;
   display: flex;
-  min-height: calc(100% / 6);
-
-  flex-direction: row;
+  flex-direction: column;
   gap: 1px;
+  height: 100%;
+  width: calc(100% / 8);
+  max-height: 100%;
 }
+
+.time-slot{
+  display:flex;
+  flex-direction: column;
+  min-height: calc(100% / 6);
+  width:100%;
+  gap: 1px;
+  background-color: #ffffff;
+  justify-content: center;
+  align-items: center;
+}
+
+.side-bar {
+  position: absolute;
+  color:rgba(127, 157, 176, 1) ;
+  padding: 10px;
+  top: 30%; /* starts vertically from*/
+  left: 0%;
+  width: 100%; 
+  height: 50%;/* how big is*/
+  border-radius: 10px;
+  z-index: 10;
+  display: flex;
+  flex-direction: column; /* Stacks content inside vertically */
+overflow: hidden;
+}
+
+
+
+.custom-bar {
+  top: 0%;  
+  height: 20%; 
+  background-color: rgba(251, 182, 224, 0.6);
+}
+
+
+.side-bar:hover,
+.side-bar:focus,
+.side-bar:active {
+  border: 1.5px solid rgba(0, 0, 0, 0.2) !important;
+  
+}
+
 
 /*new code for long term-tasks*/
 
@@ -169,6 +213,9 @@ body {
   overflow: hidden;
 }
 
+.task-section button {
+  border: none;
+}
 .task {
   display: flex;
   flex-direction: column;
@@ -178,6 +225,7 @@ body {
   max-height: calc(100% / 9);
   background-color: #ffffff;
   padding: 10px;
+  text-align: left;
 }
 
 .calendar-section button {
@@ -185,7 +233,7 @@ body {
   cursor: pointer;
 }
 .calendar-section1 button {
-  border: none;
+  border:none;
   cursor: pointer;
 }
 .month-section {
@@ -205,10 +253,10 @@ body {
   display: flex;
   flex-direction: row;
   flex: 1;
-
   max-height: calc(100% / 9);
   gap: 1px;
   flex-shrink: 0;
+  position: relative;
 }
 
 .active-month {
@@ -244,6 +292,72 @@ body {
 
 .flip-image {
   transform: scaleX(-1);
+}
+
+.top-bar {
+  position: absolute;
+  top: 35%;
+  left: 0%; /*indicates where the bar starts(100%-starts from third month)*/
+  display: flex;
+  flex-direction: row;
+  border-radius: 3px;
+  width: 45%; /*width of the bar(100%-width of three months)*/
+  height: 30%;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  z-index: 10;
+}
+
+.start-date {
+  position: absolute;
+  top: 100%; 
+  left: 0;
+  font-size: 12px;
+  color: black;
+  white-space: nowrap;
+  
+}
+.end-date {
+  position: absolute;
+  top: 100%; 
+  right: 0;
+  font-size: 12px;
+  color: black;
+  white-space: nowrap;
+}
+
+.green-bar{
+  background-color: rgba(159, 251, 182, 0.6);
+}
+
+.blue-bar{
+  background-color: rgba(182, 224, 251, 0.6);
+}
+
+.pink-bar{
+  background-color: rgba(251, 182, 224, 0.6);
+}
+
+.top-bar:hover,
+.top-bar:focus,
+.top-bar:active {
+  border: 1.5px solid rgba(0, 0, 0, 0.2) !important;
+  
+}
+
+.top-bar:hover::before,
+.top-bar:focus::before,
+.top-bar:active::before {
+  content: "";
+  position: absolute;
+  top: 20%;
+  left: 4px;
+  right: 4px;
+  height: 60%; 
+  border-left: 1.5px solid rgba(0, 0, 0, 0.2);
+  border-right: 1.5px solid rgba(0, 0, 0, 0.2);
+  pointer-events: none;
 }
 
 /*end of the new code for long term tasks*/
@@ -513,9 +627,12 @@ input::placeholder {
   background-color: #f0dbfe;
   border-right: 5px solid #d397fa;
 }
+.activebutton {
+  color: black;
+}
 
 .hidden {
-  display: none;
+  display: none !important;
 }
 
 .container-calendar {
@@ -657,7 +774,8 @@ input::placeholder {
 .add-task::-webkit-scrollbar {
   display: none;
 }
-.task-time {
+.task-time,
+.task-time1 {
   display: flex;
 }
 .title-task {
@@ -693,7 +811,8 @@ input::placeholder {
 .at-input:focus {
   outline-color: #8364e8;
 }
-.task-time {
+.task-time,
+.task-time1 {
   align-items: center;
   justify-content: space-between;
 }
