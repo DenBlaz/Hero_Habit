@@ -66,50 +66,27 @@ document.addEventListener("DOMContentLoaded", function () {
 
 //new code
 
-//Generating 24 rows for every hour
-function generateTimes() {
-  const times = [];
-  for (let hour = 1; hour <= 12; hour++) {
-    times.push(`${hour} am`);
-  }
-  for (let hour = 1; hour <= 12; hour++) {
-    times.push(`${hour} pm`);
-  }
-  return times;
-}
+const timeColumns = document.querySelectorAll(".time-column"); // Select all columns
 
-// Function to create a single time row
-function createTimeRow(timeLabel) {
-  const row = document.createElement("div");
-  row.className = "time-row";
+  timeColumns.forEach((column) => {
+    for (let i = 1; i <= 24; i++) {
+      const timeSlot = document.createElement("div");
+      timeSlot.className = "time-slot";
 
-  const timeCell = document.createElement("div");
-  timeCell.className = "day";
-  timeCell.textContent = timeLabel;
-  row.appendChild(timeCell);
+      
+      if (column.id === "time-column") {
+        if (i <= 12) {
+          timeSlot.textContent = `${i} am`;
+        } else {
+          timeSlot.textContent = `${i - 12} pm`;
+        }
+      }
 
-  // Add the other 7 cells (empty)
-  for (let i = 0; i < 7; i++) {
-    const dayCell = document.createElement("div");
-    dayCell.className = "day";
-    row.appendChild(dayCell);
-  }
-
-  return row;
-}
-
-// Function to populate the time-section with rows
-function populateTimeSection() {
-  const timeSection = document.getElementById("time-section");
-  const times = generateTimes();
-
-  times.forEach((time) => {
-    const row = createTimeRow(time);
-    timeSection.appendChild(row);
+      column.appendChild(timeSlot);
+    }
   });
-}
 
-populateTimeSection();
+
 
 
 //Button for choosing a day on a right side of a calendar
@@ -188,7 +165,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
 
-//new davyds
+
 const images = document.querySelectorAll('.at-icon');
 // Ensure the first image starts with its "chosen" state
 images[0].src = images[0].dataset.chosen;
@@ -235,9 +212,10 @@ document.querySelector('.cancel-button').addEventListener('click', function() {
 //switching between tasks for days and long term tasks
 document.getElementById("toggleView").addEventListener("click", function () {
   const calendarView = document.getElementById("calendarView");
-  const taskView = document.getElementById("taskView");
+ const taskView = document.getElementById("taskView");
   const icon = document.getElementById("toggleIcon");
-  const button = this;
+  const buttonText = document.getElementById("toggleText");
+
 
   if (calendarView.classList.contains("hidden")) {
      
@@ -250,6 +228,39 @@ document.getElementById("toggleView").addEventListener("click", function () {
       calendarView.classList.add("hidden");
       taskView.classList.remove("hidden");
       icon.classList.add("flip-image"); // Flip image
-      buttonText.textContent = "Show tasks for months";
+      buttonText.textContent = "Show tasks for days";
+  }
+
+  
+});
+
+
+document.getElementById("toggleView").addEventListener("click", function () {
+  
+  const taskTimeContainer = document.querySelector(".task-time");
+  const dateForMonth = document.getElementById("dateMonth");
+  const dateForDays = document.getElementById("dateDay");
+  const dateForDay = document.getElementById("toggleDate");
+  const addTask = document.querySelector(".add-task");
+
+  const isMonthlyView = this.classList.toggle("activebutton"); // Toggle mode
+
+  if (isMonthlyView) {
+      // Show "tasks for months" mode
+      
+      
+      dateForDay.classList.add("hidden");
+      dateForDays.classList.add("hidden");
+      dateForMonth.classList.remove("hidden");
+
+      addTask.style.height = "420px";
+  } else {
+      // Show default mode (tasks for days)
+      
+      dateForDay.classList.remove("hidden");
+      dateForDays.classList.remove("hidden");
+      dateForMonth.classList.add("hidden");
+
+      addTask.style.height = "470px";
   }
 });
