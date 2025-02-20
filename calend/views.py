@@ -3,7 +3,7 @@ import json
 from django.http import JsonResponse
 from django.views import View
 from django.utils.dateparse import parse_date, parse_time
-from myapp.models import Account
+from accounts.models import Account
 from .models import Daily_Task
 
 
