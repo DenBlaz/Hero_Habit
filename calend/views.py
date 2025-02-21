@@ -4,14 +4,14 @@ from django.http import JsonResponse
 from django.views import View
 from django.utils.dateparse import parse_date, parse_time
 from accounts.models import Account
-from .models import Daily_Task
+from .models import DailyTask
 
 
 def calend(request):
     return render(request, "calend/calend-for-all.html")
 
 
-class Daily_TaskView(View):
+class DailyTaskView(View):
     def post(self, request):
         if not request.user.is_authenticated:
             return JsonResponse({"error": "Unauthorized"}, status=401)
@@ -23,7 +23,7 @@ class Daily_TaskView(View):
             start_time = parse_time(data.get("start_time"))  # tt:tt
             finish_time = parse_time(data.get("finish_time"))  # tt:tt
 
-            daily_task = Daily_Task.objects.create(
+            dailytask = DailyTask.objects.create(
                 user=request.user,
                 title=data.get("title"),
                 description=data.get("description"),
@@ -31,6 +31,6 @@ class Daily_TaskView(View):
                 start_time=start_time,
                 finish_time=finish_time
             )
-            return JsonResponse({"message": "Daily task created", "daily_task_id": daily_task.id}, status=201)
+            return JsonResponse({"message": "Daily task created", "dailytask_id": dailytask.id}, status=201)
         except Exception as e:
             return JsonResponse({"error": str(e)}, status=400)
