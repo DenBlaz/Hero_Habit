@@ -110,12 +110,4 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 });
 
-//new code for text that shows up if user has zero achievements
-let achievements = getUserAchievements();
-if (achievements.length === 0) {
-  document.getElementById("achievement-description").innerHTML =
-    "There is yet a lot to achieve, Name!";
-} //Name replaced with actual username
-function getUserAchievements() {
-  return []; // Needs to be replaced with actual logic from backend
-}
+
