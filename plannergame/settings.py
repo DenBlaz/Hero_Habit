@@ -26,7 +26,9 @@ SECRET_KEY = 'django-insecure-ai5x!z$6i7boxrhklvtop%9p$q*yz1zy8eq$!==_*biy5%o!2%
 DEBUG = True
 
 ALLOWED_HOSTS = ["herohabit.onrender.com",]
-
+CSRF_TRUSTED_ORIGINS = [
+    'https://herohabit.onrender.com',
+]
 
 # Application definition
 
