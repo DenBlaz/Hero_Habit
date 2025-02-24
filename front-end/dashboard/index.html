@@ -112,35 +112,81 @@
             <div class="welcome-section rounded">
                 <p>Welcome back,</p>
                 <p id="user-name">Name</p>
-                <!--'Name' has to be replaced with an actual name of the user-->
             </div>
 
             <div class="days-section" id="days-section">
-                <button class="active-day rounded">Mon</button>
-                <button class="day rounded">Tue</button>
-                <button class="day rounded">Wed</button>
-                <button class="day rounded">Thu</button>
-                <button class="other" id="arrow-btn">
-                    <img src="images/icons/arrow1.svg" />
-                </button>
-                <!--Has to redirect to the page with dashboard including tasks for days from friday to sunday-->
-            </div>
+                <button class="active-day rounded" onclick="showTasks('Mon')">Mon</button>
+                <button class="day rounded" onclick="showTasks('Tue')">Tue</button>
+                <button class="day rounded" onclick="showTasks('Wed')">Wed</button>
+                <button class="day rounded" onclick="showTasks('Thu')">Thu</button>
+                <button class="day rounded" onclick="showTasks('Fri')">Fri</button>
+                <button class="day rounded" onclick="showTasks('Sat')">Sat</button>
+                <button class="day rounded" onclick="showTasks('Sun')">Sun</button>
+                <button class="a-month rounded">Tasks for month</button>
+            </div><!-- almost everything changed in here -->
 
             <div class="tasks-section">
                 <p class="sticky bold">Assigned tasks</p>
-                <p>
-                    <a href="#" class="inline create-task"
-                    ><img src="images/icons/plus.svg" height="25px" />Create a task</a
-                    >
-                </p>
-                <div class="no-tasks">
-                    <img src="images/icons/illustration.svg" height="130px" />
+                <div class="No-tasks" style="display: none">
                     <p>
-                        <br />Every hero deserves a rest! <br />
-                        Maybe it`s time for new adventures?
+                        <a href="#" class="inline create-task"><img src="images/icons/plus.svg" height="25px" />Create a task</a>
                     </p>
-                </div>
-            </div>
+                    <div class="no-tasks">
+                        <img src="images/icons/illustration.svg" height="130px" />
+                        <p>
+                            <br />Every hero deserves a rest! <br />
+                            Maybe it`s time for new adventures?
+                        </p>
+                    </div>
+                </div> <!-- this should be opened when there is no task for the specific day -->
+
+                <!-- Task Sections for each day -->
+                <div class="Mon-tasks task-section" style="display: block">
+                    <div class="task">
+                        <div class="task-left-part">
+                            <p class="bold" style="padding-left: 10px">Task 1</p>
+                            <ul class="under-task">
+                                <li>Some characteristics</li>
+                            </ul>
+                        </div>
+                        <div class="task-right-part">
+                            <img src="images/icons/trashcan.svg" class="icon" style="padding: 5px">
+                            <img src="images/icons/checkmark.svg" class="icon" style="padding: 5px">
+                        </div>
+                    </div>
+                    <div class="task">
+                        <div class="task-left-part">
+                            <p class="bold" style="padding-left: 10px">Task 2</p>
+                            <ul class="under-task">
+                                <li>Some characteristics</li>
+                            </ul>
+                        </div>
+                        <div class="task-right-part">
+                            <img src="images/icons/trashcan.svg" class="icon" style="padding: 5px">
+                            <img src="images/icons/checkmark.svg" class="icon" style="padding: 5px">
+                        </div>
+                    </div>
+                    <div class="task">
+                        <div class="task-left-part">
+                            <p class="bold" style="padding-left: 10px">Task 3</p>
+                            <ul class="under-task">
+                                <li>Some characteristics</li>
+                            </ul>
+                        </div>
+                        <div class="task-right-part">
+                            <img src="images/icons/trashcan.svg" class="icon" style="padding: 5px">
+                            <img src="images/icons/checkmark.svg" class="icon" style="padding: 5px">
+                        </div>
+                    </div>
+                    <a href="#" class="inline create-task"><img src="images/icons/plus.svg" height="25px" />Create a task</a>
+                </div> <!-- this should show tasks for monday -->
+                <div class="Tue-tasks task-section" style="display: none"><p>Tasks for Tuesday</p></div>
+                <div class="Wed-tasks task-section" style="display: none"><p>Tasks for Wednesday</p></div>
+                <div class="Thu-tasks task-section" style="display: none"><p>Tasks for Thursday</p></div>
+                <div class="Fri-tasks task-section" style="display: none"><p>Tasks for Friday</p></div>
+                <div class="Sat-tasks task-section" style="display: none"><p>Tasks for Saturday</p></div>
+                <div class="Sun-tasks task-section" style="display: none"><p>Tasks for Sunday</p></div>
+            </div><!-- almost everything changed in here also -->
         </div>
 
         <div class="stats-section rounded paddedx2">
@@ -162,7 +208,7 @@
                     <img src="images/icons/cup.svg" height="25px" />Description of achievement...
                 </p>
             </div>
-        </div><!-- modified this class -->
+        </div>
 
         <div id="profile-modal" class="modal">
             <div class="modal-content rounded">
