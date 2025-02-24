@@ -1,48 +1,3 @@
-document.addEventListener("DOMContentLoaded", () => {
-    const daysSection = document.getElementById("days-section");
-    const arrowButton = document.getElementById("arrow-btn");
-
-    let showingWeekdays = true;
-
-    arrowButton.addEventListener("click", (e) => {
-        e.preventDefault();
-
-        if (showingWeekdays) {
-            daysSection.innerHTML = `
-    <button class="active-day rounded">Fri</button>
-    <button class="day rounded">Sat</button>
-    <button class="day rounded">Sun</button>
-    <button class="a-month rounded">Tasks for month</button><!-- should redirect to tasks for month page-->
-    <!-- deleted "blank div" -->
-    <button class="other" id="arrow-btn">
-      <img src="arrow2.svg" />
-    </button>
-  `;
-        } else {
-            daysSection.innerHTML = `
-    <button class="active-day rounded">Mon</button>
-    <button class="day rounded">Tue</button>
-    <button class="day rounded">Wed</button>
-    <button class="day rounded">Thu</button>
-    <button class="other" id="arrow-btn">
-      <img src="arrow1.svg"  "/>
-    </button>
-  `;
-        }
-
-        assignArrowClick();
-        showingWeekdays = !showingWeekdays;
-    });
-
-    function assignArrowClick() {
-        const newArrowButton = document.getElementById("arrow-btn");
-        newArrowButton.addEventListener("click", (e) => {
-            e.preventDefault();
-            arrowButton.click();
-        });
-    }
-});
-
 const modal = document.getElementById("profile-modal");
 const openModalBtn = document.getElementById("open-modal");
 
@@ -57,7 +12,6 @@ window.addEventListener("click", (event) => {
         openModalBtn.classList.remove("circled");
     }
 });
-
 
 document.addEventListener("DOMContentLoaded", function () {
     const toggleIcon = document.getElementById("toggle-icon");
@@ -110,4 +64,33 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 });
 
+function showTasks(day) {
+    // Hide all task sections
+    const taskSections = document.querySelectorAll('.Mon-tasks, .Tue-tasks, .Wed-tasks, .Thu-tasks, .Fri-tasks, .Sat-tasks, .Sun-tasks');
+    taskSections.forEach(function(section) {
+        section.style.display = 'none';
+    });
 
+    // Show the task section for the selected day
+    const selectedDayTasks = document.querySelector(`.${day}-tasks`);
+    if (selectedDayTasks) {
+        selectedDayTasks.style.display = 'block';
+    }
+}
+
+document.addEventListener("DOMContentLoaded", function () {
+    const buttons = document.querySelectorAll(".days-section button");
+
+    buttons.forEach(button => {
+        button.addEventListener("click", function () {
+            const activeButton = document.querySelector(".active-day");
+
+            if (activeButton) {
+                activeButton.classList.remove("active-day");
+                activeButton.classList.add("day");
+            }
+            this.classList.remove("day");
+            this.classList.add("active-day");
+        });
+    });
+});
