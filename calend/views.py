@@ -10,7 +10,6 @@ from .models import DailyTask
 def calend(request):
     return render(request, "calend/calend-for-all.html")
 
-
 class DailyTaskView(View):
     def post(self, request):
         if not request.user.is_authenticated:
@@ -22,15 +21,27 @@ class DailyTaskView(View):
             entered_date = parse_date(data.get("entered_date"))  # dd.mm.yyyy
             start_time = parse_time(data.get("start_time"))  # tt:tt
             finish_time = parse_time(data.get("finish_time"))  # tt:tt
+            category = data.get("category")
 
-            dailytask = DailyTask.objects.create(
+            if category not in ["creativity", "strength", "intelligence"]:
+                return JsonResponse({"error": "Invalid category"}, status=400)
+
+            dailytask, created = DailyTask.objects.get_or_create(
                 user=request.user,
                 title=data.get("title"),
-                description=data.get("description"),
-                entered_date=entered_date,
-                start_time=start_time,
-                finish_time=finish_time
+                defaults={
+                    "description": data.get("description"),
+                    "entered_date": entered_date,
+                    "start_time": start_time,
+                    "finish_time": finish_time,
+                    "category": category,
+                }
             )
-            return JsonResponse({"message": "Daily task created", "dailytask_id": dailytask.id}, status=201)
+
+            if created:
+                return JsonResponse({"message": "Daily task created", "dailytask_id": dailytask.id}, status=201)
+            else:
+                return JsonResponse({"message": "Task already exists"}, status=200)
+
         except Exception as e:
             return JsonResponse({"error": str(e)}, status=400)

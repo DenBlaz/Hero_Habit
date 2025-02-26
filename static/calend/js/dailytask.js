@@ -1,12 +1,17 @@
 document.getElementById("saveTask").addEventListener("click", async () => {
-    const title = document.querySelector("input[name='title']").value;
-    const description = document.querySelector("input[name='description']").value;
+    const title = document.querySelector("input[name='title']").value.trim();
+    const description = document.querySelector("input[name='description']").value.trim();
     const entered_date = document.querySelector("input[name='entered_date']").value;
     const start_time = document.querySelector("input[name='start_time']").value;
     const finish_time = document.querySelector("input[name='finish_time']").value;
 
     const selectedCategory = document.querySelector(".change-stats .chosen");
     const category = selectedCategory ? selectedCategory.getAttribute("data-category") : null;
+
+    if (!title || !entered_date || !start_time || !finish_time || !category) {
+        alert("Please fill in all required fields.");
+        return;
+    }
 
     const taskData = {
         title,
@@ -29,7 +34,14 @@ document.getElementById("saveTask").addEventListener("click", async () => {
         const data = await response.json();
         if (response.ok) {
             alert("Task created successfully!");
-            document.getElementById("addTaskForm").reset();
+            document.querySelector("input[name='title']").value = "";
+            document.querySelector("input[name='description']").value = "";
+            document.querySelector("input[name='entered_date']").value = "";
+            document.querySelector("input[name='start_time']").value = "";
+            document.querySelector("input[name='finish_time']").value = "";
+
+            // Закрываем форму
+            document.getElementById("addTaskForm").style.display = "none";
         } else {
             alert("Error: " + data.error);
         }
