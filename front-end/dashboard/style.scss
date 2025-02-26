@@ -27,9 +27,6 @@ body {
   .container, .settings {
     max-width: 1200px;
   }
-  .a-month{
-    font-size: 1.2rem;
-  }
 }
 
 /* xl */
@@ -37,18 +34,12 @@ body {
   .container {
     max-width: 1024px;
   }
-  .a-month{
-    font-size: 1rem;
-  }
 }
 
 /* lg */
 @media (max-width: 1024px) {
   .container {
     max-width: 768px;
-  }
-  .a-month{
-    font-size: 0.8rem;
   }
 }
 
@@ -218,7 +209,10 @@ body {
 }
 
 .active-day,
-.day, .a-month {
+.day, {
+  display: flex;
+  align-items: center;
+  text-align: center;
   justify-content: center;
   min-width: 100px;
   max-width: 200px;
@@ -237,11 +231,6 @@ body {
 
 .day {
   font-size: 1.2rem;
-  border: none;
-  color: #8364e8;
-}
-
-.a-month{
   border: none;
   color: #8364e8;
 }
@@ -592,8 +581,16 @@ input::placeholder {
 }
 
 .under-task{
+  display: flex;
+  flex-direction: column;
   color: #8D8D8D;
   font-size: 12px;
   padding-left: 10px;
   padding-top: 4px;
+}
+
+.task-right-part{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
 }
