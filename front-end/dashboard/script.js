@@ -66,7 +66,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 function showTasks(day) {
     // Hide all task sections
-    const taskSections = document.querySelectorAll('.Mon-tasks, .Tue-tasks, .Wed-tasks, .Thu-tasks, .Fri-tasks, .Sat-tasks, .Sun-tasks');
+    const taskSections = document.querySelectorAll('.Mon-tasks, .Tue-tasks, .Wed-tasks, .Thu-tasks, .Fri-tasks, .Sat-tasks, .Sun-tasks, .For-month-tasks');
     taskSections.forEach(function(section) {
         section.style.display = 'none';
     });
@@ -87,10 +87,17 @@ document.addEventListener("DOMContentLoaded", function () {
 
             if (activeButton) {
                 activeButton.classList.remove("active-day");
-                activeButton.classList.add("day");
+
+                // Restore original classes for the previously active button
+                if (activeButton.classList.contains("a-month")) {
+                    activeButton.classList.add("a-month");
+                } else {
+                    activeButton.classList.add("day");
+                }
             }
-            this.classList.remove("day");
+
+            // Apply active-day class to the clicked button while preserving its original classes
             this.classList.add("active-day");
         });
     });
-});
+});y
