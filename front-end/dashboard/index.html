@@ -122,8 +122,9 @@
                 <button class="day rounded" onclick="showTasks('Fri')">Fri</button>
                 <button class="day rounded" onclick="showTasks('Sat')">Sat</button>
                 <button class="day rounded" onclick="showTasks('Sun')">Sun</button>
-                <button class="a-month rounded">Tasks for month</button>
-            </div><!-- almost everything changed in here -->
+                <button class="day rounded" onclick="showTasks('For-month')">Tasks for month</button><!--
+                added function and changed class from a-month to day, also, deleted class a-month -->
+            </div>
 
             <div class="tasks-section">
                 <p class="sticky bold">Assigned tasks</p>
@@ -178,7 +179,6 @@
                             <img src="images/icons/checkmark.svg" class="icon" style="padding: 5px">
                         </div>
                     </div>
-                    <a href="#" class="inline create-task"><img src="images/icons/plus.svg" height="25px" />Create a task</a>
                 </div> <!-- this should show tasks for monday -->
                 <div class="Tue-tasks task-section" style="display: none"><p>Tasks for Tuesday</p></div>
                 <div class="Wed-tasks task-section" style="display: none"><p>Tasks for Wednesday</p></div>
@@ -186,7 +186,24 @@
                 <div class="Fri-tasks task-section" style="display: none"><p>Tasks for Friday</p></div>
                 <div class="Sat-tasks task-section" style="display: none"><p>Tasks for Saturday</p></div>
                 <div class="Sun-tasks task-section" style="display: none"><p>Tasks for Sunday</p></div>
-            </div><!-- almost everything changed in here also -->
+                <div class="For-month-tasks task-section" style="display: none">
+                    <div class="task">
+                        <div class="task-left-part">
+                            <p class="bold" style="padding-left: 10px">Task 1</p>
+                            <ul class="under-task">
+                                <li>01.01.2025 - 10.02.2025</li> <!-- this should display dates -->
+                                <li>10pt</li><!-- this should display the number of points -->
+                            </ul>
+                        </div>
+                        <div class="task-right-part">
+                            <img src="images/icons/trashcan.svg" class="icon" style="padding: 5px">
+                            <img src="images/icons/checkmark.svg" class="icon" style="padding: 5px">
+                        </div>
+                    </div>
+                </div><!-- added this tab and added design to how tasks for months should look -->
+                <a href="#" class="inline create-task"><img src="images/icons/plus.svg" height="25px" />Create a task</a>
+                <!-- changed position of this image with text-->
+            </div>
         </div>
 
         <div class="stats-section rounded paddedx2">
