@@ -1,3 +1,20 @@
+function getCookie(name) {
+    let cookieValue = null;
+    if (document.cookie && document.cookie !== '') {
+        const cookies = document.cookie.split(';');
+        for (let i = 0; i < cookies.length; i++) {
+            const cookie = cookies[i].trim();
+            if (cookie.startsWith(name + '=')) {
+                cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                break;
+            }
+        }
+    }
+    return cookieValue;
+}
+
+const csrftoken = getCookie('csrftoken');
+
 document.getElementById("saveTask").addEventListener("click", async () => {
     const title = document.querySelector("input[name='title']").value.trim();
     const description = document.querySelector("input[name='description']").value.trim();
@@ -27,6 +44,7 @@ document.getElementById("saveTask").addEventListener("click", async () => {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
+                "X-CSRFToken": csrftoken, 
             },
             body: JSON.stringify(taskData),
         });
@@ -40,7 +58,6 @@ document.getElementById("saveTask").addEventListener("click", async () => {
             document.querySelector("input[name='start_time']").value = "";
             document.querySelector("input[name='finish_time']").value = "";
 
-            // Закрываем форму
             document.getElementById("addTaskForm").style.display = "none";
         } else {
             alert("Error: " + data.error);
