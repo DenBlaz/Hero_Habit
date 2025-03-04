@@ -21,10 +21,6 @@ class DailyTaskView(View):
             entered_date = parse_date(data.get("entered_date"))  # dd.mm.yyyy
             start_time = parse_time(data.get("start_time"))  # tt:tt
             finish_time = parse_time(data.get("finish_time"))  # tt:tt
-            category = data.get("category")
-
-            if category not in ["creativity", "strength", "intelligence"]:
-                return JsonResponse({"error": "Invalid category"}, status=400)
 
             dailytask, created = DailyTask.objects.get_or_create(
                 user=request.user,
@@ -34,7 +30,6 @@ class DailyTaskView(View):
                     "entered_date": entered_date,
                     "start_time": start_time,
                     "finish_time": finish_time,
-                    "category": category,
                 }
             )
 

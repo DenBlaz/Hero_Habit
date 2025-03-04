@@ -22,8 +22,7 @@ document.getElementById("saveTask").addEventListener("click", async () => {
     const start_time = document.querySelector("input[name='start_time']").value;
     const finish_time = document.querySelector("input[name='finish_time']").value;
 
-    const selectedCategory = document.querySelector(".change-stats .chosen");
-    const category = selectedCategory ? selectedCategory.getAttribute("data-category") : null;
+
 
     if (!title || !entered_date || !start_time || !finish_time || !category) {
         alert("Please fill in all required fields.");
@@ -36,7 +35,6 @@ document.getElementById("saveTask").addEventListener("click", async () => {
         entered_date,
         start_time,
         finish_time,
-        category
     };
 
     try {
