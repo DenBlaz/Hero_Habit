@@ -24,7 +24,7 @@ document.getElementById("saveTask").addEventListener("click", async () => {
 
 
 
-    if (!title || !entered_date || !start_time || !finish_time || !category) {
+    if (!title || !entered_date || !start_time || !finish_time) {
         alert("Please fill in all required fields.");
         return;
     }
