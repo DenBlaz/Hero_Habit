@@ -23,7 +23,7 @@ document.getElementById("saveTask").addEventListener("click", async () => {
     };
 
     try {
-        const response = await fetch("/calend/api/daily-tasks/", {
+        const response = await fetch("/calendar/api/daily-tasks/", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
