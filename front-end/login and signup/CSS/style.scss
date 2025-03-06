@@ -1,8 +1,10 @@
-a{
+a {
   text-decoration: none;
 }
 
-h1, h2, p {
+h1,
+h2,
+p {
   margin: 5px;
 }
 
@@ -17,7 +19,6 @@ body {
 
 input {
   background-color: #ebebeb;
-  color: #9C9C9C;
   border: none;
   border-radius: 10px;
   height: 45px;
@@ -25,6 +26,11 @@ input {
   font-size: 17px;
   padding-left: 10px;
   box-sizing: border-box;
+}
+
+input:focus {
+  border: 3px solid rgba(196, 141, 246, 1);
+  outline: none;
 }
 
 input::placeholder {
@@ -61,7 +67,7 @@ button:hover {
 
 .welcome-layout {
   /*background: linear-gradient(#c48df6, #916deb);*/
-  background-image: url('../images/icon/starback.svg') !important;
+  background-image: url("../images/icon/starback.svg") !important;
   background-size: cover;
   display: flex;
   flex-direction: column;
@@ -70,7 +76,7 @@ button:hover {
   color: white;
 }
 
-.main-logo{
+.main-logo {
   width: 70px;
 }
 
@@ -86,13 +92,13 @@ button:hover {
   height: 65vh;
 }
 
-.main-text{
+.main-text {
   font-size: 23px;
   font-weight: bold;
-  color: #AB7EF1;
+  color: #ab7ef1;
 }
 
-.input-field{
+.input-field {
   position: relative;
   display: inline-block;
   width: 65%;
@@ -106,14 +112,24 @@ button:hover {
   width: 20px;
 }
 
-.account-change{
+.eye-icon {
+  width: auto -1px;
+  top: 15px;
+  right: 40px;
+  cursor: pointer;
+}
+.account-change {
   font-size: 20px;
-  margin-top: 15px
+  margin-top: 15px;
 }
 
-.forgot-password{
+.forgot-password {
   text-align: right;
   width: 65%;
-  color: #9C9C9C;
+  color: #9c9c9c;
   font-size: 13px;
+}
+
+input::-ms-reveal {
+  display: none;
 }
