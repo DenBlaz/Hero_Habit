@@ -9,7 +9,7 @@
       href="https://fonts.googleapis.com/css?family=Open Sans"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="{% static 'calend/css/calend-for-all.css' %}" />
+    <link rel="stylesheet" href="{% static 'calend/css/calend-for-all.scss' %}" />
   </head>
   <body>
     <div class="container">
@@ -52,7 +52,7 @@
             <div class="settings-container">
               <div class="settings-options">
                 <ul class="options">
-                  <li id="ViewProfileOption" class="option">View profile</li>
+                  <li id="ViewProfileOption" class="option">Edit profile</li>
                   <li id="ChangePassword" class="option">Change password</li>
                 </ul>
               </div>
@@ -231,10 +231,10 @@
                       style="background: url('/static/calend/images/lines-input.svg') no-repeat 8px 65%;" />
           
                   <p style="padding: 1px 0 0 0">Date & Time</p>
-                  <input class="at-input-i" name="entered_date" placeholder="DD.MM.YYYY"
+                  <input class="at-input-i" name="toggleDate" placeholder="DD.MM.YYYY"
                       style="margin: 10px 0 0 0; background: url('/static/calend/images/date-icon.svg') no-repeat 8px center;" />
           
-                  <div class="task-time" style="margin-top: 5px">
+                  <div class="task-time" id="dateDay" style="margin-top: 5px">
                       <input class="at-input-i" name="start_time" placeholder="00:00"
                           style="background: url('/static/calend/images/clock-icon.svg') no-repeat 8px center; margin-right: 10px;" />
                       <img src="/static/calend/images/—.svg" />
@@ -242,17 +242,46 @@
                           style="background: url('/static/calend/images/clock-icon.svg') no-repeat 8px center; margin-left: 10px;" />
                   </div>
           
+                  <div
+                  class="task-time1 hidden"
+                  id="dateMonth"
+                  style="margin-top: 5px; display: hidden"
+                >
+                  <input
+                    class="at-input-i"
+                    placeholder="DD.MM.YYYY"
+                    style="
+                      background: url('/static/calend/images/date-icon.svg') no-repeat
+                        8px center;
+                      margin-right: 10px;
+                    "
+                  />
+                  <img src="/static/calend/images/—.svg" />
+                  <input
+                    class="at-input-i"
+                    placeholder="DD.MM.YYYY"
+                    style="
+                      background: url('/static/calend/images/date-icon.svg') no-repeat
+                        8px center;
+                      margin-left: 10px;
+                    "
+                  />
+                </div>
+                  
                   <p style="margin: 10px 0 0 0">Categorie</p>
                   <div class="change-stats">
                       <img src="/static/calend/images/pink-ellipse.svg" data-category="pink"
                           data-chosen="/static/calend/images/Ch-R-ellipse.svg"
-                          data-default="/static/calend/images/pink-ellipse.svg" class="at-icon chosen" />
+                          data-default="/static/calend/images/pink-ellipse.svg" 
+                          data-text="Category - Creativity" class="at-icon chosen" />
                       <img src="/static/calend/images/green-ellipse.svg" data-category="green"
                           data-chosen="/static/calend/images/Ch-Gr-ellipse.svg"
-                          data-default="/static/calend/images/green-ellipse.svg" class="at-icon" />
+                          data-default="/static/calend/images/green-ellipse.svg"
+                          data-text="Category - Strength" class="at-icon" />
                       <img src="/static/calend/images/blue-ellipse.svg" data-category="blue"
                           data-chosen="/static/calend/images/Ch-B-ellipse.svg"
-                          data-default="/static/calend/images/blue-ellipse.svg" class="at-icon" />
+                          data-default="/static/calend/images/blue-ellipse.svg"
+                          data-text="Category - Intelligence" class="at-icon" />
                   </div>
           
                   <div class="buttons">
@@ -268,10 +297,9 @@
               <button class="invisible-button">
                 <img
                   id="toggleIcon"
-                  style="padding: 0 10px 0 12px"
-                  src="/static/calend/images/leftarrow.svg"
-                  height="18px"
-                />Show tasks for month
+                  style="padding: 0 22px 0 22px"
+                  src="images/icons/leftarrow.svg"
+                /><span id="toggleText">Show tasks for month</span>
               </button>
             </div>
           </div>
@@ -280,21 +308,53 @@
         <div class="calendar-section" id="calendarView">
           <div class="days-section">
             <div class="day" style="border-top-left-radius: 10px"></div>
-            <button class="space" id="Monday">Monday 1</button>
-            <button class="space" id="Tuesday">Tuesday 2</button>
-            <button class="space" id="Wednesday">Wednesday 3</button>
-            <button class="space" id="Thursday">Thursday 4</button>
-            <button class="space" id="Friday">Friday 5</button>
-            <button class="space" id="Saturday">Saturday 6</button>
+            <button class="space" id="Monday">
+              <div>Monday <strong>1</strong></div>
+            </button>
+            <button class="space" id="Tuesday">
+              <div>Tuesday <strong>2</strong></div>
+            </button>
+            <button class="space" id="Wednesday">
+              <div>Wednesday <strong>3</strong></div>
+            </button>
+            <button class="space" id="Thursday">
+              <div>Thursday <strong>4</strong></div>
+            </button>
+            <button class="space" id="Friday">
+              <div>Friday <strong>5</strong></div>
+            </button>
+            <button class="space" id="Saturday">
+              <div>Saturday <strong>6</strong></div>
+            </button>
             <button
               class="space"
               id="Sunday"
               style="border-top-right-radius: 10px"
             >
-              Sunday 7
+            <div>Sunday <strong>7</strong></div>
             </button>
           </div>
-          <div class="time-section" id="time-section"></div>
+          <div class="time-section">
+            <div class="time-column" id="time-column"></div>
+            <div class="time-column">
+              <div class="side-bar green-bar">
+                <p class="semi-bold font16px">Name of task</p>
+                <p class="font12px">00:00 - 00:00</p>
+                <p class="font12px">20 pt</p>
+              </div>
+              <div class="side-bar custom-bar">
+                <p class="semi-bold font16px">Name of task</p>
+                <p class="font12px">00:00 - 00:00</p>
+                <p class="font12px">20 pt</p>
+              </div>
+            </div>
+            <div class="time-column"></div>
+            <div class="time-column"></div>
+            <div class="time-column"></div>
+            <div class="time-column"></div>
+            <div class="time-column"></div>
+            <div class="time-column"></div>
+          </div>
         </div>
         <!--calendar for days-->
 
@@ -306,7 +366,7 @@
               <p class="font12px">01.01.2025 - 10.02.2025</p>
               <p class="font12px">20 pt</p>
             </button>
-            <div class="blank"></div>
+            <div class="blanktask"></div>
           </div>
           <div class="month-section">
             <div class="month">
@@ -325,6 +385,10 @@
             </div>
 
             <div class="month">
+              <button class="top-bar pink-bar">
+                <span class="start-date">01.01.2025</span>
+                <span class="end-date">10.02.2025</span>
+              </button>
               <div class="months"></div>
               <div class="months"></div>
               <div class="months"></div>
