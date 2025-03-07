@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Character creation</title>
+    <link
+      href="https://fonts.googleapis.com/css?family=Open Sans"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="{% static 'accounts/css/character.css'%}" />
+  </head>
+  <body>
+    <div class="container">
+      <div class="header1">
+        <span><span class="bold">Hero</span>Habit</span>
+      </div>
+      <div class="main-content">
+        <div class="main">
+          <div class="head">
+            <p class="bold font48px purple-text">Character creation</p>
+          </div>
+          <div class="text">
+            Choose your main characteristic
+          </div>
+          <div class="options">
+            <button class="options-button pink-btn">Creativity</button>
+            <button class="options-button green-btn">Strength</button>
+            <button class="options-button blue-btn">Intelligence</button>            
+          </div>
+          <div class="text">
+           Choose a gender of your character</p>
+          </div>
+          <div class="options">
+            <button class="options-gender male-btn">Male</button>
+            <button class="options-gender female-btn">Female</button>
+            
+          </div>
+          <div class="save-bttn">
+           <button class="save-button">Save</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="{% static 'accounts/js/charactercr.js'%}"></script>
+  </body>
+</html>

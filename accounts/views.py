@@ -27,3 +27,6 @@ def user_login(request):
             messages.error(request, 'Invalid email or password')
 
     return render(request, 'accounts/login.html')
+
+def character_create(request):
+    return render(request, 'accounts/character.html')
