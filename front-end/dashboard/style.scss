@@ -527,8 +527,6 @@ li a {
 
 input {
   background-color: #ebebeb;
-  color: #9c9c9c;
-
   border: none;
   border-radius: 10px;
   height: 2rem;
@@ -540,6 +538,11 @@ input {
 
 input::placeholder {
   color: #9c9c9c;
+}
+
+input:focus {
+  border: 1px solid #8364E8;
+  outline: none;
 }
 
 .settings-button {
