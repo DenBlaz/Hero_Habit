@@ -26,15 +26,25 @@ class Account(AbstractBaseUser, PermissionsMixin):
     date_joined = models.DateTimeField(auto_now_add=True)
 
     main_characteristic = models.CharField(
-        max_length=255, 
-        choices=[('Creativity'),('Strength'),('Intelligence')],
-        null=True, blank=True
+        max_length=20, 
+        choices=MAIN_CHARACTERISTIC_CHOICES, 
+        null=True, 
+        blank=True
     )
-    gender = models.CharField(
-        max_length=10,
-        choices=[('Male'), ('Female')],
-        null=True, blank=True
-    )
+
+
+    MAIN_CHARACTERISTIC_CHOICES = [
+    ('creativity','Creativity'),
+    ('strength','Strength'),
+    ('intelligence','Intelligence'),
+    ]
+    
+    gender = models.CharField(max_length=10, choices=GENDER_CHOICES, null=True, blank=True)
+    
+    GENDER_CHOICES = [
+        ('male', 'Male'),
+        ('female', 'Female'),
+    ]
 
     avatar = models.ImageField(upload_to='avatars/', null=True, blank=True)
     character_image = models.ImageField(upload_to='characters/', null=True, blank=True)
