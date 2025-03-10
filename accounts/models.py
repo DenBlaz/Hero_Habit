@@ -4,7 +4,7 @@ from django.db import models
 class CustomAccountManager(BaseUserManager):
     def create_user(self, email, nickname, password=None):
         if not email:
-            raise ValueError("У користувача повинна бути електронна пошта")
+            raise ValueError("The user must have an email address")
         email = self.normalize_email(email)
         user = self.model(email=email, nickname=nickname, **extra_fields)
         user.set_password(password)
