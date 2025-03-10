@@ -25,26 +25,26 @@ class Account(AbstractBaseUser, PermissionsMixin):
     is_staff = models.BooleanField(default=False)
     date_joined = models.DateTimeField(auto_now_add=True)
 
+    MAIN_CHARACTERISTIC_CHOICES = [
+    ('creativity','Creativity'),
+    ('strength','Strength'),
+    ('intelligence','Intelligence'),
+    ]
+
     main_characteristic = models.CharField(
         max_length=20, 
         choices=MAIN_CHARACTERISTIC_CHOICES, 
         null=True, 
         blank=True
     )
-
-
-    MAIN_CHARACTERISTIC_CHOICES = [
-    ('creativity','Creativity'),
-    ('strength','Strength'),
-    ('intelligence','Intelligence'),
-    ]
-    
-    gender = models.CharField(max_length=10, choices=GENDER_CHOICES, null=True, blank=True)
     
     GENDER_CHOICES = [
         ('male', 'Male'),
         ('female', 'Female'),
     ]
+
+    gender = models.CharField(max_length=10, choices=GENDER_CHOICES, null=True, blank=True)
+    
 
     avatar = models.ImageField(upload_to='avatars/', null=True, blank=True)
     character_image = models.ImageField(upload_to='characters/', null=True, blank=True)
