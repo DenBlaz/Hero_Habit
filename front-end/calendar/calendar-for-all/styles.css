@@ -600,6 +600,11 @@ input::placeholder {
   color: #9c9c9c;
 }
 
+input:focus {
+  border: 1px solid #8364E8;
+  outline: none;
+}
+
 .settings-button {
   background: #d397fa !important;
   border: none;
