@@ -63,18 +63,17 @@ body {
 
 .content {
   display: flex;
-  flex-grow: 1;
-  gap: 8px;
 }
 
 .manage-section {
   flex: 1;
   display: flex;
+  transform-origin: top; /* Keeps it anchored at the top-left corner */
   flex-direction: column;
 }
 
 .calendar-section {
-  flex: 3;
+  flex: 30;///////////////////////////////////////////////////////////////////////////////////////////
   display: flex;
   flex-direction: column;
 }
@@ -165,21 +164,19 @@ body {
   padding: 10px;
   top: 30%; /* starts vertically from*/
   left: 0%;
-  width: 100%; 
+  width: 100%;
   height: 50%;/* how big is*/
   border-radius: 10px;
   z-index: 10;
   display: flex;
   flex-direction: column; /* Stacks content inside vertically */
- overflow: hidden;
- cursor: pointer;
+  overflow: hidden;
+  cursor: pointer;
 }
 
-
-
 .custom-bar {
-  top: 0%;  
-  height: 20%; 
+  top: 0%;
+  height: 20%;
   background-color: rgba(251, 182, 224, 0.6);
 }
 
@@ -188,7 +185,7 @@ body {
 .side-bar:focus,
 .side-bar:active {
   border: 1.5px solid rgba(0, 0, 0, 0.2) !important;
-  
+
 }
 
 
@@ -313,16 +310,16 @@ body {
 
 .start-date {
   position: absolute;
-  top: 100%; 
+  top: 100%;
   left: 0;
   font-size: 12px;
   color: black;
   white-space: nowrap;
-  
+
 }
 .end-date {
   position: absolute;
-  top: 100%; 
+  top: 100%;
   right: 0;
   font-size: 12px;
   color: black;
@@ -345,7 +342,7 @@ body {
 .top-bar:focus,
 .top-bar:active {
   border: 1.5px solid rgba(0, 0, 0, 0.2) !important;
-  
+
 }
 
 .top-bar:hover::before,
@@ -356,7 +353,7 @@ body {
   top: 20%;
   left: 4px;
   right: 4px;
-  height: 60%; 
+  height: 60%;
   border-left: 1.5px solid rgba(0, 0, 0, 0.2);
   border-right: 1.5px solid rgba(0, 0, 0, 0.2);
   pointer-events: none;
@@ -600,11 +597,6 @@ input::placeholder {
   color: #9c9c9c;
 }
 
-input:focus {
-  border: 1px solid #8364E8;
-  outline: none;
-}
-
 .settings-button {
   background: #d397fa !important;
   border: none;
@@ -651,36 +643,6 @@ input:focus {
   flex-direction: column;
 }
 
-.lil-calendar,
-.categories-section,
-.button-section,
-.show-month-tasks {
-  background-color: #fdfcfe;
-  padding: 7px;
-  margin-right: 2vh;
-  margin-bottom: 2vh;
-}
-
-.lil-calendar {
-  border-radius: 15px;
-  font-size: 16px;
-  font-weight: 400;
-}
-
-.days {
-  display: grid;
-  grid-template-columns: repeat(7, 1fr);
-  text-align: center;
-  list-style: none;
-  padding: 0;
-}
-
-.dates {
-  display: grid;
-  grid-template-columns: repeat(7, 1fr);
-  margin-bottom: 5px;
-}
-
 .different-month {
   color: #c0c0c0;
 }
@@ -705,35 +667,10 @@ input:focus {
   font-weight: 400;
 }
 
-.lil-container {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-top: 2px;
-}
-
-.selected-week {
-  background-color: #8364e826;
-  border-radius: 20px;
-}
-
 .selected-day {
   background-color: #8364e8 !important;
   border-radius: 20px;
   color: #ffffffd9;
-}
-
-.change-month {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border: none;
-  background-color: #fdfcfe;
-  cursor: pointer;
-}
-
-.change-month-icon {
-  width: 23px;
 }
 
 .categories-section,
@@ -862,7 +799,78 @@ input:focus {
   padding-left: 40px;
 }
 
-.add-task input::placeholder, 
+.add-task input::placeholder,
 .add-task textarea::placeholder {
-    color: var(--placeholder-color, grey); /* Default grey, changes dynamically */
+  color: var(--placeholder-color, grey); /* Default grey, changes dynamically */
+}
+
+/* 2xl */
+@media (max-width: 1536px) {
+  .container, .settings {
+    max-width: 1200px;
+  }
+  .lil-calendar,
+  .categories-section,
+  .button-section,
+  .show-month-tasks {
+    background-color: #fdfcfe;
+    padding: 7px;
+    margin-right: 2vh;
+    margin-bottom: 2vh;
+  }
+
+  .lil-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 2px;
+  }
+
+  .lil-calendar {
+    border-radius: 15px;
+    font-size: 16px;
+    font-weight: 400;
+  }
+
+  .change-month {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    background-color: #fdfcfe;
+    cursor: pointer;
+  }
+
+  .change-month-icon {
+    width: 23px;
+  }
+
+  .days {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    text-align: center;
+    list-style: none;
+    padding: 0;
+  }
+
+  .dates {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    margin-bottom: 5px;
+  }
+
+  .selected-week {
+    background-color: #8364e826;
+    border-radius: 20px;
+  }
+}
+
+/* xl */
+@media (max-width: 1280px) {
+  .container {
+    max-width: 1024px;
+  }
+  .manage-section{
+    transform: scale(.9);
+  }
 }
