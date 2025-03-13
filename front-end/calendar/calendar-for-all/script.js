@@ -329,7 +329,7 @@ document.getElementById("toggleView").addEventListener("click", function () {
     dateForDays.classList.add("hidden");
     dateForMonth.classList.remove("hidden");
 
-    addTask.style.height = "420px";
+    addTask.style.height = "370px";
   } else {
     // Show default mode (tasks for days)
 
