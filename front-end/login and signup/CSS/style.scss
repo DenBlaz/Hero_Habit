@@ -55,14 +55,14 @@ button:hover {
   transform: scale(1.02);
 }
 
+//////changed container a little
 .container {
   display: grid;
   box-shadow: 0 4px 20px rgb(150, 150, 150);
   grid-template-columns: 1fr 1fr;
-  width: 80vw;
-  height: 80vh;
   border-radius: 20px;
-  overflow: hidden;
+  width: 1024px;
+  overflow: auto;
 }
 
 .welcome-layout {
@@ -132,4 +132,19 @@ button:hover {
 
 input::-ms-reveal {
   display: none;
+}
+
+/////added this media
+@media (max-width: 620px) {
+  .welcome-layout{
+    display: none;
+  }
+  .container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .content-layout{
+    width: 100%;
+  }
 }
