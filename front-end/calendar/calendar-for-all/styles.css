@@ -529,11 +529,9 @@ li a {
 .panel {
   display: none;
   position: fixed;
-  width: 60%;
-  height: 70%;
+  width: 800px;/////changed the size and deleted "top" and left"
+  height: 500px;
   font-weight: bolder;
-  top: 15%;
-  left: 20%;
   background-color: white;
   border: 1px solid #ccc;
   border-radius: 20px;
@@ -875,7 +873,8 @@ input::placeholder {
   }
 }
 
-input:focus {
-   border: 1px solid #8364E8;
-   outline: none;
- }
+@media (max-width: 836px) {
+  .panel{
+    width: 100%;
+  }
+}/////added this media which helps with settings
