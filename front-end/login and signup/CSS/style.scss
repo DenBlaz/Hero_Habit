@@ -104,7 +104,16 @@ button:hover {
   width: 65%;
   margin-top: 20px;
 }
-
+.input-field input {
+  width: 100%;
+  padding: 10px 40px 10px 10px;
+  box-sizing: border-box; 
+}
+.special-input input{
+  width: 100%;
+  padding: 10px 65px 10px 10px; 
+  box-sizing: border-box;
+}
 .icon-input {
   position: absolute;
   top: 10px;
