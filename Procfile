@@ -1,1 +1,1 @@
-web: gunicorn plannergame.wsgi
+web: gunicorn plannergame.wsgi --bind 0.0.0.0:$PORT

@@ -12,14 +12,12 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 
 from pathlib import Path
 import os
-# Build paths inside the project like this: BASE_DIR / 'subdir'.
+
 BASE_DIR = Path(__file__).resolve().parent.parent
 PORT = os.environ.get('PORT', 8000)
 
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
 
-# SECURITY WARNING: keep the secret key used in production secret!
+
 SECRET_KEY = 'django-insecure-ai5x!z$6i7boxrhklvtop%9p$q*yz1zy8eq$!==_*biy5%o!2%'
 
 # SECURITY WARNING: don't run with debug turned on in production!
@@ -29,8 +27,6 @@ ALLOWED_HOSTS = ["herohabit.onrender.com",]
 CSRF_TRUSTED_ORIGINS = [
     'https://herohabit.onrender.com',
 ]
-
-# Application definition
 
 INSTALLED_APPS = [
     'main',
