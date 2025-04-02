@@ -1,4 +1,9 @@
 {% load static %}
+<link
+  rel="icon"
+  href="{% static 'dashboard/image/logo_b.png' %}"
+  type="image/png"
+/>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -9,7 +14,10 @@
       href="https://fonts.googleapis.com/css?family=Open Sans"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="{% static 'calend/css/calend-for-all.css' %}" />
+    <link
+      rel="stylesheet"
+      href="{% static 'calend/css/calend-for-all.css' %}"
+    />
   </head>
   <body>
     <div class="container">
@@ -27,7 +35,9 @@
               <a href="{% url 'stats:stats' %}">Statistics</a>
             </li>
             <li>
-              <a class="active-page" href="{% url 'calend:calend' %}">Calendar</a>
+              <a class="active-page" href="{% url 'calend:calend' %}"
+                >Calendar</a
+              >
             </li>
             <li>
               <a href="{% url 'achievements:achiev' %}">Achievements</a>
@@ -41,7 +51,11 @@
           <div class="panel" id="toggle-panel">
             <div class="title-settings">
               <div class="title">
-                <img class="icon" src="/static/calend/images/settings.svg" style="margin: 15px" />
+                <img
+                  class="icon"
+                  src="/static/calend/images/settings.svg"
+                  style="margin: 15px"
+                />
                 <p style="font-size: 34px; margin-top: 15px">Settings</p>
               </div>
               <a class="icon" id="close" style="margin: 15px"
@@ -77,7 +91,8 @@
                   <input placeholder="Email" />
                 </div>
                 <button class="settings-button">
-                  <img style="width: 14%" src="/static/calend/images/pen.svg" /> Edit
+                  <img style="width: 14%" src="/static/calend/images/pen.svg" />
+                  Edit
                 </button>
               </div>
 
@@ -197,18 +212,29 @@
                 <img src="/static/calend/images/blue-ellipse.svg" />
                 <p>Intelligence</p>
               </div>
-              <img src="/static/calend/images/pink-ellipse.svg" data-category="creativity"
-    data-chosen="/static/calend/images/Ch-R-ellipse.svg"
-    data-default="/static/calend/images/pink-ellipse.svg" class="at-icon chosen" />
+              <img
+                src="/static/calend/images/pink-ellipse.svg"
+                data-category="creativity"
+                data-chosen="/static/calend/images/Ch-R-ellipse.svg"
+                data-default="/static/calend/images/pink-ellipse.svg"
+                class="at-icon chosen"
+              />
 
-<img src="/static/calend/images/green-ellipse.svg" data-category="strength"
-    data-chosen="/static/calend/images/Ch-Gr-ellipse.svg"
-    data-default="/static/calend/images/green-ellipse.svg" class="at-icon" />
+              <img
+                src="/static/calend/images/green-ellipse.svg"
+                data-category="strength"
+                data-chosen="/static/calend/images/Ch-Gr-ellipse.svg"
+                data-default="/static/calend/images/green-ellipse.svg"
+                class="at-icon"
+              />
 
-<img src="/static/calend/images/blue-ellipse.svg" data-category="intelligence"
-    data-chosen="/static/calend/images/Ch-B-ellipse.svg"
-    data-default="/static/calend/images/blue-ellipse.svg" class="at-icon" />
-
+              <img
+                src="/static/calend/images/blue-ellipse.svg"
+                data-category="intelligence"
+                data-chosen="/static/calend/images/Ch-B-ellipse.svg"
+                data-default="/static/calend/images/blue-ellipse.svg"
+                class="at-icon"
+              />
             </div>
 
             <div class="button-section">
@@ -221,28 +247,67 @@
             </div>
             <div class="add-task" id="addTaskForm">
               <div class="title-task">
-                  <p>Add a task</p>
-                  <img src="/static/calend/images/at-cross.svg" class="icon" style="width: 23px" />
+                <p>Add a task</p>
+                <img
+                  src="/static/calend/images/at-cross.svg"
+                  class="icon"
+                  style="width: 23px"
+                />
               </div>
               <div class="at-work">
-                  <p style="padding: 5px 0 5px 0">Title & Description</p>
-                  <input class="at-input" name="title" placeholder="New task title" />
-                  <input class="at-input-i" name="description" placeholder="Description"
-                      style="background: url('/static/calend/images/lines-input.svg') no-repeat 8px 65%;" />
-          
-                  <p style="padding: 1px 0 0 0">Date & Time</p>
-                  <input class="at-input-i" name="toggleDate" placeholder="DD.MM.YYYY"
-                      style="margin: 10px 0 0 0; background: url('/static/calend/images/date-icon.svg') no-repeat 8px center;" />
-          
-                  <div class="task-time" id="dateDay" style="margin-top: 5px">
-                      <input class="at-input-i" name="start_time" placeholder="00:00"
-                          style="background: url('/static/calend/images/clock-icon.svg') no-repeat 8px center; margin-right: 10px;" />
-                      <img src="/static/calend/images/—.svg" />
-                      <input class="at-input-i" name="finish_time" placeholder="23:59"
-                          style="background: url('/static/calend/images/clock-icon.svg') no-repeat 8px center; margin-left: 10px;" />
-                  </div>
-          
-                  <div
+                <p style="padding: 5px 0 5px 0">Title & Description</p>
+                <input
+                  class="at-input"
+                  name="title"
+                  placeholder="New task title"
+                />
+                <input
+                  class="at-input-i"
+                  name="description"
+                  placeholder="Description"
+                  style="
+                    background: url('/static/calend/images/lines-input.svg')
+                      no-repeat 8px 65%;
+                  "
+                />
+
+                <p style="padding: 1px 0 0 0">Date & Time</p>
+                <input
+                  class="at-input-i"
+                  name="toggleDate"
+                  placeholder="DD.MM.YYYY"
+                  style="
+                    margin: 10px 0 0 0;
+                    background: url('/static/calend/images/date-icon.svg')
+                      no-repeat 8px center;
+                  "
+                />
+
+                <div class="task-time" id="dateDay" style="margin-top: 5px">
+                  <input
+                    class="at-input-i"
+                    name="start_time"
+                    placeholder="00:00"
+                    style="
+                      background: url('/static/calend/images/clock-icon.svg')
+                        no-repeat 8px center;
+                      margin-right: 10px;
+                    "
+                  />
+                  <img src="/static/calend/images/—.svg" />
+                  <input
+                    class="at-input-i"
+                    name="finish_time"
+                    placeholder="23:59"
+                    style="
+                      background: url('/static/calend/images/clock-icon.svg')
+                        no-repeat 8px center;
+                      margin-left: 10px;
+                    "
+                  />
+                </div>
+
+                <div
                   class="task-time1 hidden"
                   id="dateMonth"
                   style="margin-top: 5px; display: hidden"
@@ -251,8 +316,8 @@
                     class="at-input-i"
                     placeholder="DD.MM.YYYY"
                     style="
-                      background: url('/static/calend/images/date-icon.svg') no-repeat
-                        8px center;
+                      background: url('/static/calend/images/date-icon.svg')
+                        no-repeat 8px center;
                       margin-right: 10px;
                     "
                   />
@@ -261,36 +326,50 @@
                     class="at-input-i"
                     placeholder="DD.MM.YYYY"
                     style="
-                      background: url('/static/calend/images/date-icon.svg') no-repeat
-                        8px center;
+                      background: url('/static/calend/images/date-icon.svg')
+                        no-repeat 8px center;
                       margin-left: 10px;
                     "
                   />
                 </div>
-                  
-                  <p style="margin: 10px 0 0 0">Categorie</p>
-                  <div class="change-stats">
-                      <img src="/static/calend/images/pink-ellipse.svg" data-category="pink"
-                          data-chosen="/static/calend/images/Ch-R-ellipse.svg"
-                          data-default="/static/calend/images/pink-ellipse.svg" 
-                          data-text="Category - Creativity" class="at-icon chosen" />
-                      <img src="/static/calend/images/green-ellipse.svg" data-category="green"
-                          data-chosen="/static/calend/images/Ch-Gr-ellipse.svg"
-                          data-default="/static/calend/images/green-ellipse.svg"
-                          data-text="Category - Strength" class="at-icon" />
-                      <img src="/static/calend/images/blue-ellipse.svg" data-category="blue"
-                          data-chosen="/static/calend/images/Ch-B-ellipse.svg"
-                          data-default="/static/calend/images/blue-ellipse.svg"
-                          data-text="Category - Intelligence" class="at-icon" />
-                  </div>
-          
-                  <div class="buttons">
-                      <button class="cancel-button" style="margin-right: 10px">Cancel</button>
-                      <button class="save-button" id="saveTask">Save</button>
-                  </div>
+
+                <p style="margin: 10px 0 0 0">Categorie</p>
+                <div class="change-stats">
+                  <img
+                    src="/static/calend/images/pink-ellipse.svg"
+                    data-category="pink"
+                    data-chosen="/static/calend/images/Ch-R-ellipse.svg"
+                    data-default="/static/calend/images/pink-ellipse.svg"
+                    data-text="Category - Creativity"
+                    class="at-icon chosen"
+                  />
+                  <img
+                    src="/static/calend/images/green-ellipse.svg"
+                    data-category="green"
+                    data-chosen="/static/calend/images/Ch-Gr-ellipse.svg"
+                    data-default="/static/calend/images/green-ellipse.svg"
+                    data-text="Category - Strength"
+                    class="at-icon"
+                  />
+                  <img
+                    src="/static/calend/images/blue-ellipse.svg"
+                    data-category="blue"
+                    data-chosen="/static/calend/images/Ch-B-ellipse.svg"
+                    data-default="/static/calend/images/blue-ellipse.svg"
+                    data-text="Category - Intelligence"
+                    class="at-icon"
+                  />
+                </div>
+
+                <div class="buttons">
+                  <button class="cancel-button" style="margin-right: 10px">
+                    Cancel
+                  </button>
+                  <button class="save-button" id="saveTask">Save</button>
+                </div>
               </div>
-          </div>
-          
+            </div>
+
             <!-- added new class -->
 
             <div class="show-month-tasks" id="toggleView">
@@ -331,7 +410,7 @@
               id="Sunday"
               style="border-top-right-radius: 10px"
             >
-            <div>Sunday <strong>7</strong></div>
+              <div>Sunday <strong>7</strong></div>
             </button>
           </div>
           <div class="time-section">
@@ -434,7 +513,9 @@
             <hr />
             <p>
               <a href="#" class="inline log-out"
-                >Log out<img src="/static/calend/images/logOutSign.svg" height="25px"
+                >Log out<img
+                  src="/static/calend/images/logOutSign.svg"
+                  height="25px"
               /></a>
             </p>
           </div>
