@@ -1,26 +1,32 @@
-{% load static %}
-<link
-  rel="icon"
-  href="{% static 'dashboard/image/logo_b.png' %}"
-  type="image/png"
-/>
 <!DOCTYPE html>
-<html lang="en">
+<html>
   <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>HeroHabit</title>
-    <link
-      href="https://fonts.googleapis.com/css?family=Open Sans"
-      rel="stylesheet"
+    <meta
+      name="generator"
+      content="HTML Tidy for HTML5 for Linux version 5.6.0"
     />
-    <link rel="stylesheet" href="{% static 'achiev/css/achiev.scss' %}" />
+    <title></title>
   </head>
   <body>
+    {% load static %}
+    <link
+      rel="icon"
+      href="{% static 'dashboard/image/logo_b.png' %}"
+      type="image/png"
+    />
+    <head>
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <title>HeroHabit</title>
+      <link
+        href="https://fonts.googleapis.com/css?family=Open Sans"
+        rel="stylesheet"
+      />
+      <link rel="stylesheet" href="{% static 'achiev/css/achiev.scss' %}" />
+    </head>
     <div id="profile-modal" class="modal">
       <div class="modal-content rounded">
         <p>Account</p>
-
         <div class="flex-center">
           <img src="/static/dashboard/image/account.svg" height="35px" />
           <div class="account-info light grey">
@@ -29,15 +35,21 @@
           </div>
         </div>
         <hr />
-        <p>
-            <form method="post" action="{% url 'accounts:logout' %}" style="display: inline;">
-              {% csrf_token %}
-              <button type="submit" class="inline" style="border: none; background: none; padding: 0; cursor: pointer;">
-                  Log out
-                  <img src="/static/dashboard/image/logOutSign.svg" height="25px" />
-              </button>
-          </form>
-          </p>
+        <form
+          method="post"
+          action="{%%20url%20'accounts:logout'%20%}"
+          style="display: inline"
+        >
+          {% csrf_token %}
+          <button
+            type="submit"
+            class="inline"
+            style="border: none; background: none; padding: 0; cursor: pointer"
+          >
+            Log out
+            <img src="/static/dashboard/image/logOutSign.svg" height="25px" />
+          </button>
+        </form>
       </div>
     </div>
     <div class="panel" id="toggle-panel">
@@ -54,7 +66,6 @@
           ><img src="/static/dashboard/image/cross.svg"
         /></a>
       </div>
-
       <div class="settings-container">
         <div class="settings-options">
           <ul class="options">
@@ -62,7 +73,6 @@
             <li id="ChangePassword" class="option">Change password</li>
           </ul>
         </div>
-
         <div class="settings-profile-usage">
           <div class="settings-profile-section">
             <p>Profile picture</p>
@@ -80,10 +90,10 @@
             <input placeholder="Email" />
           </div>
           <button class="settings-button">
-            <img style="width: 14%" src="/static/dashboard/image/pen.svg" /> Edit
+            <img style="width: 14%" src="/static/dashboard/image/pen.svg" />
+            Edit
           </button>
         </div>
-
         <div class="settings-change-password">
           <div class="settings-password-section" style="padding: 0 0 1.5% 0">
             <p style="padding: 0 0 1% 0">Current password</p>
@@ -107,33 +117,45 @@
       <div class="header1">
         <span><span class="bold">Hero</span>Habit</span>
       </div>
-
       <div class="header2">
         <div class="navigation">
-            <ul>
-                <li><a href="{% url 'dashboard:dashboard' %}">Dashboard</a></li>
-                <li><a href="{% url 'stats:stats' %}">Statistics</a></li>
-                <li><a href="{% url 'calend:calend' %}">Calendar</a></li>
-                <li><a class="active-page" href="{% url 'achievements:achiev' %}">Achievements</a></li>
-              </ul>
+          <ul>
+            <li>
+              <a href="{%%20url%20'dashboard:dashboard'%20%}">Dashboard</a>
+            </li>
+            <li>
+              <a href="{%%20url%20'stats:stats'%20%}">Statistics</a>
+            </li>
+            <li>
+              <a href="{%%20url%20'calend:calend'%20%}">Calendar</a>
+            </li>
+            <li>
+              <a
+                class="active-page"
+                href="{%%20url%20'achievements:achiev'%20%}"
+                >Achievements</a
+              >
+            </li>
+          </ul>
         </div>
         <div class="settings">
           <button id="toggle-icon" class="icon">
             <img src="/static/dashboard/image/settings.svg" height="30px" />
           </button>
           <!-- took the "panel" from here -->
-
           <button id="open-modal" class="icon">
             <img src="/static/dashboard/image/account.svg" height="40px" />
           </button>
           <div id="overlay"></div>
         </div>
       </div>
-
       <div class="Achievements-content rounded">
         <div class="achievement">
           <div class="ach-icon">
-            <img class="ach-image" src="/static/dashboard/image/img-firststep.svg" />
+            <img
+              class="ach-image"
+              src="/static/dashboard/image/img-firststep.svg"
+            />
           </div>
           <div class="ach-details">
             <h2 class="ach-name">First Step</h2>
@@ -211,10 +233,11 @@
           </div>
         </div>
         <button onclick="addClassToElement('achievement', 'achieved', 0)">
-          Lets get started?</button
-        ><!-- idk it's here just to show that it works, DEFINITELY should be deleted later -->
+          Lets get started?
+        </button>
+        <!-- idk it's here just to show that it works, DEFINITELY should be deleted later -->
       </div>
     </div>
-    <script src="{% static 'achiev/js/achiev.js' %}"></script>
+    <script src="{%%20static%20'achiev/js/achiev.js'%20%}"></script>
   </body>
 </html>
