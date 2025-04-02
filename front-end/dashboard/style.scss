@@ -18,28 +18,35 @@ body {
   display: flex;
   flex-direction: column;
   width: 98vw;
-  height: 720px;
+  max-width: 1024px;
+  height: 98vh;
   gap: 5px;
 }
 
-/* 2xl */
 @media (max-width: 1536px) {
   .container, .settings {
     max-width: 1200px;
   }
 }
 
-/* xl */
 @media (max-width: 1280px) {
   .container {
     max-width: 1024px;
   }
 }
 
-/* lg */
-@media (max-width: 1024px) {
-  .container {
-    max-width: 768px;
+@media (max-width: 836px) {
+  .panel{
+    width: 100%;
+  }
+}
+
+@media (max-height: 500px){
+  .panel{
+    height: 100%;
+  }
+  .header1{
+    padding: 0;
   }
 }
 
@@ -476,17 +483,25 @@ li a {
 .panel {
   display: none;
   position: fixed;
-  width: 60%;
-  height: 70%;
+  width: 800px;
+  height: 500px;
   font-weight: bolder;
-  top: 15%;
-  left: 20%;
   background-color: white;
   border: 1px solid #ccc;
   border-radius: 20px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-  z-index: 999; /* Above the overlay */
-  overflow-y: auto;
+  z-index: 999;
+  overflow: auto;
+}
+
+.panel::-webkit-scrollbar {
+  display: none;
+}
+
+@media (max-width: 836px) {
+  .panel {
+    width: 100%;
+  }
 }
 
 .title-settings {
