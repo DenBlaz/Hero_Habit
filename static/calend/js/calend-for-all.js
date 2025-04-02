@@ -329,7 +329,7 @@ document.getElementById("toggleView").addEventListener("click", function () {
     dateForDays.classList.add("hidden");
     dateForMonth.classList.remove("hidden");
 
-    addTask.style.height = "420px";
+    addTask.style.height = "370px";
   } else {
     // Show default mode (tasks for days)
 
@@ -342,21 +342,21 @@ document.getElementById("toggleView").addEventListener("click", function () {
 });
 
 //new code for showing category of chosen circle and when hovering
-const icons = document.querySelectorAll('.at-icon');
-const categoryText = document.getElementById('category-text');
-let selectedText = 'Category';
+const icons = document.querySelectorAll(".at-icon");
+const categoryText = document.getElementById("category-text");
+let selectedText = "Category";
 
 icons.forEach((icon) => {
-  icon.addEventListener('mouseenter', () => {
-    categoryText.textContent = icon.getAttribute('data-text');
+  icon.addEventListener("mouseenter", () => {
+    categoryText.textContent = icon.getAttribute("data-text");
   });
 
-  icon.addEventListener('mouseleave', () => {
+  icon.addEventListener("mouseleave", () => {
     categoryText.textContent = selectedText;
   });
 
-  icon.addEventListener('click', () => {
-    selectedText = icon.getAttribute('data-text');
+  icon.addEventListener("click", () => {
+    selectedText = icon.getAttribute("data-text");
     categoryText.textContent = selectedText;
   });
 });
