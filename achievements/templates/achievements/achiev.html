@@ -12,6 +12,94 @@
     <link rel="stylesheet" href="{% static 'dashboard/css/dashboard.css' %}">
 </head>
 <body>
+  <div id="profile-modal" class="modal">
+    <div class="modal-content rounded">
+        <p>Account</p>
+
+        <div class="flex-center">
+            <img src="/static/dashboard/image/account.svg" height="35px" />
+            <div class="account-info light grey">
+                <p>{{ request.user.nickname }}</p>
+                <p>{{ request.user.email }}</p>
+            </div>
+        </div>
+        <hr />
+        <p>
+          <form method="post" action="{% url 'accounts:logout' %}" style="display: inline;">
+            {% csrf_token %}
+            <button type="submit" class="inline" style="border: none; background: none; padding: 0; cursor: pointer;">
+                Log out
+                <img src="/static/dashboard/image/logOutSign.svg" height="25px" />
+            </button>
+        </form>
+        </p>
+    </div>
+</div>
+<div class="panel" id="toggle-panel">
+    <div class="title-settings">
+        <div class="title">
+            <img class="icon" src="/static/dashboard/image/settings.svg" style="margin: 15px" />
+            <p style="font-size: 34px; margin-top: 15px">Settings</p>
+        </div>
+        <a class="icon" id="close" style="margin: 15px"
+        ><img src="/static/dashboard/image/cross.svg"
+        /></a>
+    </div>
+
+    <div class="settings-container">
+        <div class="settings-options">
+            <ul class="options">
+                <li id="ViewProfileOption" class="option">Edit profile</li>
+                <li id="ChangePassword" class="option">Change password</li>
+            </ul>
+        </div>
+
+        <div class="settings-profile-usage">
+            <div class="settings-profile-section">
+                <p>Profile picture</p>
+                <img
+                        style="padding: 2% 0 1% 0; width: 80px"
+                        src="/static/dashboard/image/account.svg"
+                />
+            </div>
+            <div
+                    class="settings-username-section"
+                    style="padding: 1% 0 3% 0"
+            >
+                <p style="padding: 1% 0 1% 0">Username</p>
+                <input placeholder="Username" />
+            </div>
+            <div class="settings-email-settings" style="padding-bottom: 4%">
+                <p style="padding: 1% 0 1% 0">Email</p>
+                <input placeholder="Email" />
+            </div>
+            <button class="settings-button">
+                <img style="width: 14%" src="/static/dashboard/image/pen.svg" /> Edit
+            </button>
+        </div>
+
+        <div class="settings-change-password">
+            <div
+                    class="settings-password-section"
+                    style="padding: 0 0 1.5% 0"
+            >
+                <p style="padding: 0 0 1% 0">Current password</p>
+                <input placeholder="Password" />
+            </div>
+            <div class="settings-change-section">
+                <p style="padding: 2% 0 1% 0">New password</p>
+                <input placeholder="Password" />
+            </div>
+            <div class="settings-change-section" style="padding: 0 0 4% 0">
+                <p style="padding: 3% 0 1% 0">Confirm new password</p>
+                <input placeholder="Password" />
+            </div>
+            <button class="settings-button">
+                <img src="/static/dashboard/image/pen.svg" /> Save
+            </button>
+        </div>
+    </div>
+</div>
    <div class="container">
       <div class="header1">
         <span><span class="bold">Hero</span>Habit</span>
@@ -32,85 +120,85 @@
         </div>
        </div>
 
-      <div class="content">
-       <div class="manage-section">
-           <div class="welcome-section rounded">
-            <p>Welcome back,</p>
-            <p id="user-name">Name</p>  <!--'Name' has to be replaced with an actual name in the future-->
+       <div class="content">
+        <div class="manage-section">
+            <div class="welcome-section rounded">
+             <p>Welcome back,</p>
+             <p id="user-name">Name</p>  <!--'Name' has to be replaced with an actual name in the future-->
+            </div>
+ 
+             <div class="days-section" id="days-section">
+             <button class="active-day rounded">Mon</button>
+             <button class="day rounded">Tue</button>
+             <button class="day rounded">Wed</button>
+             <button class="day rounded">Thu</button>
+             <a class="other" href="#" id="arrow-btn"><img src="/static/dashboard/image/arrow1.svg"/></a> <!--Changes days-section to include days from Friday to Sunday-->
            </div>
-
-            <div class="days-section" id="days-section">
-            <button class="active-day rounded">Mon</button>
-            <button class="day rounded">Tue</button>
-            <button class="day rounded">Wed</button>
-            <button class="day rounded">Thu</button>
-            <a class="other" href="#" id="arrow-btn"><img src="/static/dashboard/image/arrow1.svg"/></a> <!--Changes days-section to include days from Friday to Sunday-->
-          </div>
-           
-           <div class="tasks-section">
-              <p class="sticky bold">Assigned tasks</p>
-               <p class="pad" > <a ><img src="/static/dashboard/image/plus.svg" height="25px" /></a>Create a task</p>
-           <div class="no-tasks">
-            <img src="/static/dashboard/image/illustration.svg" height="130px" /></a>
-            <p><br />Every hero deserves a rest! <br />
-             Maybe it`s time for new adventures?</p>
-               </div>
-           </div>
-       </div>
-       
-           <div class="stats-section rounded padded">
-
-           </div>
-      </div>
-    </div>
-
-    <script>
-      document.addEventListener("DOMContentLoaded", () => {
-        const daysSection = document.getElementById("days-section");
-        const arrowButton = document.getElementById("arrow-btn");
-
-        let showingWeekdays = true;
-
-        arrowButton.addEventListener("click", (e) => {
-          e.preventDefault(); 
-
-          if (showingWeekdays) {
             
-            daysSection.innerHTML = `
-        <button class="active-day rounded">Fri</button>
-        <button class="day rounded">Sat</button>
-        <button class="day rounded">Sun</button>
-        <div class="blank"></div>
-        <a class="other" href="#" id="arrow-btn">
-          <img src="/static/dashboard/image/arrow2.svg" alt="arrow" />
-        </a>
-      `;
-          } else {
+            <div class="tasks-section">
+               <p class="sticky bold">Assigned tasks</p>
+                <p class="pad" > <a ><img src="/static/dashboard/image/plus.svg" height="25px" /></a>Create a task</p>
+            <div class="no-tasks">
+             <img src="/static/dashboard/image/illustration.svg" height="130px" /></a>
+             <p><br />Every hero deserves a rest! <br />
+              Maybe it`s time for new adventures?</p>
+                </div>
+            </div>
+        </div>
         
-            daysSection.innerHTML = `
-        <button class="active-day rounded">Mon</button>
-        <button class="day rounded">Tue</button>
-        <button class="day rounded">Wed</button>
-        <button class="day rounded">Thu</button>
-        <a class="other" href="#" id="arrow-btn">
-          <img src="/static/dashboard/image/arrow1.svg" alt="arrow" "/>
-        </a>
-      `;
-          }
-
-          
-          assignArrowClick();
-          showingWeekdays = !showingWeekdays; 
-        });
-
-        function assignArrowClick() {
-          const newArrowButton = document.getElementById("arrow-btn");
-          newArrowButton.addEventListener("click", (e) => {
-            e.preventDefault();
-            arrowButton.click(); 
-          });
-        }
-      });
-    </script>
-</body>
-</html>
+            <div class="stats-section rounded padded">
+ 
+            </div>
+       </div>
+     </div>
+ 
+     <script>
+       document.addEventListener("DOMContentLoaded", () => {
+         const daysSection = document.getElementById("days-section");
+         const arrowButton = document.getElementById("arrow-btn");
+ 
+         let showingWeekdays = true;
+ 
+         arrowButton.addEventListener("click", (e) => {
+           e.preventDefault(); 
+ 
+           if (showingWeekdays) {
+             
+             daysSection.innerHTML = `
+         <button class="active-day rounded">Fri</button>
+         <button class="day rounded">Sat</button>
+         <button class="day rounded">Sun</button>
+         <div class="blank"></div>
+         <a class="other" href="#" id="arrow-btn">
+           <img src="/static/dashboard/image/arrow2.svg" alt="arrow" />
+         </a>
+       `;
+           } else {
+         
+             daysSection.innerHTML = `
+         <button class="active-day rounded">Mon</button>
+         <button class="day rounded">Tue</button>
+         <button class="day rounded">Wed</button>
+         <button class="day rounded">Thu</button>
+         <a class="other" href="#" id="arrow-btn">
+           <img src="/static/dashboard/image/arrow1.svg" alt="arrow" "/>
+         </a>
+       `;
+           }
+ 
+           
+           assignArrowClick();
+           showingWeekdays = !showingWeekdays; 
+         });
+ 
+         function assignArrowClick() {
+           const newArrowButton = document.getElementById("arrow-btn");
+           newArrowButton.addEventListener("click", (e) => {
+             e.preventDefault();
+             arrowButton.click(); 
+           });
+         }
+       });
+     </script>
+ </body>
+ </html>
