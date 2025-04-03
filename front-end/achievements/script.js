@@ -20,14 +20,17 @@ document.addEventListener("DOMContentLoaded", function () {
     const overlay = document.getElementById("overlay");
     const profileOption = document.getElementById("ViewProfileOption");
     const passwordOption = document.getElementById("ChangePassword");
+    const introOption = document.getElementById("Introduction");
 
     const profileSection = document.querySelector(".settings-profile-usage");
     const passwordSection = document.querySelector(".settings-change-password");
+    const introSection = document.querySelector(".settings-introduction");
 
     // Initially show 'Change Password' section
     profileOption.classList.add("active");
     profileSection.style.display = "block";
     passwordSection.style.display = "none";
+    introSection.style.display = "none";
 
     // Open Settings Panel
     toggleIcon.addEventListener("click", () => {
@@ -50,17 +53,31 @@ document.addEventListener("DOMContentLoaded", function () {
     profileOption.addEventListener("click", function () {
         profileOption.classList.add("active");
         passwordOption.classList.remove("active");
-
+        introOption.classList.remove("active");
+    
         profileSection.style.display = "block";
         passwordSection.style.display = "none";
+        introSection.style.display = "none";
     });
-
+    
     passwordOption.addEventListener("click", function () {
         passwordOption.classList.add("active");
         profileOption.classList.remove("active");
-
+        introOption.classList.remove("active");
+    
         profileSection.style.display = "none";
         passwordSection.style.display = "block";
+        introSection.style.display = "none";
+    });
+    
+    introOption.addEventListener("click", function () {
+        introOption.classList.add("active");
+        profileOption.classList.remove("active");
+        passwordOption.classList.remove("active");
+    
+        profileSection.style.display = "none";
+        passwordSection.style.display = "none";
+        introSection.style.display = "block";
     });
 });
 
