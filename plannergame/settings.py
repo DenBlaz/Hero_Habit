@@ -21,7 +21,7 @@ SECRET_KEY = 'django-insecure-ai5x!z$6i7boxrhklvtop%9p$q*yz1zy8eq$!==_*biy5%o!2%
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["herohabit.onrender.com",]
+ALLOWED_HOSTS = ["herohabit.onrender.com", "127.0.0.1", "localhost"]
 CSRF_TRUSTED_ORIGINS = [
     'https://herohabit.onrender.com',
 ]

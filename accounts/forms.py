@@ -23,3 +23,8 @@ class RegistrationForm(forms.ModelForm):
         if commit:
             user.save()
         return user
+
+class ProfileForm(forms.ModelForm):
+    class Meta:
+        model = Account
+        fields = ['gender', 'main_characteristic']

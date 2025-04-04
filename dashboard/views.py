@@ -1,8 +1,8 @@
-from django.shortcuts import render
-from django.shortcuts import redirect
+from django.shortcuts import render, redirect
 
 def dashboardviews(request):
     user = request.user
-    if not user.main_characteristic is None:
+    if user.main_characteristic is None:
         return redirect('accounts:character_create')
     return render(request, "dashboard/dashboard.html")
+    

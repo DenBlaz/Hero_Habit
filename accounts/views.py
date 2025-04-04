@@ -1,14 +1,18 @@
 from django.shortcuts import render, redirect
-from accounts.forms import RegistrationForm
+from accounts.forms import RegistrationForm, ProfileForm
 from django.contrib.auth import authenticate, login
 from django.contrib import messages
+from django.contrib.auth import get_backends
+from django.contrib.auth.decorators import login_required
+from .models import Account
 
 def register(request):
     if request.method == 'POST':
         form = RegistrationForm(request.POST)
-        if form.is_valid():
-            form.save()
-            return redirect('accounts:login')
+        user = form.save()
+        backend = get_backends()[0]
+        login(request, user, backend=backend.__class__.__module__ + '.' + backend.__class__.__name__)  
+        return redirect('/accounts/character/')
     else:
         form = RegistrationForm()
 
@@ -30,3 +34,19 @@ def user_login(request):
 
 def character_create(request):
     return render(request, 'accounts/character.html')
+
+@login_required
+def character_create(request):
+    if request.method == "POST":
+        characteristic = request.POST.get("characteristic")
+        gender = request.POST.get("gender")
+
+        user = request.user  # Отримуємо поточного користувача
+        user.main_characteristic = characteristic
+        user.gender = gender
+        user.save()
+
+        messages.success(request, "Character saved successfully!")
+        return redirect("dashboard:dashboard")
+
+    return render(request, "accounts/character.html")

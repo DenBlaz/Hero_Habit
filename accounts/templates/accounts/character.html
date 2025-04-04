@@ -26,25 +26,31 @@
             Choose your main characteristic
           </div>
           <div class="options">
-            <button class="options-button pink-btn">Creativity</button>
-            <button class="options-button green-btn">Strength</button>
-            <button class="options-button blue-btn">Intelligence</button>            
+            <button class="options-button pink-btn" data-value="creativity">Creativity</button>
+            <button class="options-button green-btn" data-value="strength">Strength</button>
+            <button class="options-button blue-btn" data-value="intelligence">Intelligence</button>             
           </div>
           <div class="text">
            Choose a gender of your character</p>
           </div>
           <div class="options">
-            <button class="options-gender male-btn">Male</button>
-            <button class="options-gender female-btn">Female</button>
+            <button class="options-gender male-btn" data-value="male">Male</button>
+            <button class="options-gender female-btn" data-value="female">Female</button>
             
           </div>
-          <div class="save-bttn">
-           <button class="save-button">Save</button>
-          </div>
+          <form method="POST">
+            {% csrf_token %}
+            <input type="hidden" name="characteristic" id="characteristicInput">
+            <input type="hidden" name="gender" id="genderInput">
+          
+            <div class="save-bttn">
+              <button type="submit" class="save-button">Save</button>
+            </div>
+          </form>
         </div>
       </div>
     </div>
 
     <script src="{% static 'accounts/js/charactercr.js'%}"></script>
-  </body>
+    </body>
 </html>
