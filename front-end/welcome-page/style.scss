@@ -103,3 +103,9 @@ body {
     width: 100%;
   }
 }
+
+@media (max-height: 700px) {
+  .first-container{
+    padding: 0;
+  }
+}
