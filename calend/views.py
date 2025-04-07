@@ -7,7 +7,7 @@ from .models import DailyTask, LongTask
 def calend(request):
     daily_tasks = DailyTask.objects.filter(user=request.user)
     long_tasks = LongTask.objects.filter(user=request.user)
-    return render(request, 'calend/create_task.html', {'daily_tasks': daily_tasks, 'long_tasks': long_tasks})
+    return render(request, 'calend/calend-for-all.html', {'daily_tasks': daily_tasks, 'long_tasks': long_tasks})
 
 @login_required
 def task_create(request):
@@ -31,4 +31,4 @@ def task_create(request):
             print(f"Form errors: {form.errors}")  
     else:
         form = DailyTaskForm()
-    return render(request, 'calend/create_task.html', {'form': form})
+    return render(request, 'calend/calend-for-all.html', {'form': form})
