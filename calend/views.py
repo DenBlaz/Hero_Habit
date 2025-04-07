@@ -18,7 +18,7 @@ def DailyTaskCreate(request):
             task = form.save(commit=False)
             task.user = request.user
             task.save()
-            return redirect('calend')
+            return redirect('calend:calend')
     else:
         form = DailyTaskForm()
     return render(request, 'calend-for-all.html', {'form': form})
