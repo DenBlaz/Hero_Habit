@@ -289,7 +289,7 @@
                         margin-right: 10px;
                       "
                     />
-                    <span style="margin: 0 10px">—</span>
+                    <span style="margin: 0 10px"></span>
                     <input
                       class="at-input-i"
                       name="finish_time"
@@ -319,7 +319,7 @@
                       "
                       required
                     />
-                    <span style="margin: 0 10px">—</span>
+                    <span style="margin: 0 10px"></span>
                     <input
                       class="at-input-i"
                       name="finish_date"
@@ -431,7 +431,7 @@
               >
                 <p class="semi-bold font16px">{{ task.title }}</p>
                 <p class="font12px">
-                  {{ task.start_time|time:"H:i" }} - {{
+                  {{ task.start_time|time:"H:i" }} {{
                   task.finish_time|time:"H:i" }}
                 </p>
               </div>
@@ -457,7 +457,7 @@
             <button class="task">
               <p class="semi-bold font16px">{{ task.title }}</p>
               <p class="font12px">
-                {{ task.start_date|date:"d.m.Y" }} - {{
+                {{ task.start_date|date:"d.m.Y" }} {{
                 task.finish_date|date:"d.m.Y" }}
               </p>
             </button>
