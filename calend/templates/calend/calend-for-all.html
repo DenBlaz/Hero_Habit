@@ -236,140 +236,132 @@
                 class="at-icon"
               />
             </div>
-
+            # start task
             <div class="button-section">
               <button class="invisible-button" id="addTaskButton">
                 <img
-                  style="padding: 0 10px 0 10px"
                   src="/static/calend/images/plus.svg"
+                  style="padding: 0 10px 0 10px"
                 />Add a task
               </button>
             </div>
-            <div class="add-task" id="addTaskForm">
-              <div class="title-task">
-                <p>Add a task</p>
-                <img
-                  src="/static/calend/images/at-cross.svg"
-                  class="icon"
-                  style="width: 23px"
-                />
-              </div>
-              <div class="at-work">
-                <p style="padding: 5px 0 5px 0">Title & Description</p>
-                <input
-                  class="at-input"
-                  name="title"
-                  placeholder="New task title"
-                />
-                <input
-                  class="at-input-i"
-                  name="description"
-                  placeholder="Description"
-                  style="
-                    background: url('/static/calend/images/lines-input.svg')
-                      no-repeat 8px 65%;
-                  "
-                />
 
-                <p style="padding: 1px 0 0 0">Date & Time</p>
-                <input
-                  class="at-input-i"
-                  name="toggleDate"
-                  placeholder="DD.MM.YYYY"
-                  style="
-                    margin: 10px 0 0 0;
-                    background: url('/static/calend/images/date-icon.svg')
-                      no-repeat 8px center;
-                  "
-                />
-
-                <div class="task-time" id="dateDay" style="margin-top: 5px">
-                  <input
-                    class="at-input-i"
-                    name="start_time"
-                    placeholder="00:00"
-                    style="
-                      background: url('/static/calend/images/clock-icon.svg')
-                        no-repeat 8px center;
-                      margin-right: 10px;
-                    "
-                  />
-                  <img src="/static/calend/images/—.svg" />
-                  <input
-                    class="at-input-i"
-                    name="finish_time"
-                    placeholder="23:59"
-                    style="
-                      background: url('/static/calend/images/clock-icon.svg')
-                        no-repeat 8px center;
-                      margin-left: 10px;
-                    "
+            <form action="{% url 'create_task' %}" method="post">
+              {% csrf_token %}
+              <div class="add-task" id="addTaskForm">
+                <div class="title-task">
+                  <p>Add a task</p>
+                  <img
+                    src="/static/calend/images/at-cross.svg"
+                    class="icon"
+                    style="width: 23px"
                   />
                 </div>
-
-                <div
-                  class="task-time1 hidden"
-                  id="dateMonth"
-                  style="margin-top: 5px; display: hidden"
-                >
+                <div class="at-work">
+                  <p style="padding: 5px 0 5px 0">Title & Description</p>
+                  <input
+                    class="at-input"
+                    name="title"
+                    placeholder="New task title"
+                  />
                   <input
                     class="at-input-i"
+                    name="description"
+                    placeholder="Description"
+                    style="
+                      background: url('/static/calend/images/lines-input.svg')
+                        no-repeat 8px 65%;
+                    "
+                  />
+
+                  <p style="padding: 1px 0 0 0">Date & Time</p>
+                  <input
+                    class="at-input-i"
+                    name="due_date"
                     placeholder="DD.MM.YYYY"
                     style="
+                      margin: 10px 0 0 0;
                       background: url('/static/calend/images/date-icon.svg')
                         no-repeat 8px center;
-                      margin-right: 10px;
                     "
                   />
-                  <img src="/static/calend/images/—.svg" />
-                  <input
-                    class="at-input-i"
-                    placeholder="DD.MM.YYYY"
-                    style="
-                      background: url('/static/calend/images/date-icon.svg')
-                        no-repeat 8px center;
-                      margin-left: 10px;
-                    "
-                  />
-                </div>
 
-                <p style="margin: 10px 0 0 0">Categorie</p>
-                <div class="change-stats">
-                  <img
-                    src="/static/calend/images/pink-ellipse.svg"
-                    data-category="pink"
-                    data-chosen="/static/calend/images/Ch-R-ellipse.svg"
-                    data-default="/static/calend/images/pink-ellipse.svg"
-                    data-text="Category - Creativity"
-                    class="at-icon chosen"
-                  />
-                  <img
-                    src="/static/calend/images/green-ellipse.svg"
-                    data-category="green"
-                    data-chosen="/static/calend/images/Ch-Gr-ellipse.svg"
-                    data-default="/static/calend/images/green-ellipse.svg"
-                    data-text="Category - Strength"
-                    class="at-icon"
-                  />
-                  <img
-                    src="/static/calend/images/blue-ellipse.svg"
-                    data-category="blue"
-                    data-chosen="/static/calend/images/Ch-B-ellipse.svg"
-                    data-default="/static/calend/images/blue-ellipse.svg"
-                    data-text="Category - Intelligence"
-                    class="at-icon"
-                  />
-                </div>
+                  <div class="task-time" id="dateDay" style="margin-top: 5px">
+                    <input
+                      class="at-input-i"
+                      name="start_time"
+                      placeholder="00:00"
+                      style="
+                        background: url('/static/calend/images/clock-icon.svg')
+                          no-repeat 8px center;
+                        margin-right: 10px;
+                      "
+                    />
+                    <img src="/static/calend/images/—.svg" />
+                    <input
+                      class="at-input-i"
+                      name="finish_time"
+                      placeholder="23:59"
+                      style="
+                        background: url('/static/calend/images/clock-icon.svg')
+                          no-repeat 8px center;
+                        margin-left: 10px;
+                      "
+                    />
+                  </div>
 
-                <div class="buttons">
-                  <button class="cancel-button" style="margin-right: 10px">
-                    Cancel
-                  </button>
-                  <button class="save-button" id="saveTask">Save</button>
+                  <p style="margin: 10px 0 0 0">Categorie</p>
+                  <div class="change-stats">
+                    <input
+                      type="hidden"
+                      name="characteristic"
+                      id="characteristic"
+                      value="pink"
+                    />
+                    <img
+                      src="/static/calend/images/pink-ellipse.svg"
+                      data-category="pink"
+                      data-chosen="/static/calend/images/Ch-R-ellipse.svg"
+                      data-default="/static/calend/images/pink-ellipse.svg"
+                      data-text="Category - Creativity"
+                      class="at-icon chosen"
+                    />
+                    <img
+                      src="/static/calend/images/green-ellipse.svg"
+                      data-category="green"
+                      data-chosen="/static/calend/images/Ch-Gr-ellipse.svg"
+                      data-default="/static/calend/images/green-ellipse.svg"
+                      data-text="Category - Strength"
+                      class="at-icon"
+                    />
+                    <img
+                      src="/static/calend/images/blue-ellipse.svg"
+                      data-category="blue"
+                      data-chosen="/static/calend/images/Ch-B-ellipse.svg"
+                      data-default="/static/calend/images/blue-ellipse.svg"
+                      data-text="Category - Intelligence"
+                      class="at-icon"
+                    />
+                  </div>
+
+                  <div class="buttons">
+                    <button
+                      type="button"
+                      class="cancel-button"
+                      style="margin-right: 10px"
+                      onclick="document.getElementById('addTaskForm').style.display='none'"
+                    >
+                      Cancel
+                    </button>
+                    <button type="submit" class="save-button" id="saveTask">
+                      Save
+                    </button>
+                  </div>
                 </div>
               </div>
-            </div>
+            </form>
 
+            # end task
             <!-- added new class -->
 
             <div class="show-month-tasks" id="toggleView">
