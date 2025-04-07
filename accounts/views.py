@@ -41,12 +41,22 @@ def character_create(request):
         characteristic = request.POST.get("characteristic")
         gender = request.POST.get("gender")
 
-        user = request.user  # Отримуємо поточного користувача
+        user = request.user
         user.main_characteristic = characteristic
         user.gender = gender
         user.save()
 
         messages.success(request, "Character saved successfully!")
-        return redirect("dashboard:dashboard")
+        return redirect("accounts:welcome")
 
     return render(request, "accounts/character.html")
+
+
+def welcome(request):
+    return render(request, 'accounts/welcome.html')
+
+
+def welcome(request):
+    if request.method == 'POST':
+        return redirect('dashboard:dashboard')  # або reverse('dashboard')
+    return render(request, 'accounts/welcome.html')
