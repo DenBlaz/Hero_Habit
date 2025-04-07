@@ -1,10 +1,10 @@
 from django.urls import path
 from . import views
-from .views import DailyTaskCreate
+from .views import task_create
 
 app_name = 'calend'
 
 urlpatterns = [
     path('', views.calend, name = "calend"),
-    path("create-task/", DailyTaskCreate, name="dailytask"),
+    path("create-task/", task_create, name="taskcreate"),
     ]

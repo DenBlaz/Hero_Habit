@@ -9,11 +9,20 @@ from .forms import DailyTaskForm
 
 def calend(request):
     return render(request, "calend/calend-for-all.html")
+from django.shortcuts import render, redirect
+from django.contrib.auth.decorators import login_required
+from .forms import DailyTaskForm, LongTaskForm
 
 @login_required
-def DailyTaskCreate(request):
+def task_create(request):
     if request.method == 'POST':
-        form = DailyTaskForm(request.POST)
+        task_type = request.POST.get('task_type')
+        
+        if task_type == 'long':
+            form = LongTaskForm(request.POST)
+        else:  # 'daily' или любой другой случай
+            form = DailyTaskForm(request.POST)
+            
         if form.is_valid():
             task = form.save(commit=False)
             task.user = request.user
@@ -21,4 +30,6 @@ def DailyTaskCreate(request):
             return redirect('calend:calend')
     else:
         form = DailyTaskForm()
-    return render(request, 'calend-for-all.html', {'form': form})
+
+    calendar_mode = request.GET.get('mode', 'day')
+    return render(request, 'calend/create_task.html', {'form': form, 'calendar_mode': calendar_mode})

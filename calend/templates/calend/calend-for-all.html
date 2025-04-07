@@ -237,8 +237,6 @@
               />
             </div>
 
-            # start task
-
             <div class="button-section">
               <button class="invisible-button" id="addTaskButton">
                 <img
@@ -248,8 +246,18 @@
               </button>
             </div>
 
-            <form action="{% url 'calend:dailytask' %}" method="post">
+            <form
+              action="{% url 'calend:taskcreate' %}"
+              method="post"
+              id="taskForm"
+            >
               {% csrf_token %}
+              <input
+                type="hidden"
+                name="task_type"
+                id="taskType"
+                value="daily"
+              />
               <div class="add-task" id="addTaskForm">
                 <div class="title-task">
                   <p>Add a task</p>
@@ -257,6 +265,7 @@
                     src="/static/calend/images/at-cross.svg"
                     class="icon"
                     style="width: 23px"
+                    onclick="document.getElementById('addTaskForm').style.display='none'"
                   />
                 </div>
                 <div class="at-work">
@@ -265,6 +274,7 @@
                     class="at-input"
                     name="title"
                     placeholder="New task title"
+                    required
                   />
                   <input
                     class="at-input-i"
@@ -279,6 +289,7 @@
                   <p style="padding: 1px 0 0 0">Date & Time</p>
                   <input
                     class="at-input-i"
+                    id="toggleDate"
                     name="due_date"
                     placeholder="DD.MM.YYYY"
                     style="
@@ -286,8 +297,8 @@
                       background: url('/static/calend/images/date-icon.svg')
                         no-repeat 8px center;
                     "
+                    required
                   />
-
                   <div class="task-time" id="dateDay" style="margin-top: 5px">
                     <input
                       class="at-input-i"
@@ -311,37 +322,61 @@
                       "
                     />
                   </div>
-
-                  <p style="margin: 10px 0 0 0">Categorie</p>
-                  <div class="change-stats">
+                  <div
+                    class="task-time1 hidden"
+                    id="dateMonth"
+                    style="margin-top: 5px; display: none"
+                  >
                     <input
-                      type="hidden"
-                      name="characteristic"
-                      id="characteristic"
-                      value="pink"
+                      class="at-input-i"
+                      name="start_date"
+                      placeholder="DD.MM.YYYY"
+                      style="
+                        background: url('/static/calend/images/date-icon.svg')
+                          no-repeat 8px center;
+                        margin-right: 10px;
+                      "
                     />
+                    <img src="/static/calend/images/—.svg" />
+                    <input
+                      class="at-input-i"
+                      name="finish_date"
+                      placeholder="DD.MM.YYYY"
+                      style="
+                        background: url('/static/calend/images/date-icon.svg')
+                          no-repeat 8px center;
+                        margin-left: 10px;
+                      "
+                    />
+                  </div>
+
+                  <p style="margin: 10px 0 0 0">Category</p>
+                  <input
+                    type="hidden"
+                    name="characteristic"
+                    id="characteristic"
+                    value="pink"
+                  />
+                  <div class="change-stats">
                     <img
                       src="/static/calend/images/pink-ellipse.svg"
-                      data-category="pink"
+                      data-category="Creativity"
                       data-chosen="/static/calend/images/Ch-R-ellipse.svg"
                       data-default="/static/calend/images/pink-ellipse.svg"
-                      data-text="Category - Creativity"
                       class="at-icon chosen"
                     />
                     <img
                       src="/static/calend/images/green-ellipse.svg"
-                      data-category="green"
+                      data-category="Strength"
                       data-chosen="/static/calend/images/Ch-Gr-ellipse.svg"
                       data-default="/static/calend/images/green-ellipse.svg"
-                      data-text="Category - Strength"
                       class="at-icon"
                     />
                     <img
                       src="/static/calend/images/blue-ellipse.svg"
-                      data-category="blue"
+                      data-category="Intelligence"
                       data-chosen="/static/calend/images/Ch-B-ellipse.svg"
                       data-default="/static/calend/images/blue-ellipse.svg"
-                      data-text="Category - Intelligence"
                       class="at-icon"
                     />
                   </div>
@@ -355,24 +390,21 @@
                     >
                       Cancel
                     </button>
-                    <button type="submit" class="save-button" id="saveTask">
-                      Save
-                    </button>
+                    <button type="submit" class="save-button">Save</button>
                   </div>
                 </div>
               </div>
             </form>
-
-            # end task
             <!-- added new class -->
 
             <div class="show-month-tasks" id="toggleView">
-              <button class="invisible-button">
+              <button class="invisible-button" id="toggleButton">
                 <img
                   id="toggleIcon"
                   style="padding: 0 22px 0 22px"
-                  src="images/icons/leftarrow.svg"
-                /><span id="toggleText">Show tasks for month</span>
+                  src="/static/calend/images/leftarrow.svg"
+                />
+                <span id="toggleText">Show tasks for month</span>
               </button>
             </div>
           </div>
