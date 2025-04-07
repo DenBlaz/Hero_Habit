@@ -41,7 +41,7 @@ def character_create(request):
         characteristic = request.POST.get("characteristic")
         gender = request.POST.get("gender")
 
-        user = request.user  # Отримуємо поточного користувача
+        user = request.user
         user.main_characteristic = characteristic
         user.gender = gender
         user.save()

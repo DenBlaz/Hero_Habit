@@ -20,7 +20,7 @@ def task_create(request):
         
         if task_type == 'long':
             form = LongTaskForm(request.POST)
-        else:  # 'daily' или любой другой случай
+        else:
             form = DailyTaskForm(request.POST)
             
         if form.is_valid():
