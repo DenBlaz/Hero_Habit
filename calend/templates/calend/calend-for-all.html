@@ -261,18 +261,21 @@
                   />
 
                   <p style="padding: 1px 0 0 0">Date & Time</p>
-                  <input
-                    class="at-input-i"
-                    id="toggleDate"
-                    name="due_date"
-                    placeholder="DD.MM.YYYY"
-                    style="
-                      margin: 10px 0 0 0;
-                      background: url('{% static 'calend/images/date-icon.svg' %}')
-                        no-repeat 8px center;
-                    "
-                    required
-                  />
+                  <!-- Due date field for DailyTask -->
+                  <div id="dueDateSection">
+                    <input
+                      class="at-input-i"
+                      id="toggleDate"
+                      name="due_date"
+                      placeholder="DD.MM.YYYY"
+                      style="
+                        margin: 10px 0 0 0;
+                        background: url('{% static 'calend/images/date-icon.svg' %}')
+                          no-repeat 8px center;
+                      "
+                      required
+                    />
+                  </div>
 
                   <!-- Block for DailyTask (day mode) -->
                   <div class="task-time" id="dateDay" style="margin-top: 5px">
@@ -314,6 +317,7 @@
                           no-repeat 8px center;
                         margin-right: 10px;
                       "
+                      required
                     />
                     <img src="{% static 'calend/images/—.svg' %}" />
                     <input
@@ -325,6 +329,7 @@
                           no-repeat 8px center;
                         margin-left: 10px;
                       "
+                      required
                     />
                   </div>
 
@@ -559,6 +564,7 @@
       const toggleText = document.getElementById("toggleText");
       const dateDay = document.getElementById("dateDay");
       const dateMonth = document.getElementById("dateMonth");
+      const dueDateSection = document.getElementById("dueDateSection");
       const taskType = document.getElementById("taskType");
       const calendarView = document.getElementById("calendarView");
       const taskView = document.getElementById("taskView");
@@ -571,6 +577,7 @@
           toggleIcon.src = '{% static "calend/images/rightarrow.svg" %}';
           dateDay.style.display = "none";
           dateMonth.style.display = "block";
+          dueDateSection.style.display = "none"; // Hide due_date in month mode
           taskType.value = "long";
           calendarView.style.display = "none";
           taskView.style.display = "block";
@@ -580,6 +587,7 @@
           toggleIcon.src = '{% static "calend/images/leftarrow.svg" %}';
           dateDay.style.display = "block";
           dateMonth.style.display = "none";
+          dueDateSection.style.display = "block"; // Show due_date in day mode
           taskType.value = "daily";
           calendarView.style.display = "block";
           taskView.style.display = "none";
@@ -591,6 +599,7 @@
         if (mode === "month") {
           dateDay.style.display = "none";
           dateMonth.style.display = "block";
+          dueDateSection.style.display = "none"; // Hide due_date in month mode
           taskType.value = "long";
           toggleText.textContent = "Show tasks for day";
           toggleIcon.src = '{% static "calend/images/rightarrow.svg" %}';
@@ -599,6 +608,7 @@
         } else {
           dateDay.style.display = "block";
           dateMonth.style.display = "none";
+          dueDateSection.style.display = "block"; // Show due_date in day mode
           taskType.value = "daily";
           toggleText.textContent = "Show tasks for month";
           toggleIcon.src = '{% static "calend/images/leftarrow.svg" %}';
@@ -625,4 +635,3 @@
     </script>
   </body>
 </html>
-ы
