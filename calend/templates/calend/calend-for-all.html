@@ -549,6 +549,75 @@
       </div>
     </div>
     <script src="{% static 'calend/js/calend-for-all.js' %}"></script>
-    <script src="{% static 'calend/js/dailytask.js' %}"></script>
+    <img src="/static/calend/images/pink-ellipse.svg" data-category="pink" data-chosen="/static/calend/images/Ch-R-ellipse.svg" data-default="/static/calend/images/pink-ellipse.svg" class="at-icon chosen" />
+                <img src="/static/calend/images/green-ellipse.svg" data-category="green" data-chosen="/static/calend/images/Ch-Gr-ellipse.svg" data-default="/static/calend/images/green-ellipse.svg" class="at-icon" />
+                <img src="/static/calend/images/blue-ellipse.svg" data-category="blue" data-chosen="/static/calend/images/Ch-B-ellipse.svg" data-default="/static/calend/images/blue-ellipse.svg" class="at-icon" />
+            </div>
+
+            <div class="buttons">
+                <button type="button" class="cancel-button" style="margin-right: 10px" onclick="document.getElementById('addTaskForm').style.display='none'">Cancel</button>
+                <button type="submit" class="save-button">Save</button>
+            </div>
+        </div>
+    </div>
+</form>
+
+<script>
+    document.querySelectorAll('.change-stats img').forEach(function(img) {
+        img.addEventListener('click', function() {
+            document.querySelectorAll('.change-stats img').forEach(function(i) {
+                i.classList.remove('chosen');
+                i.src = i.getAttribute('data-default');
+            });
+            this.classList.add('chosen');
+            this.src = this.getAttribute('data-chosen');
+            document.getElementById('characteristic').value = this.getAttribute('data-category');
+        });
+    });
+
+    const toggleButton = document.getElementById('toggleButton');
+    const toggleIcon = document.getElementById('toggleIcon');
+    const toggleText = document.getElementById('toggleText');
+    const dateDay = document.getElementById('dateDay');
+    const dateMonth = document.getElementById('dateMonth');
+    const taskType = document.getElementById('taskType');
+    let currentMode = 'day';
+
+    toggleButton.addEventListener('click', function() {
+        if (currentMode === 'day') {
+            currentMode = 'month';
+            toggleText.textContent = 'Show tasks for day';
+            toggleIcon.src = '/static/calend/images/rightarrow.svg';
+            dateDay.style.display = 'none';
+            dateMonth.style.display = 'block';
+            taskType.value = 'long';
+        } else {
+            currentMode = 'day';
+            toggleText.textContent = 'Show tasks for month';
+            toggleIcon.src = '/static/calend/images/leftarrow.svg';
+            dateDay.style.display = 'block';
+            dateMonth.style.display = 'none';
+            taskType.value = 'daily';
+        }
+    });
+
+    setTaskMode(currentMode);
+
+    function setTaskMode(mode) {
+        if (mode === 'month') {
+            dateDay.style.display = 'none';
+            dateMonth.style.display = 'block';
+            taskType.value = 'long';
+            toggleText.textContent = 'Show tasks for day';
+            toggleIcon.src = '/static/calend/images/rightarrow.svg';
+        } else {
+            dateDay.style.display = 'block';
+            dateMonth.style.display = 'none';
+            taskType.value = 'daily';
+            toggleText.textContent = 'Show tasks for month';
+            toggleIcon.src = '/static/calend/images/leftarrow.svg';
+        }
+    }
+</script>
   </body>
 </html>
