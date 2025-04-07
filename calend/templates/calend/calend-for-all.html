@@ -18,6 +18,20 @@
       rel="stylesheet"
       href="{% static 'calend/css/calend-for-all.css' %}"
     />
+    <style>
+      .task-time,
+      .task-time1 {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin-top: 5px;
+      }
+      .task-time .at-input-i,
+      .task-time1 .at-input-i {
+        flex: 1;
+        margin: 0;
+      }
+    </style>
   </head>
   <body>
     <div class="container">
@@ -285,7 +299,6 @@
                       style="
                         background: url('{% static 'calend/images/clock-icon.svg' %}')
                           no-repeat 8px center;
-                        margin-right: 10px;
                       "
                     />
                     <input
@@ -295,7 +308,6 @@
                       style="
                         background: url('{% static 'calend/images/clock-icon.svg' %}')
                           no-repeat 8px center;
-                        margin-left: 10px;
                       "
                     />
                   </div>
@@ -313,7 +325,6 @@
                       style="
                         background: url('{% static 'calend/images/date-icon.svg' %}')
                           no-repeat 8px center;
-                        margin-right: 10px;
                       "
                       required
                     />
@@ -324,7 +335,6 @@
                       style="
                         background: url('{% static 'calend/images/date-icon.svg' %}')
                           no-repeat 8px center;
-                        margin-left: 10px;
                       "
                       required
                     />
@@ -562,7 +572,7 @@
       const dateDay = document.getElementById("dateDay");
       const dateMonth = document.getElementById("dateMonth");
       const dueDateSection = document.getElementById("dueDateSection");
-      const dueDateInput = document.getElementById("toggleDate"); // Добавляем ссылку на input
+      const dueDateInput = document.getElementById("toggleDate");
       const taskType = document.getElementById("taskType");
       const calendarView = document.getElementById("calendarView");
       const taskView = document.getElementById("taskView");
@@ -576,7 +586,7 @@
           dateDay.style.display = "none";
           dateMonth.style.display = "block";
           dueDateSection.style.display = "none";
-          dueDateInput.removeAttribute("required"); // Убираем required в режиме LongTask
+          dueDateInput.removeAttribute("required");
           taskType.value = "long";
           calendarView.style.display = "none";
           taskView.style.display = "block";
@@ -587,7 +597,7 @@
           dateDay.style.display = "block";
           dateMonth.style.display = "none";
           dueDateSection.style.display = "block";
-          dueDateInput.setAttribute("required", ""); // Добавляем required в режиме DailyTask
+          dueDateInput.setAttribute("required", "");
           taskType.value = "daily";
           calendarView.style.display = "block";
           taskView.style.display = "none";
@@ -600,7 +610,7 @@
           dateDay.style.display = "none";
           dateMonth.style.display = "block";
           dueDateSection.style.display = "none";
-          dueDateInput.removeAttribute("required"); // Убираем required в режиме LongTask
+          dueDateInput.removeAttribute("required");
           taskType.value = "long";
           toggleText.textContent = "Show tasks for day";
           toggleIcon.src = '{% static "calend/images/rightarrow.svg" %}';
@@ -610,7 +620,7 @@
           dateDay.style.display = "block";
           dateMonth.style.display = "none";
           dueDateSection.style.display = "block";
-          dueDateInput.setAttribute("required", ""); // Добавляем required в режиме DailyTask
+          dueDateInput.setAttribute("required", "");
           taskType.value = "daily";
           toggleText.textContent = "Show tasks for month";
           toggleIcon.src = '{% static "calend/images/leftarrow.svg" %}';
