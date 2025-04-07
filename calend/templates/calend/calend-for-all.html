@@ -1,9 +1,4 @@
 {% load static %}
-<link
-  rel="icon"
-  href="{% static 'dashboard/image/logo_b.png' %}"
-  type="image/png"
-/>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -11,8 +6,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Calendar</title>
     <link
-      href="https://fonts.googleapis.com/css?family=Open Sans"
+      href="https://fonts.googleapis.com/css?family=Open+Sans"
       rel="stylesheet"
+    />
+    <link
+      rel="icon"
+      href="{% static 'dashboard/image/logo_b.png' %}"
+      type="image/png"
     />
     <link
       rel="stylesheet"
@@ -28,41 +28,37 @@
       <div class="header2">
         <div class="navigation">
           <ul>
-            <li>
-              <a href="{% url 'dashboard:dashboard' %}">Dashboard</a>
-            </li>
-            <li>
-              <a href="{% url 'stats:stats' %}">Statistics</a>
-            </li>
+            <li><a href="{% url 'dashboard:dashboard' %}">Dashboard</a></li>
+            <li><a href="{% url 'stats:stats' %}">Statistics</a></li>
             <li>
               <a class="active-page" href="{% url 'calend:calend' %}"
                 >Calendar</a
               >
             </li>
-            <li>
-              <a href="{% url 'achievements:achiev' %}">Achievements</a>
-            </li>
+            <li><a href="{% url 'achievements:achiev' %}">Achievements</a></li>
           </ul>
         </div>
         <div class="settings">
           <button id="toggle-icon" class="icon">
-            <img src="/static/calend/images/settings.svg" height="30px" />
+            <img
+              src="{% static 'calend/images/settings.svg' %}"
+              height="30px"
+            />
           </button>
           <div class="panel" id="toggle-panel">
             <div class="title-settings">
               <div class="title">
                 <img
                   class="icon"
-                  src="/static/calend/images/settings.svg"
+                  src="{% static 'calend/images/settings.svg' %}"
                   style="margin: 15px"
                 />
                 <p style="font-size: 34px; margin-top: 15px">Settings</p>
               </div>
-              <a class="icon" id="close" style="margin: 15px"
-                ><img src="/static/calend/images/cross.svg"
-              /></a>
+              <a class="icon" id="close" style="margin: 15px">
+                <img src="{% static 'calend/images/cross.svg' %}" />
+              </a>
             </div>
-
             <div class="settings-container">
               <div class="settings-options">
                 <ul class="options">
@@ -70,13 +66,12 @@
                   <li id="ChangePassword" class="option">Change password</li>
                 </ul>
               </div>
-
               <div class="settings-profile-usage">
                 <div class="settings-profile-section">
                   <p>Profile picture</p>
                   <img
                     style="padding: 2% 0 1% 0; width: 80px"
-                    src="/static/calend/images/account.svg"
+                    src="{% static 'calend/images/account.svg' %}"
                   />
                 </div>
                 <div
@@ -84,45 +79,48 @@
                   style="padding: 1% 0 3% 0"
                 >
                   <p style="padding: 1% 0 1% 0">Username</p>
-                  <input placeholder="Username" />
+                  <input
+                    placeholder="Username"
+                    value="{{ request.user.nickname }}"
+                  />
                 </div>
                 <div class="settings-email-settings" style="padding-bottom: 4%">
                   <p style="padding: 1% 0 1% 0">Email</p>
-                  <input placeholder="Email" />
+                  <input placeholder="Email" value="{{ request.user.email }}" />
                 </div>
                 <button class="settings-button">
-                  <img style="width: 14%" src="/static/calend/images/pen.svg" />
+                  <img
+                    style="width: 14%"
+                    src="{% static 'calend/images/pen.svg' %}"
+                  />
                   Edit
                 </button>
               </div>
-
               <div class="settings-change-password">
                 <div
                   class="settings-password-section"
                   style="padding: 0 0 1.5% 0"
                 >
                   <p style="padding: 0 0 1% 0">Current password</p>
-                  <input placeholder="Password" />
+                  <input type="password" placeholder="Password" />
                 </div>
                 <div class="settings-change-section">
                   <p style="padding: 2% 0 1% 0">New password</p>
-                  <input placeholder="Password" />
+                  <input type="password" placeholder="Password" />
                 </div>
                 <div class="settings-change-section" style="padding: 0 0 4% 0">
                   <p style="padding: 3% 0 1% 0">Confirm new password</p>
-                  <input placeholder="Password" />
+                  <input type="password" placeholder="Password" />
                 </div>
                 <button class="settings-button">
-                  <img src="/static/calend/images/pen.svg" /> Save
+                  <img src="{% static 'calend/images/pen.svg' %}" /> Save
                 </button>
               </div>
             </div>
           </div>
-
           <button id="open-modal" class="icon">
-            <img src=" /static/calend/images/account.svg" height="40px" />
+            <img src="{% static 'calend/images/account.svg' %}" height="40px" />
           </button>
-          <!--Actual user profile photo has to replace default picture-->
           <div id="overlay"></div>
         </div>
       </div>
@@ -135,19 +133,18 @@
                 <button class="change-month">
                   <img
                     class="change-month-icon"
-                    src="/static/calend/images/arrow2.svg"
+                    src="{% static 'calend/images/arrow2.svg' %}"
                   />
                 </button>
                 <p><strong>{% now "F Y" %}</strong></p>
                 <button class="change-month">
                   <img
                     class="change-month-icon"
-                    src="/static/calend/images/arrow1.svg"
+                    src="{% static 'calend/images/arrow1.svg' %}"
                   />
                 </button>
               </div>
-              <!-- when clicked one of the arrows, it should change the month -->
-
+              <!-- When clicked, arrows should change the month -->
               <ul class="days" style="margin-top: 15px; margin-bottom: 10px">
                 <li>Mon</li>
                 <li>Tue</li>
@@ -157,12 +154,13 @@
                 <li>Sat</li>
                 <li>Sun</li>
               </ul>
-
               <div class="dates selected-week">
-                <button class="previous-month">30</button
-                ><button class="previous-month">31</button
-                ><button class="selected-day">1</button> <button>2</button
-                ><button>3</button><button>4</button>
+                <button class="previous-month">30</button>
+                <button class="previous-month">31</button>
+                <button class="selected-day">1</button>
+                <button>2</button>
+                <button>3</button>
+                <button>4</button>
                 <button>5</button>
               </div>
               <div class="dates">
@@ -182,12 +180,11 @@
               </div>
               <div class="dates">
                 <button>27</button><button>28</button><button>29</button>
-                <button>30</button><button>31</button
-                ><button class="next-month">1</button>
+                <button>30</button><button>31</button>
+                <button class="next-month">1</button>
                 <button class="next-month">2</button>
               </div>
-              <!-- When clicked on some day, it should change
-                the places of selected week and selected day -->
+              <!-- When clicked on a day, it should update the selected week and day -->
             </div>
 
             <div class="categories-section">
@@ -201,46 +198,23 @@
                 <strong>Categories</strong>
               </p>
               <div class="category">
-                <img src="/static/calend/images/pink-ellipse.svg" />
+                <img src="{% static 'calend/images/pink-ellipse.svg' %}" />
                 <p>Creativity</p>
               </div>
               <div class="category">
-                <img src="/static/calend/images/green-ellipse.svg" />
+                <img src="{% static 'calend/images/green-ellipse.svg' %}" />
                 <p>Strength</p>
               </div>
               <div class="category">
-                <img src="/static/calend/images/blue-ellipse.svg" />
+                <img src="{% static 'calend/images/blue-ellipse.svg' %}" />
                 <p>Intelligence</p>
               </div>
-              <img
-                src="/static/calend/images/pink-ellipse.svg"
-                data-category="creativity"
-                data-chosen="/static/calend/images/Ch-R-ellipse.svg"
-                data-default="/static/calend/images/pink-ellipse.svg"
-                class="at-icon chosen"
-              />
-
-              <img
-                src="/static/calend/images/green-ellipse.svg"
-                data-category="strength"
-                data-chosen="/static/calend/images/Ch-Gr-ellipse.svg"
-                data-default="/static/calend/images/green-ellipse.svg"
-                class="at-icon"
-              />
-
-              <img
-                src="/static/calend/images/blue-ellipse.svg"
-                data-category="intelligence"
-                data-chosen="/static/calend/images/Ch-B-ellipse.svg"
-                data-default="/static/calend/images/blue-ellipse.svg"
-                class="at-icon"
-              />
             </div>
 
             <div class="button-section">
               <button class="invisible-button" id="addTaskButton">
                 <img
-                  src="/static/calend/images/plus.svg"
+                  src="{% static 'calend/images/plus.svg' %}"
                   style="padding: 0 10px 0 10px"
                 />Add a task
               </button>
@@ -258,11 +232,11 @@
                 id="taskType"
                 value="daily"
               />
-              <div class="add-task" id="addTaskForm">
+              <div class="add-task" id="addTaskForm" style="display: none">
                 <div class="title-task">
                   <p>Add a task</p>
                   <img
-                    src="/static/calend/images/at-cross.svg"
+                    src="{% static 'calend/images/at-cross.svg' %}"
                     class="icon"
                     style="width: 23px"
                     onclick="document.getElementById('addTaskForm').style.display='none'"
@@ -281,7 +255,7 @@
                     name="description"
                     placeholder="Description"
                     style="
-                      background: url('/static/calend/images/lines-input.svg')
+                      background: url('{% static 'calend/images/lines-input.svg' %}')
                         no-repeat 8px 65%;
                     "
                   />
@@ -294,36 +268,40 @@
                     placeholder="DD.MM.YYYY"
                     style="
                       margin: 10px 0 0 0;
-                      background: url('/static/calend/images/date-icon.svg')
+                      background: url('{% static 'calend/images/date-icon.svg' %}')
                         no-repeat 8px center;
                     "
                     required
                   />
+
+                  <!-- Block for DailyTask (day mode) -->
                   <div class="task-time" id="dateDay" style="margin-top: 5px">
                     <input
                       class="at-input-i"
                       name="start_time"
                       placeholder="00:00"
                       style="
-                        background: url('/static/calend/images/clock-icon.svg')
+                        background: url('{% static 'calend/images/clock-icon.svg' %}')
                           no-repeat 8px center;
                         margin-right: 10px;
                       "
                     />
-                    <img src="/static/calend/images/—.svg" />
+                    <img src="{% static 'calend/images/—.svg' %}" />
                     <input
                       class="at-input-i"
                       name="finish_time"
                       placeholder="23:59"
                       style="
-                        background: url('/static/calend/images/clock-icon.svg')
+                        background: url('{% static 'calend/images/clock-icon.svg' %}')
                           no-repeat 8px center;
                         margin-left: 10px;
                       "
                     />
                   </div>
+
+                  <!-- Block for LongTask (month mode) -->
                   <div
-                    class="task-time1 hidden"
+                    class="task-time1"
                     id="dateMonth"
                     style="margin-top: 5px; display: none"
                   >
@@ -332,18 +310,18 @@
                       name="start_date"
                       placeholder="DD.MM.YYYY"
                       style="
-                        background: url('/static/calend/images/date-icon.svg')
+                        background: url('{% static 'calend/images/date-icon.svg' %}')
                           no-repeat 8px center;
                         margin-right: 10px;
                       "
                     />
-                    <img src="/static/calend/images/—.svg" />
+                    <img src="{% static 'calend/images/—.svg' %}" />
                     <input
                       class="at-input-i"
                       name="finish_date"
                       placeholder="DD.MM.YYYY"
                       style="
-                        background: url('/static/calend/images/date-icon.svg')
+                        background: url('{% static 'calend/images/date-icon.svg' %}')
                           no-repeat 8px center;
                         margin-left: 10px;
                       "
@@ -355,28 +333,28 @@
                     type="hidden"
                     name="characteristic"
                     id="characteristic"
-                    value="pink"
+                    value="Creativity"
                   />
                   <div class="change-stats">
                     <img
-                      src="/static/calend/images/pink-ellipse.svg"
+                      src="{% static 'calend/images/pink-ellipse.svg' %}"
                       data-category="Creativity"
-                      data-chosen="/static/calend/images/Ch-R-ellipse.svg"
-                      data-default="/static/calend/images/pink-ellipse.svg"
+                      data-chosen="{% static 'calend/images/Ch-R-ellipse.svg' %}"
+                      data-default="{% static 'calend/images/pink-ellipse.svg' %}"
                       class="at-icon chosen"
                     />
                     <img
-                      src="/static/calend/images/green-ellipse.svg"
+                      src="{% static 'calend/images/green-ellipse.svg' %}"
                       data-category="Strength"
-                      data-chosen="/static/calend/images/Ch-Gr-ellipse.svg"
-                      data-default="/static/calend/images/green-ellipse.svg"
+                      data-chosen="{% static 'calend/images/Ch-Gr-ellipse.svg' %}"
+                      data-default="{% static 'calend/images/green-ellipse.svg' %}"
                       class="at-icon"
                     />
                     <img
-                      src="/static/calend/images/blue-ellipse.svg"
+                      src="{% static 'calend/images/blue-ellipse.svg' %}"
                       data-category="Intelligence"
-                      data-chosen="/static/calend/images/Ch-B-ellipse.svg"
-                      data-default="/static/calend/images/blue-ellipse.svg"
+                      data-chosen="{% static 'calend/images/Ch-B-ellipse.svg' %}"
+                      data-default="{% static 'calend/images/blue-ellipse.svg' %}"
                       class="at-icon"
                     />
                   </div>
@@ -395,14 +373,13 @@
                 </div>
               </div>
             </form>
-            <!-- added new class -->
 
             <div class="show-month-tasks" id="toggleView">
               <button class="invisible-button" id="toggleButton">
                 <img
                   id="toggleIcon"
                   style="padding: 0 22px 0 22px"
-                  src="/static/calend/images/leftarrow.svg"
+                  src="{% static 'calend/images/leftarrow.svg' %}"
                 />
                 <span id="toggleText">Show tasks for month</span>
               </button>
@@ -410,6 +387,7 @@
           </div>
         </div>
 
+        <!-- Calendar for days -->
         <div class="calendar-section" id="calendarView">
           <div class="days-section">
             <div class="day" style="border-top-left-radius: 10px"></div>
@@ -442,16 +420,17 @@
           <div class="time-section">
             <div class="time-column" id="time-column"></div>
             <div class="time-column">
-              <div class="side-bar green-bar">
-                <p class="semi-bold font16px">Name of task</p>
-                <p class="font12px">00:00 - 00:00</p>
-                <p class="font12px">20 pt</p>
+              {% for task in daily_tasks %}
+              <div
+                class="side-bar {% if task.characteristic == 'Creativity' %}pink-bar{% elif task.characteristic == 'Strength' %}green-bar{% else %}blue-bar{% endif %}"
+              >
+                <p class="semi-bold font16px">{{ task.title }}</p>
+                <p class="font12px">
+                  {{ task.start_time|time:"H:i" }} - {{
+                  task.finish_time|time:"H:i" }}
+                </p>
               </div>
-              <div class="side-bar custom-bar">
-                <p class="semi-bold font16px">Name of task</p>
-                <p class="font12px">00:00 - 00:00</p>
-                <p class="font12px">20 pt</p>
-              </div>
+              {% endfor %}
             </div>
             <div class="time-column"></div>
             <div class="time-column"></div>
@@ -461,17 +440,23 @@
             <div class="time-column"></div>
           </div>
         </div>
-        <!--calendar for days-->
 
-        <div class="calendar-section1 rounded hidden" id="taskView">
+        <!-- Calendar for months -->
+        <div
+          class="calendar-section1 rounded"
+          id="taskView"
+          style="display: none"
+        >
           <div class="task-section">
-            <div class="task"></div>
+            {% for task in long_tasks %}
             <button class="task">
-              <p class="semi-bold font16px">Name of task</p>
-              <p class="font12px">01.01.2025 - 10.02.2025</p>
-              <p class="font12px">20 pt</p>
+              <p class="semi-bold font16px">{{ task.title }}</p>
+              <p class="font12px">
+                {{ task.start_date|date:"d.m.Y" }} - {{
+                task.finish_date|date:"d.m.Y" }}
+              </p>
             </button>
-            <div class="blanktask"></div>
+            {% endfor %}
           </div>
           <div class="month-section">
             <div class="month">
@@ -488,26 +473,20 @@
               <div class="months">November</div>
               <div class="months">December</div>
             </div>
-
             <div class="month">
-              <button class="top-bar pink-bar">
-                <span class="start-date">01.01.2025</span>
-                <span class="end-date">10.02.2025</span>
+              {% for task in long_tasks %}
+              <button
+                class="top-bar {% if task.characteristic == 'Creativity' %}pink-bar{% elif task.characteristic == 'Strength' %}green-bar{% else %}blue-bar{% endif %}"
+              >
+                <span class="start-date"
+                  >{{ task.start_date|date:"d.m.Y" }}</span
+                >
+                <span class="end-date"
+                  >{{ task.finish_date|date:"d.m.Y" }}</span
+                >
               </button>
-              <div class="months"></div>
-              <div class="months"></div>
-              <div class="months"></div>
-              <div class="months"></div>
-              <div class="months"></div>
-              <div class="months"></div>
-              <div class="months"></div>
-              <div class="months"></div>
-              <div class="months"></div>
-              <div class="months"></div>
-              <div class="months"></div>
-              <div class="months"></div>
+              {% endfor %}
             </div>
-
             <div class="blankmonth">
               <div class="months"></div>
               <div class="months"></div>
@@ -523,14 +502,17 @@
               <div class="months"></div>
             </div>
           </div>
-          <!--calendar for months-->
         </div>
+
+        <!-- Profile modal -->
         <div id="profile-modal" class="modal">
           <div class="modal-content rounded">
             <p>Account</p>
-
             <div class="flex-center">
-              <img src="/static/calend/images/account.svg" height="35px" />
+              <img
+                src="{% static 'calend/images/account.svg' %}"
+                height="35px"
+              />
               <div class="account-info light grey">
                 <p>{{ request.user.nickname }}</p>
                 <p>{{ request.user.email }}</p>
@@ -538,9 +520,9 @@
             </div>
             <hr />
             <p>
-              <a href="#" class="inline log-out"
+              <a href="{% url 'logout' %}" class="inline log-out"
                 >Log out<img
-                  src="/static/calend/images/logOutSign.svg"
+                  src="{% static 'calend/images/logOutSign.svg' %}"
                   height="25px"
               /></a>
             </p>
@@ -548,76 +530,98 @@
         </div>
       </div>
     </div>
-    <script src="{% static 'calend/js/calend-for-all.js' %}"></script>
-    <img src="/static/calend/images/pink-ellipse.svg" data-category="pink" data-chosen="/static/calend/images/Ch-R-ellipse.svg" data-default="/static/calend/images/pink-ellipse.svg" class="at-icon chosen" />
-                <img src="/static/calend/images/green-ellipse.svg" data-category="green" data-chosen="/static/calend/images/Ch-Gr-ellipse.svg" data-default="/static/calend/images/green-ellipse.svg" class="at-icon" />
-                <img src="/static/calend/images/blue-ellipse.svg" data-category="blue" data-chosen="/static/calend/images/Ch-B-ellipse.svg" data-default="/static/calend/images/blue-ellipse.svg" class="at-icon" />
-            </div>
 
-            <div class="buttons">
-                <button type="button" class="cancel-button" style="margin-right: 10px" onclick="document.getElementById('addTaskForm').style.display='none'">Cancel</button>
-                <button type="submit" class="save-button">Save</button>
-            </div>
-        </div>
-    </div>
-</form>
-
-<script>
-    document.querySelectorAll('.change-stats img').forEach(function(img) {
-        img.addEventListener('click', function() {
-            document.querySelectorAll('.change-stats img').forEach(function(i) {
-                i.classList.remove('chosen');
-                i.src = i.getAttribute('data-default');
-            });
-            this.classList.add('chosen');
-            this.src = this.getAttribute('data-chosen');
-            document.getElementById('characteristic').value = this.getAttribute('data-category');
+    <script>
+      // Show task creation form
+      document
+        .getElementById("addTaskButton")
+        .addEventListener("click", function () {
+          document.getElementById("addTaskForm").style.display = "block";
         });
-    });
 
-    const toggleButton = document.getElementById('toggleButton');
-    const toggleIcon = document.getElementById('toggleIcon');
-    const toggleText = document.getElementById('toggleText');
-    const dateDay = document.getElementById('dateDay');
-    const dateMonth = document.getElementById('dateMonth');
-    const taskType = document.getElementById('taskType');
-    let currentMode = 'day';
+      // Category selection
+      document.querySelectorAll(".change-stats img").forEach(function (img) {
+        img.addEventListener("click", function () {
+          document.querySelectorAll(".change-stats img").forEach(function (i) {
+            i.classList.remove("chosen");
+            i.src = i.getAttribute("data-default");
+          });
+          this.classList.add("chosen");
+          this.src = this.getAttribute("data-chosen");
+          document.getElementById("characteristic").value =
+            this.getAttribute("data-category");
+        });
+      });
 
-    toggleButton.addEventListener('click', function() {
-        if (currentMode === 'day') {
-            currentMode = 'month';
-            toggleText.textContent = 'Show tasks for day';
-            toggleIcon.src = '/static/calend/images/rightarrow.svg';
-            dateDay.style.display = 'none';
-            dateMonth.style.display = 'block';
-            taskType.value = 'long';
+      // Calendar mode switching
+      const toggleButton = document.getElementById("toggleButton");
+      const toggleIcon = document.getElementById("toggleIcon");
+      const toggleText = document.getElementById("toggleText");
+      const dateDay = document.getElementById("dateDay");
+      const dateMonth = document.getElementById("dateMonth");
+      const taskType = document.getElementById("taskType");
+      const calendarView = document.getElementById("calendarView");
+      const taskView = document.getElementById("taskView");
+      let currentMode = "day";
+
+      toggleButton.addEventListener("click", function () {
+        if (currentMode === "day") {
+          currentMode = "month";
+          toggleText.textContent = "Show tasks for day";
+          toggleIcon.src = '{% static "calend/images/rightarrow.svg" %}';
+          dateDay.style.display = "none";
+          dateMonth.style.display = "block";
+          taskType.value = "long";
+          calendarView.style.display = "none";
+          taskView.style.display = "block";
         } else {
-            currentMode = 'day';
-            toggleText.textContent = 'Show tasks for month';
-            toggleIcon.src = '/static/calend/images/leftarrow.svg';
-            dateDay.style.display = 'block';
-            dateMonth.style.display = 'none';
-            taskType.value = 'daily';
+          currentMode = "day";
+          toggleText.textContent = "Show tasks for month";
+          toggleIcon.src = '{% static "calend/images/leftarrow.svg" %}';
+          dateDay.style.display = "block";
+          dateMonth.style.display = "none";
+          taskType.value = "daily";
+          calendarView.style.display = "block";
+          taskView.style.display = "none";
         }
-    });
+      });
 
-    setTaskMode(currentMode);
-
-    function setTaskMode(mode) {
-        if (mode === 'month') {
-            dateDay.style.display = 'none';
-            dateMonth.style.display = 'block';
-            taskType.value = 'long';
-            toggleText.textContent = 'Show tasks for day';
-            toggleIcon.src = '/static/calend/images/rightarrow.svg';
+      // Set initial mode
+      function setTaskMode(mode) {
+        if (mode === "month") {
+          dateDay.style.display = "none";
+          dateMonth.style.display = "block";
+          taskType.value = "long";
+          toggleText.textContent = "Show tasks for day";
+          toggleIcon.src = '{% static "calend/images/rightarrow.svg" %}';
+          calendarView.style.display = "none";
+          taskView.style.display = "block";
         } else {
-            dateDay.style.display = 'block';
-            dateMonth.style.display = 'none';
-            taskType.value = 'daily';
-            toggleText.textContent = 'Show tasks for month';
-            toggleIcon.src = '/static/calend/images/leftarrow.svg';
+          dateDay.style.display = "block";
+          dateMonth.style.display = "none";
+          taskType.value = "daily";
+          toggleText.textContent = "Show tasks for month";
+          toggleIcon.src = '{% static "calend/images/leftarrow.svg" %}';
+          calendarView.style.display = "block";
+          taskView.style.display = "none";
         }
-    }
-</script>
+      }
+      setTaskMode(currentMode);
+
+      // Settings and profile modal
+      document
+        .getElementById("toggle-icon")
+        .addEventListener("click", function () {
+          document.getElementById("toggle-panel").style.display = "block";
+        });
+      document.getElementById("close").addEventListener("click", function () {
+        document.getElementById("toggle-panel").style.display = "none";
+      });
+      document
+        .getElementById("open-modal")
+        .addEventListener("click", function () {
+          document.getElementById("profile-modal").style.display = "block";
+        });
+    </script>
   </body>
 </html>
