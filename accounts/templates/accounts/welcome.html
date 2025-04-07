@@ -1,0 +1,66 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dashboard</title>
+    <link
+            href="https://fonts.googleapis.com/css?family=Open Sans"
+            rel="stylesheet"
+    />
+    <link rel="stylesheet" href="{% static 'accounts/css/welcome.css' %}">
+</head>
+<body>
+<div class="first_time">
+    <div class="header1">
+        <span><span class="bold">Hero</span>Habit</span>
+    </div>
+
+    <div class="first-container">
+        <p class="first_time_header">
+            Welcome to HeroHabit!
+        </p>
+
+        <div class="first_time_container">
+            <img src="{% static '/accounts/image/First_time_girl.svg' %}" class="first_time_image">
+            <div class="first_time_text">
+                <p class="first_time_par">Now you are the hero of your own story, and only you decide how epic it will be.
+                    There are no strict judges or dragons here (yet), just you and your real achievements</p>
+
+                <p class="first_time_par">The rules are simple:
+                    Every completed daily task gives you +5 points to the chosen attribute.
+                    Stay consistent, and your hero will become a true legend!</p>
+
+                <p class="first_time_par">Long-term tasks grant +15 points for each week required to complete the task or build a habit.
+                    The bigger the goal, the greater the reward!</p>
+
+                <p class="first_time_par">But remember: each new level gets harder.
+                    The further you go, the more effort is needed to level up. Heroes aren’t made overnight!</p>
+
+                <p class="first_time_par">Your character's level depends on all attributes.
+                    The main attribute gives the biggest boost,
+                    but neglecting the others can slow down your progress. Balance is the key to success!</p>
+
+                <p class="first_time_par">Responsibility is rewarded!
+                    By completing tasks diligently, you'll earn achievements that prove you're a true hero.
+                    Let’s be honest, "Master of Productivity" sounds way cooler than "Wizard of Procrastination."</p>
+
+                <p class="first_time_par">And most importantly: honesty is your superpower.
+                    If your “morning yoga” was actually just scrolling memes in a lotus pose,
+                    or your “evening run” was really just a walk to the fridge—be honest!
+                    You can fool everyone, but not yourself. A true hero grows through real effort.</p>
+
+                <a class="first_time_link" >Ready to conquer new heights? Then go forth, hero!</a>
+            </div>
+        </div>
+
+        <form method="post">
+            {% csrf_token %}
+            <button type="submit" class="first_time_button">Accept</button>
+        </form>
+    </div>
+</div>
+<script src="js/script.js"></script>
+</body>
+</html>
