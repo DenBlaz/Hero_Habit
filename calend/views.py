@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 import json
 from django.http import JsonResponse
 from django.views import View
-from django.utils.dateparse import parse_date, parse_time
+from django.contrib.auth.decorators import login_required
 from accounts.models import Account
 from .forms import DailyTaskForm
 
@@ -10,7 +10,8 @@ from .forms import DailyTaskForm
 def calend(request):
     return render(request, "calend/calend-for-all.html")
 
-def create_task(request):
+@login_required
+def DailyTaskCreate(request):
     if request.method == 'POST':
         form = DailyTaskForm(request.POST)
         if form.is_valid():
