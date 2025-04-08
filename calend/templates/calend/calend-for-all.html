@@ -462,10 +462,10 @@
       const taskType = document.getElementById("taskType");
       const calendarView = document.getElementById("calendarView");
       const taskView = document.getElementById("taskView");
-      let currentMode = "day";
+      let currentMode = "daily";
 
       toggleButton.addEventListener("click", function () {
-        if (currentMode === "day") {
+        if (currentMode === "daily") {
           currentMode = "month";
           toggleText.textContent = "Show tasks for day";
           toggleIcon.src = '{% static "calend/images/rightarrow.svg" %}';
@@ -477,7 +477,7 @@
           calendarView.style.display = "none";
           taskView.style.display = "block";
         } else {
-          currentMode = "day";
+          currentMode = "daily";
           toggleText.textContent = "Show tasks for month";
           toggleIcon.src = '{% static "calend/images/leftarrow.svg" %}';
           dateDay.style.display = "block";
@@ -503,7 +503,7 @@
           calendarView.style.display = "none";
           taskView.style.display = "block";
         } else {
-          currentMode = "day";
+          currentMode = "daily";
           dateDay.style.display = "block";
           dateMonth.style.display = "none";
           dueDateSection.style.display = "block";

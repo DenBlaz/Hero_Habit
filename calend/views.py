@@ -19,7 +19,7 @@ def task_create(request):
         print(f"Task type: {task_type}")
         print(f"POST data: {request.POST}")
 
-        if task_type == 'day':
+        if task_type == 'daily':
             form = DailyTaskForm(request.POST)
         else:
             form = LongTaskForm(request.POST)
