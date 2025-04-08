@@ -464,7 +464,7 @@
       const taskType = document.getElementById("taskType");
       const calendarView = document.getElementById("calendarView");
       const taskView = document.getElementById("taskView");
-      let currentMode = "day"; // Унифицируем с "day" вместо "daily"
+      let currentMode = "day";
 
       toggleButton.addEventListener("click", function () {
         if (currentMode === "day") {
@@ -537,5 +537,6 @@
         document.getElementById("profile-modal").style.display = "block";
       });
     </script>
+    <script src="{% static 'calend/js/calend-for-all.js' %}"></script>
   </body>
 </html>
