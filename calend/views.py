@@ -16,6 +16,9 @@ def calend(request):
 def task_create(request):
     if request.method == 'POST':
         task_type = request.POST.get('task_type')
+        print(f"Task type: {task_type}")
+        print(f"POST data: {request.POST}")
+
         if task_type == 'daily':
             form = DailyTaskForm(request.POST)
         else:
@@ -25,11 +28,10 @@ def task_create(request):
             task = form.save(commit=False)
             task.user = request.user
             task.save()
+            print("Task saved successfully")
             return redirect('calend:calend')
         else:
-        
             print(f"Form errors: {form.errors}")
-        
             daily_tasks = DailyTask.objects.filter(user=request.user)
             long_tasks = LongTask.objects.filter(user=request.user)
             return render(request, 'calend/calend-for-all.html', {
@@ -39,7 +41,6 @@ def task_create(request):
                 'task_type': task_type,
             })
     else:
-        
         form = DailyTaskForm()
     return render(request, 'calend/calend-for-all.html', {
         'form': form,
