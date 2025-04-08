@@ -14,7 +14,7 @@
       href="https://fonts.googleapis.com/css?family=Open Sans"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="{% static 'achiev/css/achiev.scss' %}" />
+    <link rel="stylesheet" href="{% static 'achiev/css/achiev.css' %}" />
   </head>
   <body>
     <div id="profile-modal" class="modal">
@@ -131,17 +131,19 @@
       </div>
 
       <div class="Achievements-content rounded">
-        <div class="achievement">
+        {% for achievement in all_achievements %}
+        <div class="achievement {% if achievement.id in user_achievement_ids %}achieved{% endif %}">
           <div class="ach-icon">
             <img class="ach-image" src="/static/dashboard/image/img-firststep.svg" />
           </div>
           <div class="ach-details">
-            <h2 class="ach-name">First Step</h2>
-            <p class="ach-task">Complete the first task.</p>
+            <h2 class="ach-name">{{ achievement.name }}</h2>
+            <p class="ach-task">{{ achievement.description }}</p>
             <p class="ach-reward">+5 pt. for character level.</p>
           </div>
-          <img src="/static/dashboard/image/Mark.svg" class="check-mark" />
+          <img src="{% static 'dashboard/image/Mark.svg' %}" class="check-mark" />
         </div>
+        {% endfor %}
         <div class="achievement">
           <div class="ach-icon" style="padding-left: 15px">
             <img
@@ -189,16 +191,7 @@
             <img
               class="ach-image"
               src="/static/dashboard/image/img-Creative%20Genius.svg"
-            /><div class="Achievements-content rounded">
-              <div class="achievement">
-                <div class="ach-icon">
-                  <img class="ach-image" src="/static/dashboard/image/img-firststep.svg" />
-                </div>
-                <div class="ach-details">
-                  <h2 class="ach-name">First Step</h2>
-                  <p class="ach-task">Complete the first task.</p>
-                  <p class="ach-reward">+5 pt. for character level.</p>
-                </div>
+            />
           </div>
           <div class="ach-details">
             <h2 class="ach-name">Creative Genius</h2>
@@ -219,9 +212,7 @@
             <p class="ach-reward">+30 pt. for character level.</p>
           </div>
         </div>
-        <button onclick="addClassToElement('achievement', 'achieved', 0)">
-          Lets get started?</button
-        ><!-- idk it's here just to show that it works, DEFINITELY should be deleted later -->
+
       </div>
     </div>
     <script src="{% static 'achiev/js/achiev.js' %}"></script>

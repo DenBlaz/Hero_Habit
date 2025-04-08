@@ -322,7 +322,7 @@ input::placeholder {
 
 .Achievements-content::-webkit-scrollbar {
   display: none;
-} ///////////add an actual scrollbar
+}
 
 .achievement {
   display: flex;
