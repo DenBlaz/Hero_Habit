@@ -185,6 +185,7 @@
 
   toggleButton.addEventListener("click", function () {
     const isMonthlyView = toggleButton.classList.toggle("activebutton");
+    console.log("Switching mode. Is monthly view:", isMonthlyView); 
     if (isMonthlyView) {
       currentMode = "month";
       calendarView.classList.add("hidden");
@@ -199,6 +200,7 @@
       finishDateInput.setAttribute("required", "");
       taskType.value = "long";
       addTask.style.height = "370px";
+      console.log("Switched to Long Tasks. taskType:", taskType.value); 
     } else {
       currentMode = "day";
       calendarView.classList.remove("hidden");
@@ -213,10 +215,12 @@
       finishDateInput.removeAttribute("required");
       taskType.value = "daily";
       addTask.style.height = "470px";
+      console.log("Switched to Daily Tasks. taskType:", taskType.value);
     }
   });
 
   function setTaskMode(mode) {
+    console.log("Setting initial mode to:", mode);
     if (mode === "month") {
       currentMode = "month";
       calendarView.classList.add("hidden");
@@ -246,6 +250,7 @@
       taskType.value = "daily";
       addTask.style.height = "470px";
     }
+    console.log("Initial taskType:", taskType.value);
   }
   setTaskMode("{{ task_type|default:'day' }}");
 
