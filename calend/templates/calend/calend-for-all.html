@@ -271,6 +271,13 @@
                     value="{{ form.title.value|default:'' }}"
                     required
                   />
+                  <input
+                    class="at-input-i"
+                    name="description"
+                    placeholder="Description"
+                    value="{{ form.description.value|default:'' }}"
+                    style="background: url('{% static 'calend/images/lines-input.svg' %}') no-repeat 8px 65%;"
+                  />
 
                   <p style="padding: 1px 0 0 0">Date & Time</p>
                   <div id="dueDateSection">
