@@ -387,55 +387,34 @@
 
         <!-- Calendar for days -->
         <div class="calendar-section" id="calendarView">
-          <div class="days-section">
-            <div class="day" style="border-top-left-radius: 10px"></div>
-            <button class="space" id="Monday">
-              <div>Monday <strong>1</strong></div>
-            </button>
-            <button class="space" id="Tuesday">
-              <div>Tuesday <strong>2</strong></div>
-            </button>
-            <button class="space" id="Wednesday">
-              <div>Wednesday <strong>3</strong></div>
-            </button>
-            <button class="space" id="Thursday">
-              <div>Thursday <strong>4</strong></div>
-            </button>
-            <button class="space" id="Friday">
-              <div>Friday <strong>5</strong></div>
-            </button>
-            <button class="space" id="Saturday">
-              <div>Saturday <strong>6</strong></div>
-            </button>
-            <button
-              class="space"
-              id="Sunday"
-              style="border-top-right-radius: 10px"
-            >
-              <div>Sunday <strong>7</strong></div>
-            </button>
-          </div>
-          <div class="time-section">
-            <div class="time-column" id="time-column"></div>
-            <div class="time-column">
-              {% for task in daily_tasks %}
-              <div
-                class="side-bar {% if task.characteristic == 'Creativity' %}pink-bar{% elif task.characteristic == 'Strength' %}green-bar{% else %}blue-bar{% endif %}"
-              >
-                <p class="semi-bold font16px">{{ task.title }}</p>
-                <p class="font12px">
-                  {{ task.start_time|time:"H:i" }} - {{
-                  task.finish_time|time:"H:i" }}
-                </p>
+          <div class="calendar-grid">
+            <!-- Header: Days of the Week -->
+            <div class="grid-header">
+              <div class="time-label"></div>
+              <!-- Empty cell for time column -->
+              {% for day in days_of_week %}
+              <div class="day-header">
+                {{ day.day }} <strong>{{ day.date }}</strong>
               </div>
               {% endfor %}
             </div>
-            <div class="time-column"></div>
-            <div class="time-column"></div>
-            <div class="time-column"></div>
-            <div class="time-column"></div>
-            <div class="time-column"></div>
-            <div class="time-column"></div>
+
+            <!-- Grid: Time Slots and Tasks -->
+            <div class="grid-body">
+              <!-- Time Labels (Y-Axis) -->
+              <div class="time-column">
+                {% for hour in time_slots %}
+                <div class="time-slot">{{ hour }}</div>
+                {% endfor %}
+              </div>
+
+              <!-- Grid Columns for Each Day -->
+              {% for day in days_of_week %}
+              <div class="day-column" data-day="{{ day.date }}">
+                <!-- Tasks will be dynamically inserted here -->
+              </div>
+              {% endfor %}
+            </div>
           </div>
         </div>
 
@@ -530,106 +509,175 @@
     </div>
 
     <script>
-      // Show task creation form
-      document
-        .getElementById("addTaskButton")
-        .addEventListener("click", function () {
-          document.getElementById("addTaskForm").style.display = "block";
-        });
+            // Show task creation form
+            document
+              .getElementById("addTaskButton")
+              .addEventListener("click", function () {
+                document.getElementById("addTaskForm").style.display = "block";
+              });
 
-      // Category selection
-      document.querySelectorAll(".change-stats img").forEach(function (img) {
-        img.addEventListener("click", function () {
-          document.querySelectorAll(".change-stats img").forEach(function (i) {
-            i.classList.remove("chosen");
-            i.src = i.getAttribute("data-default");
-          });
-          this.classList.add("chosen");
-          this.src = this.getAttribute("data-chosen");
-          document.getElementById("characteristic").value =
-            this.getAttribute("data-category");
+            // Category selection
+            document.querySelectorAll(".change-stats img").forEach(function (img) {
+              img.addEventListener("click", function () {
+                document.querySelectorAll(".change-stats img").forEach(function (i) {
+                  i.classList.remove("chosen");
+                  i.src = i.getAttribute("data-default");
+                });
+                this.classList.add("chosen");
+                this.src = this.getAttribute("data-chosen");
+                document.getElementById("characteristic").value =
+                  this.getAttribute("data-category");
+              });
+            });
+
+            // Calendar mode switching
+            const toggleButton = document.getElementById("toggleButton");
+            const toggleIcon = document.getElementById("toggleIcon");
+            const toggleText = document.getElementById("toggleText");
+            const dateDay = document.getElementById("dateDay");
+            const dateMonth = document.getElementById("dateMonth");
+            const dueDateSection = document.getElementById("dueDateSection");
+            const dueDateInput = document.getElementById("toggleDate");
+            const taskType = document.getElementById("taskType");
+            const calendarView = document.getElementById("calendarView");
+            const taskView = document.getElementById("taskView");
+            let currentMode = "day";
+
+            toggleButton.addEventListener("click", function () {
+              if (currentMode === "day") {
+                currentMode = "month";
+                toggleText.textContent = "Show tasks for day";
+                toggleIcon.src = '{% static "calend/images/rightarrow.svg" %}';
+                dateDay.style.display = "none";
+                dateMonth.style.display = "block";
+                dueDateSection.style.display = "none";
+                dueDateInput.removeAttribute("required");
+                taskType.value = "long";
+                calendarView.style.display = "none";
+                taskView.style.display = "block";
+              } else {
+                currentMode = "day";
+                toggleText.textContent = "Show tasks for month";
+                toggleIcon.src = '{% static "calend/images/leftarrow.svg" %}';
+                dateDay.style.display = "block";
+                dateMonth.style.display = "none";
+                dueDateSection.style.display = "block";
+                dueDateInput.setAttribute("required", "");
+                taskType.value = "daily";
+                calendarView.style.display = "block";
+                taskView.style.display = "none";
+              }
+            });
+
+            // Set initial mode
+            function setTaskMode(mode) {
+              if (mode === "month") {
+                dateDay.style.display = "none";
+                dateMonth.style.display = "block";
+                dueDateSection.style.display = "none";
+                dueDateInput.removeAttribute("required");
+                taskType.value = "long";
+                toggleText.textContent = "Show tasks for day";
+                toggleIcon.src = '{% static "calend/images/rightarrow.svg" %}';
+                calendarView.style.display = "none";
+                taskView.style.display = "block";
+              } else {
+                dateDay.style.display = "block";
+                dateMonth.style.display = "none";
+                dueDateSection.style.display = "block";
+                dueDateInput.setAttribute("required", "");
+                taskType.value = "daily";
+                toggleText.textContent = "Show tasks for month";
+                toggleIcon.src = '{% static "calend/images/leftarrow.svg" %}';
+                calendarView.style.display = "block";
+                taskView.style.display = "none";
+              }
+            }
+            setTaskMode(currentMode);
+
+            // Settings and profile modal
+            document
+              .getElementById("toggle-icon")
+              .addEventListener("click", function () {
+                document.getElementById("toggle-panel").style.display = "block";
+              });
+            document.getElementById("close").addEventListener("click", function () {
+              document.getElementById("toggle-panel").style.display = "none";
+            });
+            document
+              .getElementById("open-modal")
+              .addEventListener("click", function () {
+                document.getElementById("profile-modal").style.display = "block";
+              });
+
+              // Dynamically place tasks in the grid
+      document.addEventListener('DOMContentLoaded', function () {
+        // Define time slots and their corresponding hours (for calculation)
+        const timeSlots = {
+          '9 am': 9,
+          '10 am': 10,
+          '11 am': 11,
+          '12 pm': 12,
+          '1 pm': 13,
+          '2 pm': 14
+        };
+
+        // Get all daily tasks from the template
+        const tasks = [
+          {% for task in daily_tasks %}
+          {
+            title: "{{ task.title }}",
+            start_time: "{{ task.start_time|time:'H:i' }}",
+            finish_time: "{{ task.finish_time|time:'H:i' }}",
+            characteristic: "{{ task.characteristic }}",
+            due_date: "{{ task.due_date|date:'d' }}"
+          },
+          {% endfor %}
+        ];
+
+        // Place each task in the correct column and time slot
+        tasks.forEach(task => {
+          // Find the column for the task's due date
+          const dayColumn = document.querySelector(`.day-column[data-day="${task.due_date}"]`);
+          if (!dayColumn) return; // Skip if no matching day
+
+          // Calculate start and end hours
+          const startHour = parseInt(task.start_time.split(':')[0]);
+          const startMinute = parseInt(task.start_time.split(':')[1]);
+          const endHour = parseInt(task.finish_time.split(':')[0]);
+          const endMinute = parseInt(task.finish_time.split(':')[1]);
+
+          // Calculate the top position and height of the task block
+          const slotHeight = 60; // Height of each time slot in pixels
+          const startPosition = (startHour - 9) * slotHeight + (startMinute / 60) * slotHeight;
+          const duration = (endHour + endMinute / 60) - (startHour + startMinute / 60);
+          const height = duration * slotHeight;
+
+          // Create the task block
+          const taskBlock = document.createElement('div');
+          taskBlock.classList.add('task-block');
+          if (task.characteristic === 'Creativity') {
+            taskBlock.classList.add('pink-bar');
+          } else if (task.characteristic === 'Strength') {
+            taskBlock.classList.add('green-bar');
+          } else if (task.characteristic === 'Intelligence') {
+            taskBlock.classList.add('blue-bar');
+          }
+
+          // Add task details
+          taskBlock.innerHTML = `
+            <p class="semi-bold font12px">${task.title}</p>
+            <p class="font10px">${task.start_time} - ${task.finish_time}</p>
+          `;
+
+          // Set position and height
+          taskBlock.style.top = `${startPosition}px`;
+          taskBlock.style.height = `${height}px`;
+
+          // Append to the day column
+          dayColumn.appendChild(taskBlock);
         });
       });
-
-      // Calendar mode switching
-      const toggleButton = document.getElementById("toggleButton");
-      const toggleIcon = document.getElementById("toggleIcon");
-      const toggleText = document.getElementById("toggleText");
-      const dateDay = document.getElementById("dateDay");
-      const dateMonth = document.getElementById("dateMonth");
-      const dueDateSection = document.getElementById("dueDateSection");
-      const dueDateInput = document.getElementById("toggleDate");
-      const taskType = document.getElementById("taskType");
-      const calendarView = document.getElementById("calendarView");
-      const taskView = document.getElementById("taskView");
-      let currentMode = "day";
-
-      toggleButton.addEventListener("click", function () {
-        if (currentMode === "day") {
-          currentMode = "month";
-          toggleText.textContent = "Show tasks for day";
-          toggleIcon.src = '{% static "calend/images/rightarrow.svg" %}';
-          dateDay.style.display = "none";
-          dateMonth.style.display = "block";
-          dueDateSection.style.display = "none";
-          dueDateInput.removeAttribute("required");
-          taskType.value = "long";
-          calendarView.style.display = "none";
-          taskView.style.display = "block";
-        } else {
-          currentMode = "day";
-          toggleText.textContent = "Show tasks for month";
-          toggleIcon.src = '{% static "calend/images/leftarrow.svg" %}';
-          dateDay.style.display = "block";
-          dateMonth.style.display = "none";
-          dueDateSection.style.display = "block";
-          dueDateInput.setAttribute("required", "");
-          taskType.value = "daily";
-          calendarView.style.display = "block";
-          taskView.style.display = "none";
-        }
-      });
-
-      // Set initial mode
-      function setTaskMode(mode) {
-        if (mode === "month") {
-          dateDay.style.display = "none";
-          dateMonth.style.display = "block";
-          dueDateSection.style.display = "none";
-          dueDateInput.removeAttribute("required");
-          taskType.value = "long";
-          toggleText.textContent = "Show tasks for day";
-          toggleIcon.src = '{% static "calend/images/rightarrow.svg" %}';
-          calendarView.style.display = "none";
-          taskView.style.display = "block";
-        } else {
-          dateDay.style.display = "block";
-          dateMonth.style.display = "none";
-          dueDateSection.style.display = "block";
-          dueDateInput.setAttribute("required", "");
-          taskType.value = "daily";
-          toggleText.textContent = "Show tasks for month";
-          toggleIcon.src = '{% static "calend/images/leftarrow.svg" %}';
-          calendarView.style.display = "block";
-          taskView.style.display = "none";
-        }
-      }
-      setTaskMode(currentMode);
-
-      // Settings and profile modal
-      document
-        .getElementById("toggle-icon")
-        .addEventListener("click", function () {
-          document.getElementById("toggle-panel").style.display = "block";
-        });
-      document.getElementById("close").addEventListener("click", function () {
-        document.getElementById("toggle-panel").style.display = "none";
-      });
-      document
-        .getElementById("open-modal")
-        .addEventListener("click", function () {
-          document.getElementById("profile-modal").style.display = "block";
-        });
     </script>
   </body>
 </html>

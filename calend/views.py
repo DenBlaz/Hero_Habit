@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from .forms import DailyTaskForm, LongTaskForm
+from datetime import datetime, timedelta
 from .models import DailyTask, LongTask
 
 @login_required
@@ -36,5 +37,28 @@ def task_create(request):
 
 
 @login_required
-def newcalend(request):
-    return render(request, 'calend/calend.html')
+
+def calendar_view(request):
+    # Get the current week (starting from Monday)
+    today = datetime.today()
+    start_of_week = today - timedelta(days=today.weekday())  # Start from Monday
+    days_of_week = []
+    for i in range(7):
+        day = start_of_week + timedelta(days=i)
+        days_of_week.append({
+            'day': day.strftime('%A'),  # e.g., "Monday"
+            'date': day.day  # e.g., 30
+        })
+
+    # Define time slots (9 AM to 2 PM)
+    time_slots = ['9 am', '10 am', '11 am', '12 pm', '1 pm', '2 pm']
+
+    # Fetch daily tasks for the current user
+    daily_tasks = DailyTask.objects.filter(user=request.user)
+
+    context = {
+        'days_of_week': days_of_week,
+        'time_slots': time_slots,
+        'daily_tasks': daily_tasks,
+    }
+    return render(request, 'calend/calendar.html', context)
