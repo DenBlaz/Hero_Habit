@@ -125,13 +125,16 @@
           </div>
           <p class="font12px">50% completed</p>
         </div>
-        <div class="achievement-stats rounded padded">
-          <p class="semi-bold">Your last achievement:</p>
-          <p class="inline cup font16px">
-            <img src="/static/dashboard/image/cup.svg" height="25px" />Description of achievement...
-          </p>
-        </div>
-      </div>
+        {% if last_achievement %}
+            <div class="achievement-stats rounded padded">
+            <p class="semi-bold">Your last achievement:</p>
+            <p class="inline cup font16px">
+            <img src="/static/dashboard/image/cup.svg" height="25px" />
+            {{ last_achievement.achievement.description }}
+             </p>
+            </div>
+        {% endif %}
+    </div>
 
 
     <div id="profile-modal" class="modal">
