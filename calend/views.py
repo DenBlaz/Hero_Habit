@@ -2,11 +2,27 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from .forms import DailyTaskForm, LongTaskForm
 from .models import DailyTask, LongTask
+from datetime import datetime, timedelta
 
 @login_required
 def calend(request):
-    daily_tasks = DailyTask.objects.filter(user=request.user)
-    long_tasks = LongTask.objects.filter(user=request.user)
+    today = datetime.today()
+    start_of_week = today - timedelta(days=today.weekday())
+    end_of_week = start_of_week + timedelta(days=6)
+
+    daily_tasks = DailyTask.objects.filter(
+        user=request.user,
+        due_date__range=[start_of_week, end_of_week]
+    )
+
+    start_of_year = datetime(today.year, 1, 1)
+    end_of_year = datetime(today.year, 12, 31)
+    long_tasks = LongTask.objects.filter(
+        user=request.user,
+        start_date__lte=end_of_year,
+        finish_date__gte=start_of_year
+    )
+
     return render(request, 'calend/calend-for-all.html', {
         'daily_tasks': daily_tasks,
         'long_tasks': long_tasks,

@@ -177,7 +177,7 @@
                 <div class="at-work">
                   {% if form.errors %}
                     <div style="color: red;">
-                      <p>Пожалуйста, исправьте ошибки:</p>
+                      <p>Errors:</p>
                       <ul>
                         {% for field in form %}
                           {% if field.errors %}
@@ -256,27 +256,30 @@
               <div>Sunday <strong>7</strong></div>
             </button>
           </div>
-          <div class="time-section">
-            <div class="time-column" id="time-column"></div>
-            <div class="time-column">
-              {% for task in daily_tasks %}
-                <div
-                  class="side-bar {% if task.characteristic == 'Creativity' %}pink-bar{% elif task.characteristic == 'Strength' %}green-bar{% else %}blue-bar{% endif %}"
-                >
-                  <p class="semi-bold font16px">{{ task.title }}</p>
-                  <p class="font12px">
-                    {{ task.start_time|time:"H:i" }} - {{ task.finish_time|time:"H:i" }}
-                  </p>
-                </div>
-              {% endfor %}
-            </div>
+          Collapse
+
+Wrap
+
+Copy
+<div class="time-section">
+  <div class="time-column" id="time-column"></div>
+  <div class="time-column">
+    {% for task in daily_tasks %}
+      <div class="side-bar {% if task.characteristic == 'Creativity' %}pink-bar{% elif task.characteristic == 'Strength' %}green-bar{% else %}blue-bar{% endif %}">
+        <p class="semi-bold font16px">{{ task.title }}</p>
+        <p class="font12px">
+          {{ task.start_time|time:"H:i" }} - {{ task.finish_time|time:"H:i" }}
+        </p>
+      </div>
+    {% endfor %}
+  </div>
+  <div class="time-column"></div>
             <div class="time-column"></div>
-            <div class="time-column"></div>
-            <div class="time-column"></div>
-            <div class="time-column"></div>
-            <div class="time-column"></div>
-            <div class="time-column"></div>
-          </div>
+          <div class="time-column"></div>
+          <div class="time-column"></div>
+          <div class="time-column"></div>
+          <div class="time-column"></div>
+        </div>
         </div>
 
         <div class="calendar-section1 rounded" id="taskView" style="display: none">
