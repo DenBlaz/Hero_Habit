@@ -68,7 +68,7 @@ body {
 .manage-section {
   flex: 1;
   display: flex;
-  transform-origin: top; /* Keeps it anchored at the top-left corner */
+  transform-origin: top;
   flex-direction: column;
 }
 
@@ -162,22 +162,15 @@ body {
   position: absolute;
   color: rgb(127, 157, 176);
   padding: 10px;
-  top: 30%; /* starts vertically from*/
   left: 0%;
   width: 100%;
-  height: 50%; /* how big is*/
   border-radius: 10px;
   z-index: 10;
   display: flex;
-  flex-direction: column; /* Stacks content inside vertically */
+  flex-direction: column;
   overflow: hidden;
   cursor: pointer;
-}
-
-.custom-bar {
-  top: 0%;
-  height: 20%;
-  background-color: rgba(251, 182, 224, 0.6);
+  opacity: 0.6;
 }
 
 .side-bar:hover,
@@ -186,57 +179,17 @@ body {
   border: 1.5px solid rgba(0, 0, 0, 0.2) !important;
 }
 
-/*new code for long term-tasks*/
+/* Стили для LongTask в месячном календаре */
 .calendar-section1 {
-  flex: 3;
+  flex: 30;
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   width: 100%;
-}
-
-.task-section {
-  display: flex;
-  width: 16%;
-  max-height: 100%;
-  flex-direction: column;
-  background-color: #d9d9d9;
-  gap: 1px;
-  border-right: 1px solid #d9d9d9;
-  border-bottom-left-radius: 10px;
-  border-top-left-radius: 10px;
-  overflow: hidden;
-}
-
-.task-section button {
-  border: none;
-}
-
-.task,
-.blanktask {
-  display: flex;
-  flex-direction: column;
-  flex: 1;
-  justify-content: flex-start;
-  align-items: flex-start;
-  max-height: 11.1111111111%;
-  background-color: #ffffff;
-  padding: 10px;
-  text-align: left;
-}
-
-.calendar-section button {
-  border: none;
-  cursor: pointer;
-}
-
-.calendar-section1 button {
-  border: none;
-  cursor: pointer;
 }
 
 .month-section {
   display: flex;
-  width: 84%;
+  width: 100%;
   max-height: 100%;
   flex-direction: column;
   background-color: #d9d9d9;
@@ -251,58 +204,41 @@ body {
   display: flex;
   flex-direction: row;
   flex: 1;
-  max-height: 11.1111111111%;
+  max-height: 50%;
   gap: 1px;
   flex-shrink: 0;
   position: relative;
 }
 
-.active-month {
-  background-color: rgb(228, 222, 249) !important;
-  color: rgb(0, 0, 0);
-  border-bottom: 2px solid rgb(131, 100, 232);
-}
-
-.months {
+.day-header {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  min-width: 33.3333333333%;
+  min-width: 10%;
   background-color: #ffffff;
   height: 100%;
 }
 
-.blankmonth {
-  display: flex;
-  flex-direction: row;
-  flex: 1;
-  gap: 1px;
-  flex-shrink: 0;
-}
-
-.blank {
-  flex: 1;
-  background-color: #ffffff;
-}
-
-.flip-image {
-  transform: scaleX(-1);
-}
-
-.top-bar {
+.long-task-bar {
   position: absolute;
-  top: 35%;
-  left: 0%; /*indicates where the bar starts(100%-starts from third month)*/
-  display: flex;
-  flex-direction: row;
-  border-radius: 3px;
-  width: 45%; /*width of the bar(100%-width of three months)*/
+  color: rgb(127, 157, 176);
+  padding: 5px;
+  top: 50%;
   height: 30%;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
+  border-radius: 3px;
   z-index: 10;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  cursor: pointer;
+  opacity: 0.6;
+}
+
+.long-task-bar:hover,
+.long-task-bar:focus,
+.long-task-bar:active {
+  border: 1.5px solid rgba(0, 0, 0, 0.2) !important;
 }
 
 .start-date {
@@ -335,27 +271,12 @@ body {
   background-color: rgba(251, 182, 224, 0.6);
 }
 
-.top-bar:hover,
-.top-bar:focus,
-.top-bar:active {
-  border: 1.5px solid rgba(0, 0, 0, 0.2) !important;
+.calendar-section button,
+.calendar-section1 button {
+  border: none;
+  cursor: pointer;
 }
 
-.top-bar:hover::before,
-.top-bar:focus::before,
-.top-bar:active::before {
-  content: "";
-  position: absolute;
-  top: 20%;
-  left: 4px;
-  right: 4px;
-  height: 60%;
-  border-left: 1.5px solid rgba(0, 0, 0, 0.2);
-  border-right: 1.5px solid rgba(0, 0, 0, 0.2);
-  pointer-events: none;
-}
-
-/*end of the new code for long term tasks*/
 ul {
   list-style-type: none;
   margin: 0;
@@ -506,7 +427,6 @@ li a {
   padding-left: 5px;
 }
 
-/*Davyd's new code*/
 #overlay {
   display: none;
   position: fixed;
@@ -533,7 +453,7 @@ li a {
   border: 1px solid #ccc;
   border-radius: 20px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-  z-index: 999; /* Above the overlay */
+  z-index: 999;
   overflow: auto;
 }
 
@@ -718,6 +638,15 @@ input::placeholder {
 .task-time,
 .task-time1 {
   display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 5px;
+}
+
+.task-time .at-input-i,
+.task-time1 .at-input-i {
+  flex: 1;
+  margin: 0;
 }
 
 .title-task {
@@ -756,12 +685,6 @@ input::placeholder {
 .at-input-i:focus,
 .at-input:focus {
   outline-color: #8364e8;
-}
-
-.task-time,
-.task-time1 {
-  align-items: center;
-  justify-content: space-between;
 }
 
 .buttons {
@@ -812,7 +735,7 @@ input::placeholder {
 
 .add-task input::placeholder,
 .add-task textarea::placeholder {
-  color: var(--placeholder-color, grey); /* Default grey, changes dynamically */
+  color: var(--placeholder-color, grey);
 }
 
 /* 2xl */
@@ -869,6 +792,7 @@ input::placeholder {
     border-radius: 20px;
   }
 }
+
 /* xl */
 @media (max-width: 1280px) {
   .container {
@@ -878,101 +802,9 @@ input::placeholder {
     transform: scale(0.9);
   }
 }
+
 @media (max-width: 836px) {
   .panel {
     width: 100%;
   }
-}
-
-/* Grid Layout for Calendar */
-.calendar-grid {
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  border: 1px solid #ddd;
-  border-radius: 10px;
-  background-color: #f9f9f9;
-}
-
-.grid-header {
-  display: flex;
-  background-color: #f0f0f0;
-  border-bottom: 1px solid #ddd;
-}
-
-.time-label {
-  width: 60px; /* Space for time labels */
-}
-
-.day-header {
-  flex: 1;
-  text-align: center;
-  padding: 10px;
-  font-weight: bold;
-  border-right: 1px solid #ddd;
-}
-
-.grid-body {
-  display: flex;
-  position: relative;
-}
-
-.time-column {
-  width: 60px;
-  border-right: 1px solid #ddd;
-}
-
-.time-slot {
-  height: 60px; /* Height of each time slot */
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-bottom: 1px solid #ddd;
-  font-size: 12px;
-}
-
-.day-column {
-  flex: 1;
-  position: relative;
-  border-right: 1px solid #ddd;
-}
-
-.task-block {
-  position: absolute;
-  width: 90%;
-  margin: 0 5%;
-  border-radius: 5px;
-  padding: 5px;
-  color: #000;
-  font-size: 12px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-}
-
-.pink-bar {
-  background-color: #ffcccb; /* Light pink for Creativity */
-}
-
-.green-bar {
-  background-color: #90ee90; /* Light green for Strength */
-}
-
-.blue-bar {
-  background-color: #add8e6; /* Light blue for Intelligence */
-}
-
-/* Ensure text inside task blocks is readable */
-.task-block p {
-  margin: 2px 0;
-}
-
-.semi-bold {
-  font-weight: 600;
-}
-
-.font12px {
-  font-size: 12px;
-}
-
-.font10px {
-  font-size: 10px;
 }

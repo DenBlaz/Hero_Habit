@@ -5,6 +5,6 @@ from .views import task_create
 app_name = 'calend'
 
 urlpatterns = [
-    path('', views.calendar_view, name = "calend"),
+    path('', views.calend, name = "calend"),
     path("create-task/", views.task_create, name="taskcreate"),
     ]
