@@ -220,7 +220,7 @@
                   <div id="dueDateSection">
                     <input
                       class="at-input-i"
-                      id="toggleDate"
+                      id="dueDate"
                       name="due_date"
                       placeholder="DD.MM.YYYY"
                       value="{{ form.due_date.value|date:'d.m.Y'|default:'' }}"
@@ -249,19 +249,19 @@
                   <div class="task-time1" id="dateMonth" style="margin-top: 5px; display: none">
                     <input
                       class="at-input-i"
+                      id="startDate"
                       name="start_date"
                       placeholder="DD.MM.YYYY"
                       value="{{ form.start_date.value|date:'d.m.Y'|default:'' }}"
                       style="background: url('{% static 'calend/images/date-icon.svg' %}') no-repeat 8px center;"
-                      required
                     />
                     <input
                       class="at-input-i"
+                      id="finishDate"
                       name="finish_date"
                       placeholder="DD.MM.YYYY"
                       value="{{ form.finish_date.value|date:'d.m.Y'|default:'' }}"
                       style="background: url('{% static 'calend/images/date-icon.svg' %}') no-repeat 8px center;"
-                      required
                     />
                   </div>
 
@@ -458,14 +458,16 @@
       const dateDay = document.getElementById("dateDay");
       const dateMonth = document.getElementById("dateMonth");
       const dueDateSection = document.getElementById("dueDateSection");
-      const dueDateInput = document.getElementById("toggleDate");
+      const dueDateInput = document.getElementById("dueDate");
+      const startDateInput = document.getElementById("startDate");
+      const finishDateInput = document.getElementById("finishDate");
       const taskType = document.getElementById("taskType");
       const calendarView = document.getElementById("calendarView");
       const taskView = document.getElementById("taskView");
-      let currentMode = "daily";
+      let currentMode = "day"; // Унифицируем с "day" вместо "daily"
 
       toggleButton.addEventListener("click", function () {
-        if (currentMode === "daily") {
+        if (currentMode === "day") {
           currentMode = "month";
           toggleText.textContent = "Show tasks for day";
           toggleIcon.src = '{% static "calend/images/rightarrow.svg" %}';
@@ -473,17 +475,21 @@
           dateMonth.style.display = "block";
           dueDateSection.style.display = "none";
           dueDateInput.removeAttribute("required");
+          startDateInput.setAttribute("required", "");
+          finishDateInput.setAttribute("required", "");
           taskType.value = "long";
           calendarView.style.display = "none";
           taskView.style.display = "block";
         } else {
-          currentMode = "daily";
+          currentMode = "day";
           toggleText.textContent = "Show tasks for month";
           toggleIcon.src = '{% static "calend/images/leftarrow.svg" %}';
           dateDay.style.display = "block";
           dateMonth.style.display = "none";
           dueDateSection.style.display = "block";
           dueDateInput.setAttribute("required", "");
+          startDateInput.removeAttribute("required");
+          finishDateInput.removeAttribute("required");
           taskType.value = "daily";
           calendarView.style.display = "block";
           taskView.style.display = "none";
@@ -497,17 +503,21 @@
           dateMonth.style.display = "block";
           dueDateSection.style.display = "none";
           dueDateInput.removeAttribute("required");
+          startDateInput.setAttribute("required", "");
+          finishDateInput.setAttribute("required", "");
           taskType.value = "long";
           toggleText.textContent = "Show tasks for day";
           toggleIcon.src = '{% static "calend/images/rightarrow.svg" %}';
           calendarView.style.display = "none";
           taskView.style.display = "block";
         } else {
-          currentMode = "daily";
+          currentMode = "day";
           dateDay.style.display = "block";
           dateMonth.style.display = "none";
           dueDateSection.style.display = "block";
           dueDateInput.setAttribute("required", "");
+          startDateInput.removeAttribute("required");
+          finishDateInput.removeAttribute("required");
           taskType.value = "daily";
           toggleText.textContent = "Show tasks for month";
           toggleIcon.src = '{% static "calend/images/leftarrow.svg" %}';
@@ -515,7 +525,7 @@
           taskView.style.display = "none";
         }
       }
-      setTaskMode("{{ task_type|default:'daily' }}");
+      setTaskMode("{{ task_type|default:'day' }}");
 
       document.getElementById("toggle-icon").addEventListener("click", function () {
         document.getElementById("toggle-panel").style.display = "block";

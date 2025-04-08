@@ -42,6 +42,7 @@ def task_create(request):
             })
     else:
         form = DailyTaskForm()
+        print("GET request, showing empty form")
     return render(request, 'calend/calend-for-all.html', {
         'form': form,
         'daily_tasks': DailyTask.objects.filter(user=request.user),

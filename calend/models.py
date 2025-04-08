@@ -33,7 +33,6 @@ class LongTask(models.Model):
     start_date = models.DateField(blank=True, null=True)
     finish_date = models.DateField(blank=True, null=True)
     
-    due_date = models.DateTimeField(blank=True, null=True)
     completed = models.BooleanField(default=False)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True) 
