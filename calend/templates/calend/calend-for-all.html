@@ -144,6 +144,7 @@
                   />
                 </button>
               </div>
+              <!-- When clicked, arrows should change the month -->
               <ul class="days" style="margin-top: 15px; margin-bottom: 10px">
                 <li>Mon</li>
                 <li>Tue</li>
@@ -183,6 +184,7 @@
                 <button class="next-month">1</button>
                 <button class="next-month">2</button>
               </div>
+              <!-- When clicked on a day, it should update the selected week and day -->
             </div>
 
             <div class="categories-section">
@@ -383,7 +385,7 @@
           </div>
         </div>
 
-        <!-- Calendar for days (DailyTask) -->
+        <!-- Calendar for days -->
         <div class="calendar-section" id="calendarView">
           <div class="days-section">
             <div class="day" style="border-top-left-radius: 10px"></div>
@@ -414,21 +416,11 @@
             </button>
           </div>
           <div class="time-section">
-            <div class="time-column" id="time-column">
-              <div class="time-slot">9 am</div>
-              <div class="time-slot">10 am</div>
-              <div class="time-slot">11 am</div>
-              <div class="time-slot">12 am</div>
-              <div class="time-slot">1 pm</div>
-              <div class="time-slot">2 pm</div>
-            </div>
-            {% for day in "1234567" %}
+            <div class="time-column" id="time-column"></div>
             <div class="time-column">
-              {% for task in daily_tasks %} {% if task.due_date|date:"j" == day
-              %}
+              {% for task in daily_tasks %}
               <div
                 class="side-bar {% if task.characteristic == 'Creativity' %}pink-bar{% elif task.characteristic == 'Strength' %}green-bar{% else %}blue-bar{% endif %}"
-                style="top: {{ task.start_time|time:'H' }}%; height: {{ task.finish_time|time:'H'|add:task.start_time|time:'H'|add:'-1' }}%;"
               >
                 <p class="semi-bold font16px">{{ task.title }}</p>
                 <p class="font12px">
@@ -436,64 +428,103 @@
                   task.finish_time|time:"H:i" }}
                 </p>
               </div>
+              {% endfor %}
             </div>
-            {% endfor %}
+            <div class="time-column"></div>
+            <div class="time-column"></div>
+            <div class="time-column"></div>
+            <div class="time-column"></div>
+            <div class="time-column"></div>
+            <div class="time-column"></div>
           </div>
         </div>
 
-        <!-- Calendar for months (LongTask) -->
+        <!-- Calendar for months -->
         <div
           class="calendar-section1 rounded"
           id="taskView"
           style="display: none"
         >
+          <div class="task-section">
+            {% for task in long_tasks %}
+            <button class="task">
+              <p class="semi-bold font16px">{{ task.title }}</p>
+              <p class="font12px">
+                {{ task.start_date|date:"d.m.Y" }} - {{
+                task.finish_date|date:"d.m.Y" }}
+              </p>
+            </button>
+            {% endfor %}
+          </div>
           <div class="month-section">
             <div class="month">
-              <div class="day-header"></div>
-              {% for day in
-              "12345678910111213141516171819202122232425262728293031" %}
-              <div class="day-header">{{ day }}</div>
-              {% endfor %}
+              <div class="months">January</div>
+              <div class="months active-month">February</div>
+              <div class="months">March</div>
+              <div class="months">April</div>
+              <div class="months">May</div>
+              <div class="months">June</div>
+              <div class="months">July</div>
+              <div class="months">August</div>
+              <div class="months">September</div>
+              <div class="months">October</div>
+              <div class="months">November</div>
+              <div class="months">December</div>
             </div>
             <div class="month">
               {% for task in long_tasks %}
-              <div
-                class="long-task-bar {% if task.characteristic == 'Creativity' %}pink-bar{% elif task.characteristic == 'Strength' %}green-bar{% else %}blue-bar{% endif %}"
-                style="left: {{ task.start_date|date:'j'|add:'-1' }}0%; width: {{ task.finish_date|date:'j'|add:1|add:task.start_date|date:'j'|add:'-1' }}0%;"
+              <button
+                class="top-bar {% if task.characteristic == 'Creativity' %}pink-bar{% elif task.characteristic == 'Strength' %}green-bar{% else %}blue-bar{% endif %}"
               >
-                <p class="semi-bold font16px">{{ task.title }}</p>
                 <span class="start-date"
                   >{{ task.start_date|date:"d.m.Y" }}</span
                 >
                 <span class="end-date"
                   >{{ task.finish_date|date:"d.m.Y" }}</span
                 >
-              </div>
+              </button>
               {% endfor %}
+            </div>
+            <div class="blankmonth">
+              <div class="months"></div>
+              <div class="months"></div>
+              <div class="months"></div>
+              <div class="months"></div>
+              <div class="months"></div>
+              <div class="months"></div>
+              <div class="months"></div>
+              <div class="months"></div>
+              <div class="months"></div>
+              <div class="months"></div>
+              <div class="months"></div>
+              <div class="months"></div>
             </div>
           </div>
         </div>
-      </div>
 
-      <!-- Profile modal -->
-      <div id="profile-modal" class="modal">
-        <div class="modal-content rounded">
-          <p>Account</p>
-          <div class="flex-center">
-            <img src="{% static 'calend/images/account.svg' %}" height="35px" />
-            <div class="account-info light grey">
-              <p>{{ request.user.nickname }}</p>
-              <p>{{ request.user.email }}</p>
+        <!-- Profile modal -->
+        <div id="profile-modal" class="modal">
+          <div class="modal-content rounded">
+            <p>Account</p>
+            <div class="flex-center">
+              <img
+                src="{% static 'calend/images/account.svg' %}"
+                height="35px"
+              />
+              <div class="account-info light grey">
+                <p>{{ request.user.nickname }}</p>
+                <p>{{ request.user.email }}</p>
+              </div>
             </div>
+            <hr />
+            <p>
+              <a href="{% url 'accounts:logout' %}" class="inline log-out"
+                >Log out<img
+                  src="{% static 'calend/images/logOutSign.svg' %}"
+                  height="25px"
+              /></a>
+            </p>
           </div>
-          <hr />
-          <p>
-            <a href="{% url 'accounts:logout' %}" class="inline log-out"
-              >Log out<img
-                src="{% static 'calend/images/logOutSign.svg' %}"
-                height="25px"
-            /></a>
-          </p>
         </div>
       </div>
     </div>
