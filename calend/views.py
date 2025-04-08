@@ -55,10 +55,11 @@ def calendar_view(request):
 
     # Fetch daily tasks for the current user
     daily_tasks = DailyTask.objects.filter(user=request.user)
+    long_tasks = LongTask.objects.filter(user=request.user)
 
     context = {
         'days_of_week': days_of_week,
         'time_slots': time_slots,
         'daily_tasks': daily_tasks,
     }
-    return render(request, 'calend/calendar.html', context)
+    return render(request, 'calend/calend-for-all.html', context)
