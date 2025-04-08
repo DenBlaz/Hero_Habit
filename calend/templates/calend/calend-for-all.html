@@ -177,7 +177,7 @@
                 <div class="at-work">
                   {% if form.errors %}
                     <div style="color: red;">
-                      <p>Errors:</p>
+                      <p>Error:</p>
                       <ul>
                         {% for field in form %}
                           {% if field.errors %}
@@ -246,40 +246,36 @@
         <div class="calendar-section" id="calendarView">
           <div class="days-section">
             <div class="day" style="border-top-left-radius: 10px"></div>
-            <button class="space" id="Monday"><div>Monday <strong>1</strong></div></button>
-            <button class="space" id="Tuesday"><div>Tuesday <strong>2</strong></div></button>
-            <button class="space" id="Wednesday"><div>Wednesday <strong>3</strong></div></button>
-            <button class="space" id="Thursday"><div>Thursday <strong>4</strong></div></button>
-            <button class="space" id="Friday"><div>Friday <strong>5</strong></div></button>
-            <button class="space" id="Saturday"><div>Saturday <strong>6</strong></div></button>
+            <button class="space" id="Monday"><div>Monday <strong>30</strong></div></button>
+            <button class="space" id="Tuesday"><div>Tuesday <strong>31</strong></div></button>
+            <button class="space" id="Wednesday"><div>Wednesday <strong>1</strong></div></button>
+            <button class="space" id="Thursday"><div>Thursday <strong>2</strong></div></button>
+            <button class="space" id="Friday"><div>Friday <strong>3</strong></div></button>
+            <button class="space" id="Saturday"><div>Saturday <strong>4</strong></div></button>
             <button class="space" id="Sunday" style="border-top-right-radius: 10px">
-              <div>Sunday <strong>7</strong></div>
+              <div>Sunday <strong>5</strong></div>
             </button>
           </div>
-          Collapse
-
-Wrap
-
-Copy
-<div class="time-section">
-  <div class="time-column" id="time-column"></div>
-  <div class="time-column">
-    {% for task in daily_tasks %}
-      <div class="side-bar {% if task.characteristic == 'Creativity' %}pink-bar{% elif task.characteristic == 'Strength' %}green-bar{% else %}blue-bar{% endif %}">
-        <p class="semi-bold font16px">{{ task.title }}</p>
-        <p class="font12px">
-          {{ task.start_time|time:"H:i" }} - {{ task.finish_time|time:"H:i" }}
-        </p>
-      </div>
-    {% endfor %}
-  </div>
-  <div class="time-column"></div>
-            <div class="time-column"></div>
-          <div class="time-column"></div>
-          <div class="time-column"></div>
-          <div class="time-column"></div>
-          <div class="time-column"></div>
-        </div>
+          <div class="time-section">
+            <div class="time-column" id="time-column"></div>
+            {% for day in "Monday,Tuesday,Wednesday,Thursday,Friday,Saturday,Sunday" %}
+              <div class="time-column">
+                {% for task in daily_tasks %}
+                  {% if task.due_date|date:"l" == day %}
+                    <div
+                      class="task-block {% if task.characteristic == 'Creativity' %}pink-bar{% elif task.characteristic == 'Strength' %}green-bar{% else %}blue-bar{% endif %}"
+                      style="grid-row: {{ task.start_time|time:'H' | add:1 }} / {{ task.finish_time|time:'H' | add:1 }};"
+                    >
+                      <p class="semi-bold font16px">{{ task.title }}</p>
+                      <p class="font12px">
+                        {{ task.start_time|time:"H:i" }} - {{ task.finish_time|time:"H:i" }}
+                      </p>
+                    </div>
+                  {% endif %}
+                {% endfor %}
+              </div>
+            {% endfor %}
+          </div>
         </div>
 
         <div class="calendar-section1 rounded" id="taskView" style="display: none">
