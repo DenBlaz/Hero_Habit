@@ -7,7 +7,10 @@ from .models import DailyTask, LongTask
 def calend(request):
     daily_tasks = DailyTask.objects.filter(user=request.user)
     long_tasks = LongTask.objects.filter(user=request.user)
-    return render(request, 'calend/calend-for-all.html', {'daily_tasks': daily_tasks, 'long_tasks': long_tasks})
+    return render(request, 'calend/calend-for-all.html', {
+        'daily_tasks': daily_tasks,
+        'long_tasks': long_tasks,
+    })
 
 @login_required
 def task_create(request):
@@ -24,7 +27,22 @@ def task_create(request):
             task.save()
             return redirect('calend:calend')
         else:
+        
             print(f"Form errors: {form.errors}")
+        
+            daily_tasks = DailyTask.objects.filter(user=request.user)
+            long_tasks = LongTask.objects.filter(user=request.user)
+            return render(request, 'calend/calend-for-all.html', {
+                'form': form,
+                'daily_tasks': daily_tasks,
+                'long_tasks': long_tasks,
+                'task_type': task_type,
+            })
     else:
+        
         form = DailyTaskForm()
-    return render(request, 'calend/calend-for-all.html', {'form': form})
+    return render(request, 'calend/calend-for-all.html', {
+        'form': form,
+        'daily_tasks': DailyTask.objects.filter(user=request.user),
+        'long_tasks': LongTask.objects.filter(user=request.user),
+    })

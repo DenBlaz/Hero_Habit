@@ -17,3 +17,5 @@ class LongTaskForm(forms.ModelForm):
     class Meta:
         model = LongTask
         fields = ['title', 'description', 'characteristic', 'start_date', 'finish_date']
+
+

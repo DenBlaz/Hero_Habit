@@ -243,17 +243,34 @@
                   />
                 </div>
                 <div class="at-work">
+                  <!-- Отображение ошибок формы -->
+                  {% if form.errors %}
+                  <div style="color: red">
+                    <p>Пожалуйста, исправьте ошибки:</p>
+                    <ul>
+                      {% for field in form %} {% for error in field.errors %}
+                      <li>{{ field.label }}: {{ error }}</li>
+                      {% endfor %} {% endfor %} {% for error in
+                      form.non_field_errors %}
+                      <li>{{ error }}</li>
+                      {% endfor %}
+                    </ul>
+                  </div>
+                  {% endif %}
+
                   <p style="padding: 5px 0 5px 0">Title & Description</p>
                   <input
                     class="at-input"
                     name="title"
                     placeholder="New task title"
+                    value="{{ form.title.value|default:'' }}"
                     required
                   />
                   <input
                     class="at-input-i"
                     name="description"
                     placeholder="Description"
+                    value="{{ form.description.value|default:'' }}"
                     style="
                       background: url('{% static 'calend/images/lines-input.svg' %}')
                         no-repeat 8px 65%;
@@ -268,6 +285,7 @@
                       id="toggleDate"
                       name="due_date"
                       placeholder="DD.MM.YYYY"
+                      value="{{ form.due_date.value|date:'d.m.Y'|default:'' }}"
                       style="
                         margin: 10px 0 0 0;
                         background: url('{% static 'calend/images/date-icon.svg' %}')
@@ -282,6 +300,7 @@
                       class="at-input-i"
                       name="start_time"
                       placeholder="00:00"
+                      value="{{ form.start_time.value|time:'H:i'|default:'' }}"
                       style="
                         background: url('{% static 'calend/images/clock-icon.svg' %}')
                           no-repeat 8px center;
@@ -291,6 +310,7 @@
                       class="at-input-i"
                       name="finish_time"
                       placeholder="23:59"
+                      value="{{ form.finish_time.value|time:'H:i'|default:'' }}"
                       style="
                         background: url('{% static 'calend/images/clock-icon.svg' %}')
                           no-repeat 8px center;
@@ -308,6 +328,7 @@
                       class="at-input-i"
                       name="start_date"
                       placeholder="DD.MM.YYYY"
+                      value="{{ form.start_date.value|date:'d.m.Y'|default:'' }}"
                       style="
                         background: url('{% static 'calend/images/date-icon.svg' %}')
                           no-repeat 8px center;
@@ -318,6 +339,7 @@
                       class="at-input-i"
                       name="finish_date"
                       placeholder="DD.MM.YYYY"
+                      value="{{ form.finish_date.value|date:'d.m.Y'|default:'' }}"
                       style="
                         background: url('{% static 'calend/images/date-icon.svg' %}')
                           no-repeat 8px center;
@@ -331,7 +353,7 @@
                     type="hidden"
                     name="characteristic"
                     id="characteristic"
-                    value="Creativity"
+                    value="{{ form.characteristic.value|default:'Creativity' }}"
                   />
                   <div class="change-stats">
                     <img
@@ -339,21 +361,21 @@
                       data-category="Creativity"
                       data-chosen="{% static 'calend/images/Ch-R-ellipse.svg' %}"
                       data-default="{% static 'calend/images/pink-ellipse.svg' %}"
-                      class="at-icon chosen"
+                      class="at-icon {% if form.characteristic.value == 'Creativity' or not form.characteristic.value %}chosen{% endif %}"
                     />
                     <img
                       src="{% static 'calend/images/green-ellipse.svg' %}"
                       data-category="Strength"
                       data-chosen="{% static 'calend/images/Ch-Gr-ellipse.svg' %}"
                       data-default="{% static 'calend/images/green-ellipse.svg' %}"
-                      class="at-icon"
+                      class="at-icon {% if form.characteristic.value == 'Strength' %}chosen{% endif %}"
                     />
                     <img
                       src="{% static 'calend/images/blue-ellipse.svg' %}"
                       data-category="Intelligence"
                       data-chosen="{% static 'calend/images/Ch-B-ellipse.svg' %}"
                       data-default="{% static 'calend/images/blue-ellipse.svg' %}"
-                      class="at-icon"
+                      class="at-icon {% if form.characteristic.value == 'Intelligence' %}chosen{% endif %}"
                     />
                   </div>
 
@@ -630,6 +652,11 @@
         .addEventListener("click", function () {
           document.getElementById("profile-modal").style.display = "block";
         });
+
+      document.addEventListener("DOMContentLoaded", function () {
+        const initialTaskType = "{{ task_type|default:'daily' }}";
+        setTaskMode(initialTaskType === "long" ? "month" : "day");
+      });
     </script>
   </body>
 </html>
