@@ -21,8 +21,11 @@ def task_create(request):
 
         if task_type == 'daily':
             form = DailyTaskForm(request.POST)
-        else:
+        elif task_type == 'long':
             form = LongTaskForm(request.POST)
+        else:
+            print("Invalid task_type")
+            return redirect('calend:calend')
 
         if form.is_valid():
             task = form.save(commit=False)

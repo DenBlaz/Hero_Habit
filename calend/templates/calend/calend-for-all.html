@@ -172,12 +172,7 @@
               <div class="add-task" id="addTaskForm" style="display: none">
                 <div class="title-task">
                   <p>Add a task</p>
-                  <img
-                    src="{% static 'calend/images/at-cross.svg' %}"
-                    class="icon"
-                    style="width: 23px"
-                    onclick="document.getElementById('addTaskForm').style.display='none'"
-                  />
+                  <img src="{% static 'calend/images/at-cross.svg' %}" class="icon" style="width: 23px" />
                 </div>
                 <div class="at-work">
                   {% if form.errors %}
@@ -199,112 +194,36 @@
                       </ul>
                     </div>
                   {% endif %}
-
+            
                   <p style="padding: 5px 0 5px 0">Title & Description</p>
-                  <input
-                    class="at-input"
-                    name="title"
-                    placeholder="New task title"
-                    value="{{ form.title.value|default:'' }}"
-                    required
-                  />
-                  <input
-                    class="at-input-i"
-                    name="description"
-                    placeholder="Description"
-                    value="{{ form.description.value|default:'' }}"
-                    style="background: url('{% static 'calend/images/lines-input.svg' %}') no-repeat 8px 65%;"
-                  />
-
+                  <input class="at-input" name="title" placeholder="New task title" value="{{ form.title.value|default:'' }}" required />
+                  <input class="at-input-i" name="description" placeholder="Description" value="{{ form.description.value|default:'' }}" style="background: url('{% static 'calend/images/lines-input.svg' %}') no-repeat 8px 65%;" />
+            
                   <p style="padding: 1px 0 0 0">Date & Time</p>
                   <div id="dueDateSection">
-                    <input
-                      class="at-input-i"
-                      id="dueDate"
-                      name="due_date"
-                      placeholder="DD.MM.YYYY"
-                      value="{{ form.due_date.value|date:'d.m.Y'|default:'' }}"
-                      style="margin: 10px 0 0 0; background: url('{% static 'calend/images/date-icon.svg' %}') no-repeat 8px center;"
-                      required
-                    />
+                    <input class="at-input-i" id="dueDate" name="due_date" placeholder="DD.MM.YYYY" value="{{ form.due_date.value|date:'d.m.Y'|default:'' }}" style="margin: 10px 0 0 0; background: url('{% static 'calend/images/date-icon.svg' %}') no-repeat 8px center;" required />
                   </div>
-
+            
                   <div class="task-time" id="dateDay" style="margin-top: 5px">
-                    <input
-                      class="at-input-i"
-                      name="start_time"
-                      placeholder="00:00"
-                      value="{{ form.start_time.value|time:'H:i'|default:'' }}"
-                      style="background: url('{% static 'calend/images/clock-icon.svg' %}') no-repeat 8px center;"
-                    />
-                    <input
-                      class="at-input-i"
-                      name="finish_time"
-                      placeholder="23:59"
-                      value="{{ form.finish_time.value|time:'H:i'|default:'' }}"
-                      style="background: url('{% static 'calend/images/clock-icon.svg' %}') no-repeat 8px center;"
-                    />
+                    <input class="at-input-i" name="start_time" placeholder="00:00" value="{{ form.start_time.value|time:'H:i'|default:'' }}" style="background: url('{% static 'calend/images/clock-icon.svg' %}') no-repeat 8px center;" />
+                    <input class="at-input-i" name="finish_time" placeholder="23:59" value="{{ form.finish_time.value|time:'H:i'|default:'' }}" style="background: url('{% static 'calend/images/clock-icon.svg' %}') no-repeat 8px center;" />
                   </div>
-
-                  <div class="task-time1" id="dateMonth" style="margin-top: 5px; display: none">
-                    <input
-                      class="at-input-i"
-                      id="startDate"
-                      name="start_date"
-                      placeholder="DD.MM.YYYY"
-                      value="{{ form.start_date.value|date:'d.m.Y'|default:'' }}"
-                      style="background: url('{% static 'calend/images/date-icon.svg' %}') no-repeat 8px center;"
-                    />
-                    <input
-                      class="at-input-i"
-                      id="finishDate"
-                      name="finish_date"
-                      placeholder="DD.MM.YYYY"
-                      value="{{ form.finish_date.value|date:'d.m.Y'|default:'' }}"
-                      style="background: url('{% static 'calend/images/date-icon.svg' %}') no-repeat 8px center;"
-                    />
+            
+                  <div class="task-time1 hidden" id="dateMonth" style="margin-top: 5px">
+                    <input class="at-input-i" id="startDate" name="start_date" placeholder="DD.MM.YYYY" value="{{ form.start_date.value|date:'d.m.Y'|default:'' }}" style="background: url('{% static 'calend/images/date-icon.svg' %}') no-repeat 8px center;" />
+                    <input class="at-input-i" id="finishDate" name="finish_date" placeholder="DD.MM.YYYY" value="{{ form.finish_date.value|date:'d.m.Y'|default:'' }}" style="background: url('{% static 'calend/images/date-icon.svg' %}') no-repeat 8px center;" />
                   </div>
-
+            
                   <p style="margin: 10px 0 0 0">Category</p>
-                  <input
-                    type="hidden"
-                    name="characteristic"
-                    id="characteristic"
-                    value="{{ form.characteristic.value|default:'Creativity' }}"
-                  />
+                  <input type="hidden" name="characteristic" id="characteristic" value="{{ form幸characteristic.value|default:'Creativity' }}" />
                   <div class="change-stats">
-                    <img
-                      src="{% static 'calend/images/pink-ellipse.svg' %}"
-                      data-category="Creativity"
-                      data-chosen="{% static 'calend/images/Ch-R-ellipse.svg' %}"
-                      data-default="{% static 'calend/images/pink-ellipse.svg' %}"
-                      class="at-icon {% if form.characteristic.value == 'Creativity' or not form.characteristic.value %}chosen{% endif %}"
-                    />
-                    <img
-                      src="{% static 'calend/images/green-ellipse.svg' %}"
-                      data-category="Strength"
-                      data-chosen="{% static 'calend/images/Ch-Gr-ellipse.svg' %}"
-                      data-default="{% static 'calend/images/green-ellipse.svg' %}"
-                      class="at-icon {% if form.characteristic.value == 'Strength' %}chosen{% endif %}"
-                    />
-                    <img
-                      src="{% static 'calend/images/blue-ellipse.svg' %}"
-                      data-category="Intelligence"
-                      data-chosen="{% static 'calend/images/Ch-B-ellipse.svg' %}"
-                      data-default="{% static 'calend/images/blue-ellipse.svg' %}"
-                      class="at-icon {% if form.characteristic.value == 'Intelligence' %}chosen{% endif %}"
-                    />
+                    <img src="{% static 'calend/images/pink-ellipse.svg' %}" data-category="Creativity" data-chosen="{% static 'calend/images/Ch-R-ellipse.svg' %}" data-default="{% static 'calend/images/pink-ellipse.svg' %}" class="at-icon {% if form.characteristic.value == 'Creativity' or not form.characteristic.value %}chosen{% endif %}" />
+                    <img src="{% static 'calend/images/green-ellipse.svg' %}" data-category="Strength" data-chosen="{% static 'calend/images/Ch-Gr-ellipse.svg' %}" data-default="{% static 'calend/images/green-ellipse.svg' %}" class="at-icon {% if form.characteristic.value == 'Strength' %}chosen{% endif %}" />
+                    <img src="{% static 'calend/images/blue-ellipse.svg' %}" data-category="Intelligence" data-chosen="{% static 'calend/images/Ch-B-ellipse.svg' %}" data-default="{% static 'calend/images/blue-ellipse.svg' %}" class="at-icon {% if form.characteristic.value == 'Intelligence' %}chosen{% endif %}" />
                   </div>
-
+            
                   <div class="buttons">
-                    <button
-                      type="button"
-                      class="cancel-button"
-                      style="margin-right: 10px"
-                      onclick="document.getElementById('addTaskForm').style.display='none'"
-                    >
-                      Cancel
-                    </button>
+                    <button type="button" class="cancel-button" style="margin-right: 10px">Cancel</button>
                     <button type="submit" class="save-button">Save</button>
                   </div>
                 </div>
