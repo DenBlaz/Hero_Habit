@@ -73,7 +73,7 @@ body {
 }
 
 .calendar-section {
-  flex: 30; ///////////////////////////////////////////////////////////////////////////////////////////
+  flex: 30;
   display: flex;
   flex-direction: column;
 }
@@ -110,7 +110,7 @@ body {
   justify-content: center;
   align-items: center;
   position: relative;
-  width: calc(100% / 8);
+  width: 12.5%;
   background-color: #ffffff;
   font-weight: 300;
   max-height: 100%;
@@ -122,8 +122,7 @@ body {
   flex: 1;
   justify-content: center;
   align-items: center;
-
-  width: calc(100% / 8);
+  width: 12.5%;
   background-color: #ffffff;
   overflow: hidden;
   max-height: 100%;
@@ -135,22 +134,23 @@ body {
 }
 
 .days-section button:hover {
-  background-color: rgba(228, 222, 249);
+  background-color: rgb(228, 222, 249);
 }
+
 .time-column {
   position: relative;
   display: flex;
   flex-direction: column;
   gap: 1px;
   height: 100%;
-  width: calc(100% / 8);
+  width: 12.5%;
   max-height: 100%;
 }
 
 .time-slot {
   display: flex;
   flex-direction: column;
-  min-height: calc(100% / 6);
+  min-height: 16.6666666667%;
   width: 100%;
   gap: 1px;
   background-color: #ffffff;
@@ -160,7 +160,7 @@ body {
 
 .side-bar {
   position: absolute;
-  color: rgba(127, 157, 176, 1);
+  color: rgb(127, 157, 176);
   padding: 10px;
   top: 30%; /* starts vertically from*/
   left: 0%;
@@ -187,7 +187,6 @@ body {
 }
 
 /*new code for long term-tasks*/
-
 .calendar-section1 {
   flex: 3;
   display: flex;
@@ -211,6 +210,7 @@ body {
 .task-section button {
   border: none;
 }
+
 .task,
 .blanktask {
   display: flex;
@@ -218,7 +218,7 @@ body {
   flex: 1;
   justify-content: flex-start;
   align-items: flex-start;
-  max-height: calc(100% / 9);
+  max-height: 11.1111111111%;
   background-color: #ffffff;
   padding: 10px;
   text-align: left;
@@ -228,10 +228,12 @@ body {
   border: none;
   cursor: pointer;
 }
+
 .calendar-section1 button {
   border: none;
   cursor: pointer;
 }
+
 .month-section {
   display: flex;
   width: 84%;
@@ -249,7 +251,7 @@ body {
   display: flex;
   flex-direction: row;
   flex: 1;
-  max-height: calc(100% / 9);
+  max-height: 11.1111111111%;
   gap: 1px;
   flex-shrink: 0;
   position: relative;
@@ -264,11 +266,9 @@ body {
 .months {
   display: flex;
   flex-direction: column;
-
   justify-content: center;
   align-items: center;
-
-  min-width: calc(100% / 3);
+  min-width: 33.3333333333%;
   background-color: #ffffff;
   height: 100%;
 }
@@ -313,6 +313,7 @@ body {
   color: black;
   white-space: nowrap;
 }
+
 .end-date {
   position: absolute;
   top: 100%;
@@ -355,7 +356,6 @@ body {
 }
 
 /*end of the new code for long term tasks*/
-
 ul {
   list-style-type: none;
   margin: 0;
@@ -397,6 +397,7 @@ li a {
   flex-direction: row;
   justify-content: end;
 }
+
 .circled {
   border: 5px solid rgba(211, 151, 250, 0.2) !important;
   border-radius: 50%;
@@ -427,6 +428,7 @@ li a {
 .font12px {
   font-size: 0.7rem;
 }
+
 .font16px {
   font-size: 0.9rem;
 }
@@ -524,7 +526,7 @@ li a {
 .panel {
   display: none;
   position: fixed;
-  width: 800px; /////changed the size and deleted "top" and left"
+  width: 800px;
   height: 500px;
   font-weight: bolder;
   background-color: white;
@@ -618,6 +620,7 @@ input::placeholder {
   background-color: #f0dbfe;
   border-right: 5px solid #d397fa;
 }
+
 .activebutton {
   color: black;
 }
@@ -663,7 +666,7 @@ input::placeholder {
 .selected-day {
   background-color: #8364e8 !important;
   border-radius: 20px;
-  color: #ffffffd9;
+  color: rgba(255, 255, 255, 0.8509803922);
 }
 
 .categories-section,
@@ -707,13 +710,16 @@ input::placeholder {
   z-index: 996;
   overflow: auto;
 }
+
 .add-task::-webkit-scrollbar {
   display: none;
 }
+
 .task-time,
 .task-time1 {
   display: flex;
 }
+
 .title-task {
   display: flex;
   justify-content: space-between;
@@ -723,11 +729,13 @@ input::placeholder {
   font-size: 24px;
   border-bottom: 1.5px solid #ddd;
 }
+
 .at-work {
   display: flex;
   flex-direction: column;
   padding: 10px;
 }
+
 .at-input,
 .at-input-i {
   display: flex;
@@ -739,19 +747,23 @@ input::placeholder {
   border: 1px solid #ccc;
   border-radius: 5px;
 }
+
 .at-input::placeholder,
 .at-input-i::placeholder {
   color: #d9d9d9;
 }
+
 .at-input-i:focus,
 .at-input:focus {
   outline-color: #8364e8;
 }
+
 .task-time,
 .task-time1 {
   align-items: center;
   justify-content: space-between;
 }
+
 .buttons {
   display: flex;
   flex-direction: row;
@@ -759,6 +771,7 @@ input::placeholder {
   justify-content: right;
   margin-top: 15px;
 }
+
 .cancel-button,
 .save-button {
   width: 25%;
@@ -768,14 +781,17 @@ input::placeholder {
   border-color: #8364e8;
   border-width: 1px;
 }
+
 .cancel-button {
   background-color: white;
   color: #8364e8;
 }
+
 .save-button {
   background-color: #8364e8;
   color: white;
 }
+
 .change-stats {
   display: flex;
   flex-direction: row;
@@ -783,10 +799,12 @@ input::placeholder {
   align-items: center;
   margin-top: 5px;
 }
+
 .at-icon {
   padding: 1px 15px 1px 2px;
   cursor: pointer;
 }
+
 .at-input-i {
   background-size: 20px;
   padding-left: 40px;
@@ -812,20 +830,17 @@ input::placeholder {
     margin-right: 2vh;
     margin-bottom: 2vh;
   }
-
   .lil-container {
     display: flex;
     align-items: center;
     justify-content: space-between;
     margin-top: 2px;
   }
-
   .lil-calendar {
     border-radius: 15px;
     font-size: 16px;
     font-weight: 400;
   }
-
   .change-month {
     display: flex;
     align-items: center;
@@ -834,11 +849,9 @@ input::placeholder {
     background-color: #fdfcfe;
     cursor: pointer;
   }
-
   .change-month-icon {
     width: 23px;
   }
-
   .days {
     display: grid;
     grid-template-columns: repeat(7, 1fr);
@@ -846,19 +859,16 @@ input::placeholder {
     list-style: none;
     padding: 0;
   }
-
   .dates {
     display: grid;
     grid-template-columns: repeat(7, 1fr);
     margin-bottom: 5px;
   }
-
   .selected-week {
-    background-color: #8364e826;
+    background-color: rgba(131, 100, 232, 0.1490196078);
     border-radius: 20px;
   }
 }
-
 /* xl */
 @media (max-width: 1280px) {
   .container {
@@ -868,9 +878,8 @@ input::placeholder {
     transform: scale(0.9);
   }
 }
-
 @media (max-width: 836px) {
   .panel {
     width: 100%;
   }
-} /////added this media which helps with settings
+}
