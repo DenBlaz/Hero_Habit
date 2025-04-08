@@ -243,17 +243,18 @@
                   />
                 </div>
                 <div class="at-work">
-                  <!-- Отображение ошибок формы -->
                   {% if form.errors %}
                   <div style="color: red">
-                    <p>Пожалуйста, исправьте ошибки:</p>
+                    <p>Errors</p>
                     <ul>
-                      {% for field in form %} {% for error in field.errors %}
+                      {% for field in form %} {% if field.errors %} {% for error
+                      in field.errors %}
                       <li>{{ field.label }}: {{ error }}</li>
-                      {% endfor %} {% endfor %} {% for error in
+                      {% endfor %} {% endif %} {% endfor %} {% if
+                      form.non_field_errors %} {% for error in
                       form.non_field_errors %}
                       <li>{{ error }}</li>
-                      {% endfor %}
+                      {% endfor %} {% endif %}
                     </ul>
                   </div>
                   {% endif %}
@@ -278,7 +279,6 @@
                   />
 
                   <p style="padding: 1px 0 0 0">Date & Time</p>
-                  <!-- Due date field for DailyTask -->
                   <div id="dueDateSection">
                     <input
                       class="at-input-i"
@@ -294,7 +294,6 @@
                     />
                   </div>
 
-                  <!-- Block for DailyTask (day mode) -->
                   <div class="task-time" id="dateDay" style="margin-top: 5px">
                     <input
                       class="at-input-i"
@@ -318,7 +317,6 @@
                     />
                   </div>
 
-                  <!-- Block for LongTask (month mode) -->
                   <div
                     class="task-time1"
                     id="dateMonth"
