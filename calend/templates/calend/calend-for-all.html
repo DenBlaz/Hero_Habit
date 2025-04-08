@@ -244,19 +244,23 @@
                 </div>
                 <div class="at-work">
                   {% if form.errors %}
-                  <div style="color: red">
-                    <p>Errors</p>
-                    <ul>
-                      {% for field in form %} {% if field.errors %} {% for error
-                      in field.errors %}
-                      <li>{{ field.label }}: {{ error }}</li>
-                      {% endfor %} {% endif %} {% endfor %} {% if
-                      form.non_field_errors %} {% for error in
-                      form.non_field_errors %}
-                      <li>{{ error }}</li>
-                      {% endfor %} {% endif %}
-                    </ul>
-                  </div>
+                    <div style="color: red">
+                      <p>Errors:</p>
+                      <ul>
+                        {% for field in form %}
+                          {% if field.errors %}
+                            {% for error in field.errors %}
+                              <li>{{ field.label }}: {{ error }}</li>
+                            {% endfor %}
+                          {% endif %}
+                        {% endfor %}
+                        {% if form.non_field_errors %}
+                          {% for error in form.non_field_errors %}
+                            <li>{{ error }}</li>
+                          {% endfor %}
+                        {% endif %}
+                      </ul>
+                    </div>
                   {% endif %}
 
                   <p style="padding: 5px 0 5px 0">Title & Description</p>
@@ -266,16 +270,6 @@
                     placeholder="New task title"
                     value="{{ form.title.value|default:'' }}"
                     required
-                  />
-                  <input
-                    class="at-input-i"
-                    name="description"
-                    placeholder="Description"
-                    value="{{ form.description.value|default:'' }}"
-                    style="
-                      background: url('{% static 'calend/images/lines-input.svg' %}')
-                        no-repeat 8px 65%;
-                    "
                   />
 
                   <p style="padding: 1px 0 0 0">Date & Time</p>
