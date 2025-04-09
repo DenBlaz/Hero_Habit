@@ -110,12 +110,26 @@
                 <li>Sat</li>
                 <li>Sun</li>
               </ul>
-              <div class="dates selected-week">
-                {% for date in week_dates %}
-                  <button class="{% if date == today %}selected-day{% endif %}">{{ date|date:"d" }}</button>
+              <div class="dates">
+                {% for date in month_dates %}
+                  {% if date %}
+                    <button class="
+                      {% if date.day == selected_date.day and date.month == selected_date.month %}selected-day{% endif %}
+                      {% if date.month != selected_date.month %}different-month{% endif %}
+                      {% if date >= current_week_start and date <= current_week_end %}selected-week{% endif %}
+                    ">
+                      {{ date.day }}
+                    </button>
+                  {% else %}
+                    <button class="empty-day"></button>
+                  {% endif %}
                 {% endfor %}
               </div>
             </div>
+            <button class="change-month">
+              <img src="{% static 'images/right.png' %}" alt="next month" class="change-month-icon">
+            </button>
+          </div>
 
             <div class="categories-section">
               <p style="padding: 1px 1px 0 10px; font-weight: 600; font-size: 20px;">

@@ -31,6 +31,51 @@ def calend(request):
         'today': today,
     })
 
+
+from datetime import datetime, timedelta
+import calendar
+
+def calendar_view(request):
+    # Поточна дата (наприклад, 9 квітня 2025)
+    selected_date = datetime(2025, 4, 9)  # Можна зробити динамічною через request.GET
+
+    # Визначаємо місяць і рік
+    month = selected_date.month
+    year = selected_date.year
+
+    # Отримуємо кількість днів у місяці та день тижня для 1-го числа
+    num_days = calendar.monthrange(year, month)[1]  # Наприклад, 30 для квітня
+    first_day = datetime(year, month, 1).weekday()  # 0 = понеділок, 6 = неділя
+
+    # Створюємо список усіх днів місяця
+    month_dates = []
+    
+    # Додаємо порожні клітинки перед 1-м числом
+    for _ in range(first_day):
+        month_dates.append(None)
+
+    # Додаємо всі дні місяця
+    for day in range(1, num_days + 1):
+        month_dates.append(datetime(year, month, day))
+
+    # Додаємо порожні клітинки після останнього дня, щоб заповнити тиждень
+    while len(month_dates) % 7 != 0:
+        month_dates.append(None)
+
+    # Визначаємо поточний тиждень (7–13 квітня)
+    current_week_start = selected_date - timedelta(days=selected_date.day - 7)  # Початок тижня (7 квітня)
+    current_week_end = current_week_start + timedelta(days=6)  # Кінець тижня (13 квітня)
+
+    context = {
+        'month': selected_date.strftime('%B'),  # "April"
+        'year': year,
+        'month_dates': month_dates,  # Усі дні місяця
+        'selected_date': selected_date,
+        'current_week_start': current_week_start,
+        'current_week_end': current_week_end,
+    }
+    return render(request, 'calend-for-all.html', context)
+
 @login_required
 def task_create(request):
     if request.method == 'POST':
