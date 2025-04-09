@@ -7,15 +7,15 @@ class UserStats(models.Model):
     level = models.PositiveIntegerField(default=1)
     experience = models.PositiveIntegerField(default=0)
     
-    creativity_tasks = models.PositiveIntegerField(default=1)
+    creativity_tasks = models.PositiveIntegerField(default=0)
     strength_tasks = models.PositiveIntegerField(default=0)
-    intelligence_tasks = models.PositiveIntegerField(default=0)
+    intelligence_tasks = models.PositiveIntegerField(default=1)
     
     weekly_tasks = models.PositiveIntegerField(default=0)
 
     monday_tasks = models.PositiveIntegerField(default=0)
     tuesday_tasks = models.PositiveIntegerField(default=0)
-    wednesday_tasks = models.PositiveIntegerField(default=0)
+    wednesday_tasks = models.PositiveIntegerField(default=1)
     thursday_tasks = models.PositiveIntegerField(default=0)
     friday_tasks = models.PositiveIntegerField(default=0)
     saturday_tasks = models.PositiveIntegerField(default=0)
