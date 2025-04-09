@@ -20,4 +20,4 @@ def stats_view(request):
         'experience': user_stats.experience,
         'request': request,
     }
-    return render(request, 'stats.html', context)
+    return render(request, 'stats/stats.html', context)
