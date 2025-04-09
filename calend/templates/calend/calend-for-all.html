@@ -384,12 +384,16 @@
 
       const timeColumns = document.querySelectorAll(".time-column");
       timeColumns.forEach((column) => {
-        for (let i = 1; i <= 24; i++) {
+        for (let i = 0; i <= 23; i++) {
           const timeSlot = document.createElement("div");
           timeSlot.className = "time-slot";
           if (column.id === "time-column") {
-            if (i <= 12) {
+            if (i === 0) {
+              timeSlot.textContent = `12 am`;
+            } else if (i < 12) {
               timeSlot.textContent = `${i} am`;
+            } else if (i === 12) {
+              timeSlot.textContent = `12 pm`;
             } else {
               timeSlot.textContent = `${i - 12} pm`;
             }

@@ -80,10 +80,10 @@ body {
 }
 
 .days-section {
-  display: flex;
+  display: grid;
+  grid-template-columns: 50px repeat(7, 1fr);
   height: 10%;
   max-height: 100%;
-  flex-direction: row;
   border-bottom: 1px solid #d9d9d9;
   background-color: #d9d9d9;
   gap: 1px;
@@ -92,10 +92,10 @@ body {
 }
 
 .time-section {
-  display: flex;
+  display: grid;
+  grid-template-columns: 50px repeat(7, 1fr);
   height: 90%;
   max-height: 100%;
-  flex-direction: row;
   background-color: #d9d9d9;
   overflow: auto;
   scrollbar-width: none;
@@ -107,11 +107,8 @@ body {
 .day {
   display: flex;
   flex-direction: column;
-  flex: 1;
   justify-content: center;
   align-items: center;
-  position: relative;
-  width: calc(100% / 8);
   background-color: #ffffff;
   font-weight: 300;
   max-height: 100%;
@@ -120,10 +117,8 @@ body {
 .space {
   display: flex;
   flex-direction: column;
-  flex: 1;
   justify-content: center;
   align-items: center;
-  width: calc(100% / 8);
   background-color: #ffffff;
   overflow: hidden;
   max-height: 100%;
@@ -144,38 +139,52 @@ body {
   grid-template-rows: repeat(24, 40px);
   gap: 1px;
   height: 100%;
-  width: calc(100% / 8);
   max-height: 100%;
 }
 
 .time-slot {
   display: flex;
   flex-direction: column;
-  min-height: calc(100% / 6);
+  height: 40px;
   width: 100%;
-  gap: 1px;
   background-color: #ffffff;
   justify-content: center;
   align-items: center;
+  font-size: 12px;
+  color: #4e4e4e;
 }
 
-.task-block { 
+.task-block {
   position: absolute;
-  color: rgba(127, 157, 176, 1);
-  padding: 10px;
-  width: 100%;
-  border-radius: 10px;
+  width: 90%;
+  margin: 0 5%;
+  padding: 5px;
+  border-radius: 5px;
   z-index: 10;
   display: flex;
   flex-direction: column;
   overflow: hidden;
   cursor: pointer;
+  color: #000;
+  font-size: 14px;
 }
 
 .task-block:hover,
 .task-block:focus,
 .task-block:active {
   border: 1.5px solid rgba(0, 0, 0, 0.2) !important;
+}
+
+.green-bar {
+  background-color: rgba(144, 238, 144, 0.5);
+}
+
+.blue-bar {
+  background-color: rgba(173, 216, 230, 0.5);
+}
+
+.pink-bar {
+  background-color: rgba(255, 182, 193, 0.5);
 }
 
 /* Long Calendar */
@@ -243,18 +252,6 @@ body {
 .task-bar:focus,
 .task-bar:active {
   border: 1.5px solid rgba(0, 0, 0, 0.2) !important;
-}
-
-.green-bar {
-  background-color: rgba(159, 251, 182, 0.6);
-}
-
-.blue-bar {
-  background-color: rgba(182, 224, 251, 0.6);
-}
-
-.pink-bar {
-  background-color: rgba(251, 182, 224, 0.6);
 }
 
 .flip-image {
