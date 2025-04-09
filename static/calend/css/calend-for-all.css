@@ -159,17 +159,13 @@ body {
 
 .task-block {
   position: absolute;
-  width: 90%; /* Трохи вужче, щоб залишити відступи */
-  margin: 0 5%; /* Центруємо завдання в колонці */
+  width: 100%;
   min-width: 120px;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  padding: 8px;
+  padding: 5px;
   box-sizing: border-box;
-  border-radius: 10px; /* Округлення */
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15); /* Тінь для об’ємності */
-  transition: transform 0.2s ease, box-shadow 0.2s ease; /* Плавний перехід для ефектів */
 }
 
 .task-block p {
