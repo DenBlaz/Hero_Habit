@@ -139,9 +139,9 @@ body {
 
 .time-column {
   position: relative;
-  display: grid;
-  grid-template-rows: repeat(24, 30px);
-  height: 720px;
+  display: grid; /* Змінено з flex на grid */
+  grid-template-rows: repeat(24, 30px); /* 24 рядки по 30px */
+  height: 720px; /* 24 * 30px */
   width: calc(100% / 8);
   max-height: 100%;
   gap: 1px;
@@ -152,36 +152,24 @@ body {
   flex-direction: column;
   width: 100%;
   gap: 1px;
-  background: linear-gradient(145deg, #f8f8f8, #e8e8e8);
+  background-color: #fff;
   justify-content: center;
   align-items: center;
-  border-bottom: 1px solid #e0e0e0;
-  transition: background 0.3s ease;
-}
-
-.time-slot:hover {
-  background: linear-gradient(145deg, #ffffff, #f0f0f0);
 }
 
 .task-block {
   position: absolute;
-  width: 90%;
-  margin: 0 5%;
+  width: 90%; /* Трохи вужче, щоб залишити відступи */
+  margin: 0 5%; /* Центруємо завдання в колонці */
   min-width: 120px;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
   padding: 8px;
   box-sizing: border-box;
-  border: 1px solid rgba(0, 0, 0, 0.1);
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-  transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
-}
-
-.task-block:hover {
-  transform: translateY(-1px);
-  border-color: rgba(0, 0, 0, 0.3);
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
+  border-radius: 10px; /* Округлення */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15); /* Тінь для об’ємності */
+  transition: transform 0.2s ease, box-shadow 0.2s ease; /* Плавний перехід для ефектів */
 }
 
 .task-block p {
@@ -189,19 +177,6 @@ body {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  font-size: 0.9rem;
-}
-
-.pink-bar {
-  background: linear-gradient(145deg, rgba(251, 182, 224, 0.9), rgba(251, 182, 224, 0.7));
-}
-
-.green-bar {
-  background: linear-gradient(145deg, rgba(159, 251, 182, 0.9), rgba(159, 251, 182, 0.7));
-}
-
-.blue-bar {
-  background: linear-gradient(145deg, rgba(182, 224, 251, 0.9), rgba(182, 224, 251, 0.7));
 }
 
 .side-bar {
@@ -232,6 +207,7 @@ body {
   border: 1.5px solid rgba(0, 0, 0, 0.2) !important;
 }
 
+/*new code for long term-tasks*/
 .calendar-section1 {
   flex: 3;
   display: flex;
@@ -400,6 +376,7 @@ body {
   pointer-events: none;
 }
 
+/*end of the new code for long term tasks*/
 ul {
   list-style-type: none;
   margin: 0;
@@ -550,6 +527,7 @@ li a {
   padding-left: 5px;
 }
 
+/*Davyd's new code*/
 #overlay {
   display: none;
   position: fixed;
@@ -686,13 +664,6 @@ input::placeholder {
   color: #c0c0c0;
 }
 
-.dates {
-  display: grid;
-  grid-template-columns: repeat(7, 1fr);
-  margin-bottom: 5px;
-  position: relative; /* Для псевдоелемента */
-}
-
 .dates button {
   display: flex;
   border: none;
@@ -703,10 +674,6 @@ input::placeholder {
   justify-content: center;
   align-items: center;
   background-color: transparent;
-}
-
-.empty-day {
-  visibility: hidden; /* Порожні клітинки невидимі */
 }
 
 .category {
@@ -720,44 +687,7 @@ input::placeholder {
 .selected-day {
   background-color: #8364e8 !important;
   border-radius: 20px;
-  color: #fff;
-}
-
-.selected-week {
-  background-color: rgba(131, 100, 232, 0.2); /* Легкий фон для кожної кнопки */
-}
-
-.dates:has(.selected-week)::before {
-  content: "";
-  position: absolute;
-  left: 0;
-  right: 0;
-  height: 40px; /* Висота одного рядка */
-  background-color: rgba(131, 100, 232, 0.2); /* Суцільна підсвітка */
-  border-radius: 10px; /* Округлення для підсвітки */
-  z-index: -1; /* Під кнопками */
-  top: 0; /* За замовчуванням для першого тижня */
-}
-
-/* Зміщуємо підсвітку в залежності від тижня */
-.dates:has(.selected-week:nth-child(n+8))::before {
-  top: 40px; /* Другий тиждень */
-}
-
-.dates:has(.selected-week:nth-child(n+15))::before {
-  top: 80px; /* Третій тиждень */
-}
-
-.dates:has(.selected-week:nth-child(n+22))::before {
-  top: 120px; /* Четвертий тиждень */
-}
-
-.dates:has(.selected-week:nth-child(n+29))::before {
-  top: 160px; /* П'ятий тиждень */
-}
-
-.dates:has(.selected-week:nth-child(n+36))::before {
-  top: 200px; /* Шостий тиждень */
+  color: #fff d9;
 }
 
 .categories-section,
@@ -956,7 +886,8 @@ input::placeholder {
     margin-bottom: 5px;
   }
   .selected-week {
-    background-color: rgba(131, 100, 232, 0.2);
+    background-color: #8364e8 26;
+    border-radius: 20px;
   }
 }
 
