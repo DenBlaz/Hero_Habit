@@ -186,55 +186,42 @@
         <div class="manage-section">
           <div class="week-section rounded">
             <p class="semi-bold">Completed tasks last week</p>
-            <span class="row"
-              ><span class="number">10</span><span class="dashed-line"></span
-            ></span>
-            <span class="row"
-              ><span class="number l">8</span><span class="dashed-line"></span
-            ></span>
-            <span class="row"
-              ><span class="number l">6</span><span class="dashed-line"></span
-            ></span>
-            <span class="row"
-              ><span class="number l">4</span><span class="dashed-line"></span
-            ></span>
-            <span class="row"
-              ><span class="number l">2</span><span class="dashed-line"></span
-            ></span>
-            <span class="row"
-              ><span class="number-inv">3</span><span class="solid-line"></span
-            ></span>
+            <span class="row"><span class="number">10</span><span class="dashed-line"></span></span>
+            <span class="row"><span class="number l">8</span><span class="dashed-line"></span></span>
+            <span class="row"><span class="number l">6</span><span class="dashed-line"></span></span>
+            <span class="row"><span class="number l">4</span><span class="dashed-line"></span></span>
+            <span class="row"><span class="number l">2</span><span class="dashed-line"></span></span>
+            <span class="row"><span class="number-inv">3</span><span class="solid-line"></span></span>
 
             <div class="chart-row">
-              <div class="bar" style="--height: 20%"></div>
-              <div class="bar" style="--height: 100%"></div>
-              <div class="bar" style="--height: 70%"></div>
-              <div class="bar" style="--height: 10%"></div>
-              <div class="bar" style="--height: 60%"></div>
-              <div class="bar" style="--height: 80%"></div>
-              <div class="bar" style="--height: 70%"></div>
+                <div class="bar" data-day="monday" style="--height: 0%"></div>
+                <div class="bar" data-day="tuesday" style="--height: 0%"></div>
+                <div class="bar" data-day="wednesday" style="--height: 0%"></div>
+                <div class="bar" data-day="thursday" style="--height: 0%"></div>
+                <div class="bar" data-day="friday" style="--height: 0%"></div>
+                <div class="bar" data-day="saturday" style="--height: 0%"></div>
+                <div class="bar" data-day="sunday" style="--height: 0%"></div>
             </div>
 
             <div class="day-row">
-              <p class="dayrows" data-short="M">Mon</p>
-              <p class="dayrows" data-short="T">Tue</p>
-              <p class="dayrows" data-short="W">Wed</p>
-              <p class="dayrows" data-short="T">Thu</p>
-              <p class="dayrows" data-short="F">Fri</p>
-              <p class="dayrows" data-short="S">Sat</p>
-              <p class="dayrows" data-short="S">Sun</p>
+                <p class="dayrows" data-short="M">Mon</p>
+                <p class="dayrows" data-short="T">Tue</p>
+                <p class="dayrows" data-short="W">Wed</p>
+                <p class="dayrows" data-short="T">Thu</p>
+                <p class="dayrows" data-short="F">Fri</p>
+                <p class="dayrows" data-short="S">Sat</p>
+                <p class="dayrows" data-short="S">Sun</p>
             </div>
           </div>
           <div class="alltime-section">
             <div class="alltasks rounded">
               <p class="left-top semi-bold">Completed tasks for all time</p>
               <div class="chart">
-                <!-- Add data attributes to store the values -->
                 <div
                   class="piechart"
-                  data-creativity="{{ creativity|default:100 }}"
-                  data-strength="{{ strength|default:8 }}"
-                  data-intelligence="{{ intelligence|default:22 }}"
+                  data-creativity="{{ creativity }}"
+                  data-strength="{{ strength }}"
+                  data-intelligence="{{ intelligence }}"
                 ></div>
               </div>
               <div class="completed">
@@ -245,21 +232,21 @@
                     <img src="/static/dashboard/image/pink-ellipse.svg" height="20px" />
                     <span class="hide">Creativity</span>
                   </div>
-                  <span>{{ creativity|default:100 }}</span>
+                  <span>{{ creativity }}</span>
                 </div>
                 <div class="attr inline">
                   <div>
                     <img src="/static/dashboard/image/green-ellipse.svg" height="20px" />
                     <span class="hide">Strength</span>
                   </div>
-                  <span>{{ strength|default:8 }}</span>
+                  <span>{{ strength }}</span>
                 </div>
                 <div class="attr inline">
                   <div>
                     <img src="/static/dashboard/image/blue-ellipse.svg" height="20px" />
                     <span class="hide">Intelligence</span>
                   </div>
-                  <span>{{ intelligence|default:22 }}</span>
+                  <span>{{ intelligence }}</span>
                 </div>
               </div>
             </div>
@@ -297,7 +284,7 @@
           <div class="hero-stats rounded">
             <img src="/static/dashboard/image/creativity_f_10.svg" height="420px" />
             <img class="levelimg" src="/static/dashboard/image/level.svg" height="60px" />
-            <span class="level bold">10</span>
+            <span class="level bold">{{ level }}</span>
             <span class="username">{{ request.user.nickname }}</span>
           </div>
 
