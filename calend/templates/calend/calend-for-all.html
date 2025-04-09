@@ -111,34 +111,9 @@
                 <li>Sun</li>
               </ul>
               <div class="dates selected-week">
-                <button class="previous-month">30</button>
-                <button class="previous-month">31</button>
-                <button class="selected-day">1</button>
-                <button>2</button>
-                <button>3</button>
-                <button>4</button>
-                <button>5</button>
-              </div>
-              <div class="dates">
-                <button>6</button><button>7</button><button>8</button>
-                <button>9</button><button>10</button><button>11</button>
-                <button>12</button>
-              </div>
-              <div class="dates">
-                <button>13</button><button>14</button><button>15</button>
-                <button>16</button><button>17</button><button>18</button>
-                <button>19</button>
-              </div>
-              <div class="dates">
-                <button>20</button><button>21</button><button>22</button>
-                <button>23</button><button>24</button><button>25</button>
-                <button>26</button>
-              </div>
-              <div class="dates">
-                <button>27</button><button>28</button><button>29</button>
-                <button>30</button><button>31</button>
-                <button class="next-month">1</button>
-                <button class="next-month">2</button>
+                {% for date in week_dates %}
+                  <button class="{% if date == today %}selected-day{% endif %}">{{ date|date:"d" }}</button>
+                {% endfor %}
               </div>
             </div>
 
@@ -244,26 +219,23 @@
         <div class="calendar-section" id="calendarView">
           <div class="days-section">
             <div class="day" style="border-top-left-radius: 10px"></div>
-            <button class="space" id="Monday"><div>Monday <strong>30</strong></div></button>
-            <button class="space" id="Tuesday"><div>Tuesday <strong>31</strong></div></button>
-            <button class="space" id="Wednesday"><div>Wednesday <strong>1</strong></div></button>
-            <button class="space" id="Thursday"><div>Thursday <strong>2</strong></div></button>
-            <button class="space" id="Friday"><div>Friday <strong>3</strong></div></button>
-            <button class="space" id="Saturday"><div>Saturday <strong>4</strong></div></button>
-            <button class="space" id="Sunday" style="border-top-right-radius: 10px">
-              <div>Sunday <strong>5</strong></div>
-            </button>
+            {% for date in week_dates %}
+              <button class="space" id="{{ date|date:'l' }}">
+                <div>{{ date|date:'l' }} <strong>{{ date|date:'d' }}</strong></div>
+              </button>
+            {% endfor %}
           </div>
           <div class="time-section">
             <div class="time-column" id="time-column"></div>
-            {% for day in "Monday,Tuesday,Wednesday,Thursday,Friday,Saturday,Sunday" %}
+            {% for date in week_dates %}
               <div class="time-column">
                 {% for task in daily_tasks %}
-                  {% if task.due_date|date:"l" == day %}
+                  {% if task.due_date == date %}
                     <div
                       class="task-block {% if task.characteristic == 'Creativity' %}pink-bar{% elif task.characteristic == 'Strength' %}green-bar{% else %}blue-bar{% endif %} {% if task.completed %}completed{% endif %}"
-                      style="grid-row: {{ task.start_time|time:'H' | add:1 }} / {{ task.finish_time|time:'H' | add:1 }};"
+                      style="grid-row: {{ task.start_time|time:'H'|add:1 }} / {{ task.finish_time|time:'H'|add:1 }};"
                       data-task-id="{{ task.id }}"
+                      data-tooltip="{{ task.title }}: {{ task.description|default:'No description' }} ({{ task.start_time|time:'H:i' }} - {{ task.finish_time|time:'H:i' }})"
                     >
                       <p class="semi-bold font16px">{{ task.title }}</p>
                       <p class="font12px">{{ task.start_time|time:"H:i" }} - {{ task.finish_time|time:"H:i" }}</p>
@@ -279,24 +251,15 @@
         <div class="calendar-section1 rounded" id="taskView" style="display: none">
           <div class="month-section">
             <div class="month-header">
-              <div class="months">January</div>
-              <div class="months">February</div>
-              <div class="months">March</div>
-              <div class="months">April</div>
-              <div class="months">May</div>
-              <div class="months">June</div>
-              <div class="months">July</div>
-              <div class="months">August</div>
-              <div class="months">September</div>
-              <div class="months">October</div>
-              <div class="months">November</div>
-              <div class="months">December</div>
+              {% for month in "Jan,Feb,Mar" %}
+                <div class="months">{{ month }}</div>
+              {% endfor %}
             </div>
             <div class="month-grid">
               {% for task in long_tasks %}
                 <div
                   class="task-bar {% if task.characteristic == 'Creativity' %}pink-bar{% elif task.characteristic == 'Strength' %}green-bar{% else %}blue-bar{% endif %}"
-                  style="grid-column: {{ task.start_date|date:'n' }} / {{ task.finish_date|date:'n' | add:1 }};"
+                  style="grid-column: {{ task.start_date|date:'n'|add:-1 }} / {{ task.finish_date|date:'n'|add:1 }};"
                   data-task-id="{{ task.id }}"
                   data-tooltip="{{ task.title }}: {{ task.description|default:'No description' }} ({{ task.start_date|date:'d.m.Y' }} - {{ task.finish_date|date:'d.m.Y' }})"
                 >
@@ -330,7 +293,6 @@
     </div>
 
     <script>
-
       const modal = document.getElementById("profile-modal");
       const openModalBtn = document.getElementById("open-modal");
       openModalBtn.addEventListener("click", () => {
@@ -341,9 +303,9 @@
         if (event.target === modal) {
           modal.style.display = "none";
           openModalBtn.classList.remove("circled");
-        }z
+        }
       });
-      
+
       document.addEventListener("DOMContentLoaded", function () {
         const toggleIcon = document.getElementById("toggle-icon");
         const closeIcon = document.getElementById("close");
@@ -353,11 +315,11 @@
         const passwordOption = document.getElementById("ChangePassword");
         const profileSection = document.querySelector(".settings-profile-usage");
         const passwordSection = document.querySelector(".settings-change-password");
-      
+
         profileOption.classList.add("active");
         profileSection.style.display = "block";
         passwordSection.style.display = "none";
-      
+
         toggleIcon.addEventListener("click", () => {
           panel.style.display = "block";
           overlay.style.display = "block";
@@ -370,7 +332,7 @@
           panel.style.display = "none";
           overlay.style.display = "none";
         });
-      
+
         profileOption.addEventListener("click", function () {
           profileOption.classList.add("active");
           passwordOption.classList.remove("active");
@@ -384,23 +346,21 @@
           passwordSection.style.display = "block";
         });
       });
-      
+
       const timeColumns = document.querySelectorAll(".time-column");
       timeColumns.forEach((column) => {
-        for (let i = 1; i <= 24; i++) {
+        for (let i = 0; i < 24; i++) {
           const timeSlot = document.createElement("div");
           timeSlot.className = "time-slot";
           if (column.id === "time-column") {
-            if (i <= 12) {
-              timeSlot.textContent = `${i} am`;
-            } else {
-              timeSlot.textContent = `${i - 12} pm`;
-            }
+            const hour = i % 12 === 0 ? 12 : i % 12;
+            const period = i < 12 ? 'am' : 'pm';
+            timeSlot.textContent = `${hour} ${period}`;
           }
           column.appendChild(timeSlot);
         }
       });
-      
+
       const buttons = document.querySelectorAll(".space");
       let activeButton = null;
       buttons.forEach((button) => {
@@ -416,12 +376,12 @@
           button.style.borderBottom = "2px solid #8364E8";
         });
       });
-      
+
       const taskForm = document.getElementById("addTaskForm");
       const titleText = document.querySelector(".title-task p");
       const inputFields = document.querySelectorAll(".add-task input, .add-task textarea");
       if (taskForm) taskForm.style.display = "none";
-      
+
       function toggleTaskForm(changeTitle = false, changePlaceholder = false) {
         if (taskForm.style.display === "none" || taskForm.style.display === "") {
           taskForm.style.display = "block";
@@ -441,7 +401,7 @@
           });
         }
       }
-      
+
       function addClickListener(selector, changeTitle = false, changePlaceholder = false) {
         document.querySelectorAll(selector).forEach((element) => {
           element.addEventListener("click", function (event) {
@@ -450,10 +410,10 @@
           });
         });
       }
-      
+
       addClickListener(".side-bar", true, true);
       addClickListener(".task", true, true);
-      
+
       const addTaskButton = document.getElementById("addTaskButton");
       if (addTaskButton) {
         addTaskButton.addEventListener("click", function (event) {
@@ -461,7 +421,7 @@
           toggleTaskForm(false, false);
         });
       }
-      
+
       document.querySelector(".title-task .icon")?.addEventListener("click", function () {
         taskForm.style.display = "none";
         if (titleText) titleText.textContent = "Add a Task";
@@ -470,7 +430,7 @@
           input.style.color = "";
         });
       });
-      
+
       document.querySelector(".cancel-button")?.addEventListener("click", function () {
         taskForm.style.display = "none";
         if (titleText) titleText.textContent = "Add a Task";
@@ -479,7 +439,7 @@
           input.style.color = "";
         });
       });
-      
+
       document.addEventListener("click", function (event) {
         if (
           taskForm.style.display === "block" &&
@@ -496,7 +456,7 @@
           });
         }
       });
-      
+
       const toggleButton = document.getElementById("toggleView");
       const calendarView = document.getElementById("calendarView");
       const taskView = document.getElementById("taskView");
@@ -511,7 +471,7 @@
       const taskType = document.getElementById("taskType");
       const addTask = document.querySelector(".add-task");
       let currentMode = "day";
-      
+
       toggleButton.addEventListener("click", function () {
         const isMonthlyView = toggleButton.classList.toggle("activebutton");
         console.log("Switching mode. Is monthly view:", isMonthlyView);
@@ -547,7 +507,7 @@
           console.log("Switched to Daily Tasks. taskType:", taskType.value);
         }
       });
-      
+
       function setTaskMode(mode) {
         console.log("Setting initial mode to:", mode);
         if (mode === "month") {
@@ -582,13 +542,13 @@
         console.log("Initial taskType:", taskType.value);
       }
       setTaskMode("{{ task_type|default:'day' }}");
-      
+
       const images = document.querySelectorAll(".at-icon");
       images[0].src = images[0].dataset.chosen;
       images.forEach((img) => {
         img.addEventListener("click", () => {
           images.forEach((i) => {
-            i.src = i.dataset.default;
+            i.src executors = i.dataset.default;
             i.classList.remove("chosen");
           });
           img.src = img.dataset.chosen;

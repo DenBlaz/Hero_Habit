@@ -9,25 +9,25 @@ def calend(request):
     today = datetime.today()
     start_of_week = today - timedelta(days=today.weekday())
     end_of_week = start_of_week + timedelta(days=6)
+    week_dates = [start_of_week + timedelta(days=i) for i in range(7)]
 
     daily_tasks = DailyTask.objects.filter(
         user=request.user,
         due_date__range=[start_of_week, end_of_week]
     )
-    print("Daily tasks:", daily_tasks)
 
-    start_of_year = datetime(today.year, 1, 1)
-    end_of_year = datetime(today.year, 12, 31)
+    start_of_period = datetime(today.year, today.month, 1) - timedelta(days=31)
+    end_of_period = datetime(today.year, today.month, 1) + timedelta(days=62)
     long_tasks = LongTask.objects.filter(
         user=request.user,
-        start_date__lte=end_of_year,
-        finish_date__gte=start_of_year
+        start_date__lte=end_of_period,
+        finish_date__gte=start_of_period
     )
-    print("Long tasks:", long_tasks)
 
     return render(request, 'calend/calend-for-all.html', {
         'daily_tasks': daily_tasks,
         'long_tasks': long_tasks,
+        'week_dates': week_dates,
     })
 
 @login_required
