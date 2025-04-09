@@ -91,32 +91,30 @@
       <div class="content">
         <div class="manage-section rounded">
           <div class="left-layout">
-            <div class="lil-container">
-              <button class="change-month">
-                <img src="{% static 'images/left.png' %}" alt="previous month" class="change-month-icon">
-              </button>
-              <div class="lil-calendar">
-                <p class="regular font16px">{{ month }} {{ year }}</p>
-                <ul class="days">
-                  <li>Mon</li>
-                  <li>Tue</li>
-                  <li>Wed</li>
-                  <li>Thu</li>
-                  <li>Fri</li>
-                  <li>Sat</li>
-                  <li>Sun</li>
-                </ul>
-                <div class="dates">
-                  {% for date in week_dates %}
-                    <button class="{% if date.day == selected_date.day %}selected-day{% endif %} {% if date.month != selected_date.month %}different-month{% endif %}">
-                      {{ date.day }}
-                    </button>
-                  {% endfor %}
-                </div>
+            <div class="lil-calendar">
+              <div class="lil-container">
+                <button class="change-month">
+                  <img class="change-month-icon" src="{% static 'calend/images/arrow2.svg' %}" />
+                </button>
+                <p><strong>{% now "F Y" %}</strong></p>
+                <button class="change-month">
+                  <img class="change-month-icon" src="{% static 'calend/images/arrow1.svg' %}" />
+                </button>
               </div>
-              <button class="change-month">
-                <img src="{% static 'images/right.png' %}" alt="next month" class="change-month-icon">
-              </button>
+              <ul class="days" style="margin-top: 15px; margin-bottom: 10px">
+                <li>Mon</li>
+                <li>Tue</li>
+                <li>Wed</li>
+                <li>Thu</li>
+                <li>Fri</li>
+                <li>Sat</li>
+                <li>Sun</li>
+              </ul>
+              <div class="dates selected-week">
+                {% for date in week_dates %}
+                  <button class="{% if date == today %}selected-day{% endif %}">{{ date|date:"d" }}</button>
+                {% endfor %}
+              </div>
             </div>
 
             <div class="categories-section">
