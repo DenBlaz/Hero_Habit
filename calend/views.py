@@ -14,6 +14,7 @@ def calend(request):
         user=request.user,
         due_date__range=[start_of_week, end_of_week]
     )
+    print("Daily tasks:", daily_tasks)
 
     start_of_year = datetime(today.year, 1, 1)
     end_of_year = datetime(today.year, 12, 31)
@@ -22,6 +23,7 @@ def calend(request):
         start_date__lte=end_of_year,
         finish_date__gte=start_of_year
     )
+    print("Long tasks:", long_tasks)
 
     return render(request, 'calend/calend-for-all.html', {
         'daily_tasks': daily_tasks,

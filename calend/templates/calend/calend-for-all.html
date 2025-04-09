@@ -240,38 +240,6 @@
           </div>
         </div>
 
-        <!-- Long Calendar -->
-        <div class="calendar-section1 rounded" id="taskView" style="display: none">
-          <div class="month-section">
-            <div class="month-header">
-              <div class="months">January</div>
-              <div class="months">February</div>
-              <div class="months">March</div>
-              <div class="months">April</div>
-              <div class="months">May</div>
-              <div class="months">June</div>
-              <div class="months">July</div>
-              <div class="months">August</div>
-              <div class="months">September</div>
-              <div class="months">October</div>
-              <div class="months">November</div>
-              <div class="months">December</div>
-            </div>
-            <div class="month-grid">
-              {% for task in long_tasks %}
-                <div
-                  class="task-bar {% if task.characteristic == 'Creativity' %}pink-bar{% elif task.characteristic == 'Strength' %}green-bar{% else %}blue-bar{% endif %}"
-                  style="grid-column: {{ task.start_date|date:'n' }} / {{ task.finish_date|date:'n' | add:1 }};"
-                  data-task-id="{{ task.id }}"
-                  data-tooltip="{{ task.title }}: {{ task.description|default:'No description' }} ({{ task.start_date|date:'d.m.Y' }} - {{ task.finish_date|date:'d.m.Y' }})"
-                >
-                  {{ task.title }}
-                </div>
-              {% endfor %}
-            </div>
-          </div>
-        </div>
-
         <!-- Daily Calendar -->
         <div class="calendar-section" id="calendarView">
           <div class="days-section">
@@ -304,6 +272,38 @@
                 {% endfor %}
               </div>
             {% endfor %}
+          </div>
+        </div>
+
+        <!-- Long Calendar -->
+        <div class="calendar-section1 rounded" id="taskView" style="display: none">
+          <div class="month-section">
+            <div class="month-header">
+              <div class="months">January</div>
+              <div class="months">February</div>
+              <div class="months">March</div>
+              <div class="months">April</div>
+              <div class="months">May</div>
+              <div class="months">June</div>
+              <div class="months">July</div>
+              <div class="months">August</div>
+              <div class="months">September</div>
+              <div class="months">October</div>
+              <div class="months">November</div>
+              <div class="months">December</div>
+            </div>
+            <div class="month-grid">
+              {% for task in long_tasks %}
+                <div
+                  class="task-bar {% if task.characteristic == 'Creativity' %}pink-bar{% elif task.characteristic == 'Strength' %}green-bar{% else %}blue-bar{% endif %}"
+                  style="grid-column: {{ task.start_date|date:'n' }} / {{ task.finish_date|date:'n' | add:1 }};"
+                  data-task-id="{{ task.id }}"
+                  data-tooltip="{{ task.title }}: {{ task.description|default:'No description' }} ({{ task.start_date|date:'d.m.Y' }} - {{ task.finish_date|date:'d.m.Y' }})"
+                >
+                  {{ task.title }}
+                </div>
+              {% endfor %}
+            </div>
           </div>
         </div>
 
