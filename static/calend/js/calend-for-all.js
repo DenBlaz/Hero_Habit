@@ -1,3 +1,4 @@
+
 const modal = document.getElementById("profile-modal");
 const openModalBtn = document.getElementById("open-modal");
 openModalBtn.addEventListener("click", () => {
@@ -8,7 +9,7 @@ window.addEventListener("click", (event) => {
   if (event.target === modal) {
     modal.style.display = "none";
     openModalBtn.classList.remove("circled");
-  }
+  }z
 });
 
 document.addEventListener("DOMContentLoaded", function () {
