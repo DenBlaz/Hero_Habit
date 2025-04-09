@@ -114,16 +114,17 @@
      
      <div class="stats-section rounded paddedx2">
         <div class="hero-stats rounded">
-          <img class="levelimg" src="/static/dashboard/image/level.svg" height="60px" />
-          <div class="level bold">0</div>
-        </div>
+            <img src="/static/dashboard/image/creativity_f_10.svg" height="420px" />
+            <img class="levelimg" src="/static/dashboard/image/level.svg" height="60px" />
+            <span class="level bold">{{ level }}</span>
+          </div>
         <div class="activity-stats rounded padded">
           <p class="semi-bold">Task report of the week:</p>
-          <p class="right font16px">50/100</p>
+          <p class="right font16px">0/100</p>
           <div class="progress-bar">
-            <div class="progress-fill" style="width: 50%"></div>
+            <div class="progress-fill" style="width: 0%"></div>
           </div>
-          <p class="font12px">50% completed</p>
+          <p class="font12px">0% completed</p>
         </div>
         {% if last_achievement %}
             <div class="achievement-stats rounded padded">
