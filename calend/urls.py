@@ -7,4 +7,5 @@ app_name = 'calend'
 urlpatterns = [
     path('', views.calendar_view, name = "calend"),
     path("create-task/", views.task_create, name="taskcreate"),
+    path("create-task-dash/", views.task_create_dash, name="taskcreatedash"),
     ]

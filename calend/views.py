@@ -74,10 +74,54 @@ def calendar_view(request):
         'current_week_start': current_week_start,
         'current_week_end': current_week_end,
     }
-    return render(request, 'calend-for-all.html', context)
+    return render(request, 'calend/calend-for-all.html', context)
 
 @login_required
 def task_create(request):
+    if request.method == 'POST':
+        task_type = request.POST.get('task_type')
+        task_id = request.POST.get('task_id')
+
+        if task_type == 'daily':
+            if task_id:
+                task = DailyTask.objects.get(id=task_id, user=request.user)
+                form = DailyTaskForm(request.POST, instance=task)
+            else:
+                form = DailyTaskForm(request.POST)
+        elif task_type == 'long':
+            if task_id:
+                task = LongTask.objects.get(id=task_id, user=request.user)
+                form = LongTaskForm(request.POST, instance=task)
+            else:
+                form = LongTaskForm(request.POST)
+        else:
+            return redirect('calend:calend')
+
+        if form.is_valid():
+            task = form.save(commit=False)
+            task.user = request.user
+            task.save()
+            return redirect('calend:calend')
+        else:
+            daily_tasks = DailyTask.objects.filter(user=request.user)
+            long_tasks = LongTask.objects.filter(user=request.user)
+            return render(request, 'calend/calend-for-all.html', {
+                'form': form,
+                'daily_tasks': daily_tasks,
+                'long_tasks': long_tasks,
+                'task_type': task_type,
+            })
+    else:
+        form = DailyTaskForm()
+    return render(request, 'calend/calend-for-all.html', {
+        'form': form,
+        'daily_tasks': DailyTask.objects.filter(user=request.user),
+        'long_tasks': LongTask.objects.filter(user=request.user),
+    })
+
+
+def task_create_dash(request):
+    redirect('calend:calend')
     if request.method == 'POST':
         task_type = request.POST.get('task_type')
         task_id = request.POST.get('task_id')
