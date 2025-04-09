@@ -1,4 +1,4 @@
-/* Общие стили */
+
 * {
   margin: 0;
   padding: 0;
@@ -24,7 +24,6 @@ body {
   gap: 5px;
 }
 
-/* Хедеры */
 .header1 {
   display: flex;
   height: 5%;
@@ -40,7 +39,6 @@ body {
   padding: 0px 0px 0px 10px;
 }
 
-/* Навигация */
 .navigation {
   flex: 2;
   overflow: hidden;
@@ -64,7 +62,6 @@ body {
   cursor: pointer;
 }
 
-/* Контент */
 .content {
   display: flex;
 }
@@ -81,7 +78,6 @@ body {
   flex-direction: column;
 }
 
-/* Дни недели */
 .days-section {
   display: flex;
   height: 10%;
@@ -94,7 +90,6 @@ body {
   border-top-left-radius: 10px;
 }
 
-/* Временные слоты */
 .time-section {
   display: flex;
   height: 90%;
@@ -141,7 +136,6 @@ body {
   align-items: center;
 }
 
-/* Задачи */
 .side-bar {
   position: absolute;
   color: rgba(127, 157, 176, 1);
@@ -174,7 +168,6 @@ body {
   border: 1.5px solid rgba(0, 0, 0, 0.2);
 }
 
-/* Долгосрочные задачи */
 .calendar-section1 {
   flex: 3;
   display: flex;
@@ -233,7 +226,6 @@ body {
   border: 1.5px solid rgba(0, 0, 0, 0.2);
 }
 
-/* Кнопки и формы */
 .add-task {
   display: flex;
   flex-direction: column;
@@ -297,7 +289,6 @@ body {
   color: white;
 }
 
-/* Медиа-запросы */
 @media (max-width: 1536px) {
   .container {
     max-width: 1200px;
@@ -311,4 +302,116 @@ body {
   .manage-section {
     transform: scale(0.9);
   }
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Open Sans", Arial;
+}
+
+body {
+  background-color: #f1ebfb;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.container {
+  width: 98vw;
+  height: 98vh;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.days-section {
+  display: flex;
+  height: 10%;
+  flex-direction: row;
+  border-bottom: 1px solid #d9d9d9;
+  background-color: #d9d9d9;
+  gap: 1px;
+  border-top-right-radius: 10px;
+  border-top-left-radius: 10px;
+}
+
+.time-section {
+  display: flex;
+  height: 90%;
+  flex-direction: row;
+  background-color: #d9d9d9;
+  gap: 1px;
+  border-bottom-right-radius: 10px;
+  border-bottom-left-radius: 10px;
+}
+
+.day, .space {
+  flex: 1;
+  background-color: #ffffff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.time-slot {
+  min-height: calc(100% / 6);
+  width: 100%;
+  background-color: #ffffff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.task-block {
+  position: absolute;
+  padding: 5px;
+  border-radius: 5px;
+  font-size: 12px;
+  color: black;
+}
+
+.pink-bar {
+  background-color: rgba(251, 182, 224, 0.6);
+}
+
+.green-bar {
+  background-color: rgba(159, 251, 182, 0.6);
+}
+
+.blue-bar {
+  background-color: rgba(182, 224, 251, 0.6);
+}
+
+.task-block:hover {
+  border: 1.5px solid rgba(0, 0, 0, 0.2);
+}
+
+.month-section {
+  display: flex;
+  width: 84%;
+  flex-direction: column;
+  background-color: #d9d9d9;
+  gap: 1px;
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
+}
+
+.months {
+  display: flex;
+  min-width: calc(100% / 3);
+  background-color: #ffffff;
+  height: 100%;
+  justify-content: center;
+  align-items: center;
+}
+
+.save-button {
+  background-color: #8364e8;
+  color: white;
+  border-radius: 10px;
+  border: 1px solid #8364e8;
+  cursor: pointer;
 }
