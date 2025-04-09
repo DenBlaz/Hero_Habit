@@ -548,9 +548,9 @@
       images.forEach((img) => {
         img.addEventListener("click", () => {
           images.forEach((i) => {
-            i.src executors = i.dataset.default;
+            i.src = i.dataset.default;
             i.classList.remove("chosen");
-          });
+        });
           img.src = img.dataset.chosen;
           img.classList.add("chosen");
           document.getElementById("characteristic").value = img.getAttribute("data-category");
