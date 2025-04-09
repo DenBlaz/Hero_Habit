@@ -1,116 +1,312 @@
-{% load static %}
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard</title>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Statistics</title>
     <link
       href="https://fonts.googleapis.com/css?family=Open Sans"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="{% static 'dashboard/css/dashboard.css' %}">
-</head>
-<body>
-   <div class="container">
+    <link rel="stylesheet" href="{% static 'stats/css/stats.css' %}" />
+  </head>
+
+  <body>
+    <div id="profile-modal" class="modal">
+      <div class="modal-content rounded">
+        <p>Account</p>
+
+        <div class="flex-center">
+          <img src="/static/dashboard/image/account.svg" height="35px" />
+          <div class="account-info light grey">
+            <p>{{ request.user.nickname }}</p>
+            <p>{{ request.user.email }}</p>
+          </div>
+        </div>
+        <hr />
+        <p>
+            <form method="post" action="{% url 'accounts:logout' %}" style="display: inline;">
+                {% csrf_token %}
+                <button type="submit" class="inline" style="border: none; background: none; padding: 0; cursor: pointer;">
+                    Log out
+                    <img src="/static/dashboard/image/logOutSign.svg" height="25px" />
+                </button>
+            </form>
+        </p>    
+      </div>
+    </div>
+    <div class="panel" id="toggle-panel">
+      <div class="title-settings">
+        <div class="title">
+          <img
+            class="icon"
+            src="/static/dashboard/image/settings.svg"
+            style="margin: 15px"
+          />
+          <p style="font-size: 34px; margin-top: 15px">Settings</p>
+        </div>
+        <a class="icon" id="close" style="margin: 15px"
+          ><img src="/static/dashboard/image/cross.svg"
+        /></a>
+      </div>
+
+      <div class="settings-container">
+        <div class="settings-options">
+          <ul class="options">
+            <li id="ViewProfileOption" class="option">Edit profile</li>
+            <li id="ChangePassword" class="option">Change password</li>
+            <li id="Introduction" class="option">Hero's Guide</li>
+          </ul>
+        </div>
+
+        <div class="settings-profile-usage">
+          <div class="settings-profile-section">
+            <p>Profile picture</p>
+            <img
+              style="padding: 2% 0 1% 0; width: 80px"
+              src="/static/dashboard/image/account.svg"
+            />
+          </div>
+          <div class="settings-username-section" style="padding: 1% 0 3% 0">
+            <p style="padding: 1% 0 1% 0">Username</p>
+            <input placeholder="Username" />
+          </div>
+          <div class="settings-email-settings" style="padding-bottom: 4%">
+            <p style="padding: 1% 0 1% 0">Email</p>
+            <input placeholder="Email" />
+          </div>
+          <button class="settings-button">
+            <img style="width: 14%" src="/static/dashboard/image/pen.svg" /> Edit
+          </button>
+        </div>
+
+        <div class="settings-change-password">
+          <div class="settings-password-section" style="padding: 0 0 1.5% 0">
+            <p style="padding: 0 0 1% 0">Current password</p>
+            <input placeholder="Password" />
+          </div>
+          <div class="settings-change-section">
+            <p style="padding: 2% 0 1% 0">New password</p>
+            <input placeholder="Password" />
+          </div>
+          <div class="settings-change-section" style="padding: 0 0 4% 0">
+            <p style="padding: 3% 0 1% 0">Confirm new password</p>
+            <input placeholder="Password" />
+          </div>
+          <button class="settings-button">
+            <img src="/static/dashboard/image/pen.svg" /> Save
+          </button>
+        </div>
+
+        <div class="settings-introduction">
+          <div class="textIntro">
+            <h3 class="purple-intro">Welcome to HeroHabit!</h3>
+            <br />
+            <p>
+              Now you are the hero of your own story, and only you decide how
+              epic it will be. There are no strict judges or dragons here (yet),
+              just you and your real achievements.
+            </p>
+            <br />
+            <p>The rules are simple:</p>
+            <p>
+              Every completed daily task gives you +5 points to the chosen
+              attribute. Stay consistent, and your hero will become a true
+              legend!
+            </p>
+            <br />
+            <p>
+              Long-term tasks grant +15 points for each week required to
+              complete the task or build a habit. The bigger the goal, the
+              greater the reward!
+            </p>
+            <br />
+            <p>
+              But remember: each new level gets harder. The further you go, the
+              more effort is needed to level up. Heroes aren’t made overnight!
+            </p>
+            <br />
+            <p>
+              Your character's level depends on all attributes. The main
+              attribute gives the biggest boost, but neglecting the others can
+              slow down your progress. Balance is the key to success!
+            </p>
+            <br />
+            <p>
+              Responsibility is rewarded! By completing tasks diligently, you'll
+              earn achievements that prove you're a true hero. Let’s be honest,
+              "Master of Productivity" sounds way cooler than "Wizard of
+              Procrastination."
+            </p>
+            <br />
+            <p>
+              And most importantly: honesty is your superpower. If your “morning
+              yoga” was actually just scrolling memes in a lotus pose, or your
+              “evening run” was really just a walk to the fridge—be honest! You
+              can fool everyone, but not yourself. A true hero grows through
+              real effort.
+            </p>
+            <br />
+            <p class="purple-intro">
+              Ready to conquer new heights? Then go forth, hero!
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="container">
       <div class="header1">
         <span><span class="bold">Hero</span>Habit</span>
       </div>
 
-       <div class="header2">
-       <div class="navigation">
-          <ul>
-            <li><a href="{% url 'dashboard:dashboard' %}">Dashboard</a></li>
-            <li><a class="active-page" href="{% url 'stats:stats' %}">Statistics</a></li>
-            <li><a href="{% url 'calend:calend' %}">Calendar</a></li>
-            <li><a href="{% url 'achievements:achiev' %}">Achievements</a></li>
-          </ul>
-        </div>
+      <div class="header2">
+        <div class="navigation">
+            <ul>
+              <li><a href="{% url 'dashboard:dashboard' %}">Dashboard</a></li>
+              <li><a class="active-page" href="{% url 'stats:stats' %}">Statistics</a></li>
+              <li><a href="{% url 'calend:calend' %}">Calendar</a></li>
+              <li><a href="{% url 'achievements:achiev' %}">Achievements</a></li>
+            </ul>
+          </div>
+
         <div class="settings">
-            <a class="icon" href="#"><img src="/static/dashboard/image/settings.svg" height="30px"/></a>
-            <a id="user-profile" class="icon" href="#"><img src="/static/dashboard/image/account.svg" height="30px"/></a> 
+          <button id="toggle-icon" class="icon">
+            <img src="/static/dashboard/image/settings.svg" height="30px" />
+          </button>
+          <!-- took the "panel" from here -->
+
+          <button id="open-modal" class="icon">
+            <img src="/static/dashboard/image/account.svg" height="40px" />
+          </button>
+          <!--Actual user profile photo has to replace default picture-->
+          <div id="overlay"></div>
         </div>
-       </div>
+      </div>
 
       <div class="content">
-       <div class="manage-section">
-           <div class="welcome-section rounded">
-            <p>Welcome back,</p>
-            <p id="user-name">Name</p>  <!--'Name' has to be replaced with an actual name in the future-->
-           </div>
+        <div class="manage-section">
+          <div class="week-section rounded">
+            <p class="semi-bold">Completed tasks last week</p>
+            <span class="row"
+              ><span class="number">10</span><span class="dashed-line"></span
+            ></span>
+            <span class="row"
+              ><span class="number l">8</span><span class="dashed-line"></span
+            ></span>
+            <span class="row"
+              ><span class="number l">6</span><span class="dashed-line"></span
+            ></span>
+            <span class="row"
+              ><span class="number l">4</span><span class="dashed-line"></span
+            ></span>
+            <span class="row"
+              ><span class="number l">2</span><span class="dashed-line"></span
+            ></span>
+            <span class="row"
+              ><span class="number-inv">3</span><span class="solid-line"></span
+            ></span>
 
-            <div class="days-section" id="days-section">
-            <button class="active-day rounded">Mon</button>
-            <button class="day rounded">Tue</button>
-            <button class="day rounded">Wed</button>
-            <button class="day rounded">Thu</button>
-            <a class="other" href="#" id="arrow-btn"><img src="/static/dashboard/image/arrow1.svg"/></a> <!--Changes days-section to include days from Friday to Sunday-->
+            <div class="chart-row">
+              <div class="bar" style="--height: 20%"></div>
+              <div class="bar" style="--height: 100%"></div>
+              <div class="bar" style="--height: 70%"></div>
+              <div class="bar" style="--height: 10%"></div>
+              <div class="bar" style="--height: 60%"></div>
+              <div class="bar" style="--height: 80%"></div>
+              <div class="bar" style="--height: 70%"></div>
+            </div>
+
+            <div class="day-row">
+              <p class="dayrows" data-short="M">Mon</p>
+              <p class="dayrows" data-short="T">Tue</p>
+              <p class="dayrows" data-short="W">Wed</p>
+              <p class="dayrows" data-short="T">Thu</p>
+              <p class="dayrows" data-short="F">Fri</p>
+              <p class="dayrows" data-short="S">Sat</p>
+              <p class="dayrows" data-short="S">Sun</p>
+            </div>
           </div>
-           
-           <div class="tasks-section">
-              <p class="sticky bold">Assigned tasks</p>
-               <p class="pad" > <a ><img src="/static/dashboard/image/plus.svg" height="25px" /></a>Create a task</p>
-           <div class="no-tasks">
-            <img src="/static/dashboard/image/illustration.svg" height="130px" /></a>
-            <p><br />Every hero deserves a rest! <br />
-             Maybe it`s time for new adventures?</p>
-               </div>
-           </div>
-       </div>
-       
-           <div class="stats-section rounded padded">
+          <div class="alltime-section">
+            <div class="alltasks rounded">
+              <p class="left-top semi-bold">Completed tasks for all time</p>
+              <div class="chart">
+                <div class="piechart"></div>
+              </div>
+              <div class="completed">
+                <div class="semi-bold hide">The number of completed tasks</div>
 
-           </div>
+                <div class="attr inline">
+                  <div>
+                    <img src="/static/dashboard/image/pink-ellipse.svg" height="20px" />
+                    <span class="hide">Creativity</span>
+                  </div>
+                  <span>100</span>
+                </div>
+                <div class="attr inline">
+                  <div>
+                    <img src="/static/dashboard/image/green-ellipse.svg" height="20px" />
+                    <span class="hide">Strength</span>
+                  </div>
+                  <span>8</span>
+                </div>
+                <div class="attr inline">
+                  <div>
+                    <img src="/static/dashboard/image/blue-ellipse.svg" height="20px" />
+                    <span class="hide">Intelligence</span>
+                  </div>
+                  <span>22</span>
+                </div>
+              </div>
+            </div>
+            <div class="allpoints rounded pad">
+              <p class="left-top semi-bold">Attributes</p>
+
+              <div class="attribute">
+                <span>Creativity</span>
+                <span>5 pt</span>
+              </div>
+              <div class="progress-bar">
+                <div class="progress-fill-cr" style="width: 50%"></div>
+              </div>
+
+              <div class="attribute">
+                <span>Strength</span>
+                <span>5 pt</span>
+              </div>
+              <div class="progress-bar">
+                <div class="progress-fill-str" style="width: 50%"></div>
+              </div>
+
+              <div class="attribute">
+                <span>Intelligence</span>
+                <span>5 pt</span>
+              </div>
+              <div class="progress-bar">
+                <div class="progress-fill-int" style="width: 50%"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="stats-section rounded">
+          <div class="hero-stats rounded">
+            <img src="/static/dashboard/image/creativity_f_10.svg" height="420px" />
+            <img class="levelimg" src="/static/dashboard/image/level.svg" height="60px" />
+            <span class="level bold">10</span>
+            <span class="username">Username</span>
+            <!--Has to be replaced by an actual level, name and character-->
+          </div>
+
+          <div class="achievements rounded">
+            <p class="left-top semi-bold" style="padding-bottom: 20px;">Achievements</p>
+            <p>
+              <span class="marg semi-bold font32px">20</span> Achievements for
+              all time
+            </p>
+          </div>
+        </div>
       </div>
     </div>
-
-    <script>
-      document.addEventListener("DOMContentLoaded", () => {
-        const daysSection = document.getElementById("days-section");
-        const arrowButton = document.getElementById("arrow-btn");
-
-        let showingWeekdays = true;
-
-        arrowButton.addEventListener("click", (e) => {
-          e.preventDefault(); 
-
-          if (showingWeekdays) {
-            
-            daysSection.innerHTML = `
-        <button class="active-day rounded">Fri</button>
-        <button class="day rounded">Sat</button>
-        <button class="day rounded">Sun</button>
-        <div class="blank"></div>
-        <a class="other" href="#" id="arrow-btn">
-          <img src="/static/dashboard/image/arrow2.svg" alt="arrow" />
-        </a>
-      `;
-          } else {
-        
-            daysSection.innerHTML = `
-        <button class="active-day rounded">Mon</button>
-        <button class="day rounded">Tue</button>
-        <button class="day rounded">Wed</button>
-        <button class="day rounded">Thu</button>
-        <a class="other" href="#" id="arrow-btn">
-          <img src="/static/dashboard/image/arrow1.svg" alt="arrow" "/>
-        </a>
-      `;
-          }
-
-          
-          assignArrowClick();
-          showingWeekdays = !showingWeekdays; 
-        });
-
-        function assignArrowClick() {
-          const newArrowButton = document.getElementById("arrow-btn");
-          newArrowButton.addEventListener("click", (e) => {
-            e.preventDefault();
-            arrowButton.click(); 
-          });
-        }
-      });
-    </script>
-</body>
+    <script src="{% static 'stats/js/stats.js' %}"></script>
+  </body>
 </html>
