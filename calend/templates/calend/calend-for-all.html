@@ -94,26 +94,30 @@
             <div class="lil-calendar">
               <div class="lil-container">
                 <button class="change-month">
-                  <img class="change-month-icon" src="{% static 'calend/images/arrow2.svg' %}" />
+                  <img src="{% static 'images/left.png' %}" alt="previous month" class="change-month-icon">
                 </button>
-                <p><strong>{% now "F Y" %}</strong></p>
+                <div class="lil-calendar">
+                  <p class="regular font16px">{{ month }} {{ year }}</p>
+                  <ul class="days">
+                    <li>Mon</li>
+                    <li>Tue</li>
+                    <li>Wed</li>
+                    <li>Thu</li>
+                    <li>Fri</li>
+                    <li>Sat</li>
+                    <li>Sun</li>
+                  </ul>
+                  <div class="dates">
+                    {% for date in week_dates %}
+                      <button class="{% if date.day == selected_date.day %}selected-day{% endif %} {% if date.month != selected_date.month %}different-month{% endif %}">
+                        {{ date.day }}
+                      </button>
+                    {% endfor %}
+                  </div>
+                </div>
                 <button class="change-month">
-                  <img class="change-month-icon" src="{% static 'calend/images/arrow1.svg' %}" />
+                  <img src="{% static 'images/right.png' %}" alt="next month" class="change-month-icon">
                 </button>
-              </div>
-              <ul class="days" style="margin-top: 15px; margin-bottom: 10px">
-                <li>Mon</li>
-                <li>Tue</li>
-                <li>Wed</li>
-                <li>Thu</li>
-                <li>Fri</li>
-                <li>Sat</li>
-                <li>Sun</li>
-              </ul>
-              <div class="dates selected-week">
-                {% for date in week_dates %}
-                  <button class="{% if date == today %}selected-day{% endif %}">{{ date|date:"d" }}</button>
-                {% endfor %}
               </div>
             </div>
 
@@ -228,21 +232,21 @@
           <div class="time-section">
             <div class="time-column" id="time-column"></div>
             {% for date in week_dates %}
-              <div class="time-column">
-                {% for task in daily_tasks %}
-                  {% if task.due_date == date %}
-                    <div
-                      class="task-block {% if task.characteristic == 'Creativity' %}pink-bar{% elif task.characteristic == 'Strength' %}green-bar{% else %}blue-bar{% endif %} {% if task.completed %}completed{% endif %}"
-                      style="grid-row: {{ task.start_time.hour|add:1 }} / {{ task.finish_time.hour|add:1 }};"
-                      data-task-id="{{ task.id }}"
-                      data-tooltip="{{ task.title }}: {{ task.description|default:'No description' }} ({{ task.start_time|time:'H:i' }} - {{ task.finish_time|time:'H:i' }})"
-                    >
-                      <p class="semi-bold font16px">{{ task.title }}</p>
-                      <p class="font12px">{{ task.start_time|time:"H:i" }} - {{ task.finish_time|time:"H:i" }}</p>
-                    </div>
-                  {% endif %}
-                {% endfor %}
-              </div>
+            <div class="time-column">
+              {% for task in daily_tasks %}
+                {% if task.due_date == date %}
+                  <div
+                    class="task-block {% if task.characteristic == 'Creativity' %}pink-bar{% elif task.characteristic == 'Strength' %}green-bar{% else %}blue-bar{% endif %} {% if task.completed %}completed{% endif %}"
+                    style="grid-row: {{ task.start_time.hour|add:1 }} / {{ task.finish_time.hour|add:1 }};"
+                    data-task-id="{{ task.id }}"
+                    data-tooltip="{{ task.title }}: {{ task.description|default:'No description' }} ({{ task.start_time|time:'H:i' }} - {{ task.finish_time|time:'H:i' }})"
+                  >
+                    <p class="semi-bold font16px">{{ task.title }}</p>
+                    <p class="font12px">{{ task.start_time|time:"H:i" }} - {{ task.finish_time|time:"H:i" }}</p>
+                  </div>
+                {% endif %}
+              {% endfor %}
+            </div>
             {% endfor %}
           </div>
         </div>
