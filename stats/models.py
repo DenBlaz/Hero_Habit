@@ -7,7 +7,7 @@ class UserStats(models.Model):
     level = models.PositiveIntegerField(default=1)
     experience = models.PositiveIntegerField(default=0)
     
-    creativity_tasks = models.PositiveIntegerField(default=0)
+    creativity_tasks = models.PositiveIntegerField(default=1)
     strength_tasks = models.PositiveIntegerField(default=0)
     intelligence_tasks = models.PositiveIntegerField(default=0)
     
