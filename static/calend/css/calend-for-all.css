@@ -152,16 +152,15 @@ body {
   flex-direction: column;
   width: 100%;
   gap: 1px;
-  background: linear-gradient(145deg, #ffffff, #f0f0f0); /* Легкий градієнт для фону */
+  background: linear-gradient(145deg, #f8f8f8, #e8e8e8); /* Легкий градієнт для фону */
   justify-content: center;
   align-items: center;
-  border-radius: 8px; /* Округлення */
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1); /* Легка тінь */
+  border-bottom: 1px solid #e0e0e0; /* Тонка межа між рядками */
   transition: background 0.3s ease; /* Плавний перехід для ефектів */
 }
 
 .time-slot:hover {
-  background: linear-gradient(145deg, #f5f5f5, #e0e0e0); /* Зміна фону при наведенні */
+  background: linear-gradient(145deg, #ffffff, #f0f0f0); /* Зміна фону при наведенні */
 }
 
 .task-block {
@@ -174,14 +173,15 @@ body {
   text-overflow: ellipsis;
   padding: 8px;
   box-sizing: border-box;
-  border-radius: 10px; /* Округлення */
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15); /* Тінь для об’ємності */
-  transition: transform 0.2s ease, box-shadow 0.2s ease; /* Плавний перехід для ефектів */
+  border: 1px solid rgba(0, 0, 0, 0.1); /* Тонка рамка */
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1); /* Легка тінь */
+  transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease; /* Плавний перехід */
 }
 
 .task-block:hover {
-  transform: translateY(-2px); /* Легкий підйом при наведенні */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Посилена тінь */
+  transform: translateY(-1px); /* Легкий підйом при наведенні */
+  border-color: rgba(0, 0, 0, 0.3); /* Темніша рамка при наведенні */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15); /* Посилена тінь */
 }
 
 .task-block p {
@@ -194,15 +194,15 @@ body {
 
 /* Додаємо градієнти для різних категорій */
 .pink-bar {
-  background: linear-gradient(145deg, rgba(251, 182, 224, 0.8), rgba(251, 182, 224, 0.6));
+  background: linear-gradient(145deg, rgba(251, 182, 224, 0.9), rgba(251, 182, 224, 0.7));
 }
 
 .green-bar {
-  background: linear-gradient(145deg, rgba(159, 251, 182, 0.8), rgba(159, 251, 182, 0.6));
+  background: linear-gradient(145deg, rgba(159, 251, 182, 0.9), rgba(159, 251, 182, 0.7));
 }
 
 .blue-bar {
-  background: linear-gradient(145deg, rgba(182, 224, 251, 0.8), rgba(182, 224, 251, 0.6));
+  background: linear-gradient(145deg, rgba(182, 224, 251, 0.9), rgba(182, 224, 251, 0.7));
 }
 
 .side-bar {
