@@ -1,245 +1,314 @@
+/* Общие стили */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Open Sans", Arial;
+}
+
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background-color: #f1ebfb;
+  overflow-y: auto;
+  overflow-x: auto;
+}
 
 .container {
-  width: 100%;
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 20px;
-}
-
-.header1, .header2 {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 10px 0;
+  flex-direction: column;
+  width: 98vw;
+  height: 98vh;
+  gap: 5px;
 }
 
-.bold {
-  font-weight: bold;
-}
-
-.navigation ul {
-  list-style: none;
+/* Хедеры */
+.header1 {
   display: flex;
-  gap: 20px;
+  height: 5%;
+  flex-direction: column;
+  padding: 20px 0px 0px 10px;
 }
 
-.navigation a {
-  text-decoration: none;
-  color: #000;
+.header2 {
+  display: flex;
+  flex-direction: row;
+  gap: 15px;
+  height: 7%;
+  padding: 0px 0px 0px 10px;
 }
 
-.active-page {
-  font-weight: bold;
-  color: #8364E8;
+/* Навигация */
+.navigation {
+  flex: 2;
+  overflow: hidden;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: end;
+}
+
+.settings {
+  flex: 1;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: end;
+  padding: 0 10px 10px;
+  gap: 15px;
 }
 
 .icon {
-  background: none;
-  border: none;
   cursor: pointer;
 }
 
-.settings-button {
-  background-color: #8364E8;
-  color: white;
-  border: none;
-  padding: 10px 20px;
-  border-radius: 5px;
-  cursor: pointer;
-}
-
-.invisible-button {
-  background: none;
-  border: none;
-  cursor: pointer;
+/* Контент */
+.content {
   display: flex;
-  align-items: center;
+}
+
+.manage-section {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
 }
 
 .calendar-section {
-  margin-top: 20px;
+  flex: 30;
+  display: flex;
+  flex-direction: column;
 }
 
+/* Дни недели */
 .days-section {
   display: flex;
-  justify-content: space-between;
-  background-color: #f0f0f0;
-  padding: 10px;
-  border-top-left-radius: 10px;
+  height: 10%;
+  max-height: 100%;
+  flex-direction: row;
+  border-bottom: 1px solid #d9d9d9;
+  background-color: #d9d9d9;
+  gap: 1px;
   border-top-right-radius: 10px;
+  border-top-left-radius: 10px;
 }
 
-.space {
-  background: none;
-  border: none;
-  cursor: pointer;
-  padding: 10px;
-}
-
-.space:hover {
-  background-color: rgba(228, 222, 249, 0.5);
-}
-
+/* Временные слоты */
 .time-section {
-  display: grid;
-  grid-template-columns: 50px repeat(7, 1fr);
-  grid-template-rows: repeat(24, 50px);
-  overflow-y: scroll;
-  background-color: #fff;
-  border: 1px solid #ccc;
+  display: flex;
+  height: 90%;
+  max-height: 100%;
+  flex-direction: row;
+  background-color: #d9d9d9;
+  overflow: auto;
+  scrollbar-width: none;
+  gap: 1px;
+  border-bottom-right-radius: 10px;
+  border-bottom-left-radius: 10px;
+}
+
+.day,
+.space {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  justify-content: center;
+  align-items: center;
+  width: calc(100% / 8);
+  background-color: #ffffff;
+  max-height: 100%;
 }
 
 .time-column {
-  display: contents;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  height: 100%;
+  width: calc(100% / 8);
+  max-height: 100%;
 }
 
 .time-slot {
-  height: 50px;
-  border-bottom: 1px solid #ccc;
   display: flex;
-  align-items: center;
+  flex-direction: column;
+  min-height: calc(100% / 6);
+  width: 100%;
+  gap: 1px;
+  background-color: #ffffff;
   justify-content: center;
-  font-size: 12px;
-  color: #666;
+  align-items: center;
 }
 
-.task-block {
-  position: relative;
-  padding: 5px;
-  border-radius: 5px;
-  color: white;
-  font-size: 12px;
+/* Задачи */
+.side-bar {
+  position: absolute;
+  color: rgba(127, 157, 176, 1);
+  padding: 10px;
+  top: 30%;
+  left: 0%;
+  width: 100%;
+  height: 50%;
+  border-radius: 10px;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
   overflow: hidden;
-  margin: 2px;
+  cursor: pointer;
 }
 
 .pink-bar {
-  background-color: rgba(255, 105, 180, 0.7);
+  background-color: rgba(251, 182, 224, 0.6);
 }
 
 .green-bar {
-  background-color: rgba(0, 128, 0, 0.7);
+  background-color: rgba(159, 251, 182, 0.6);
 }
 
 .blue-bar {
-  background-color: rgba(0, 0, 255, 0.7);
+  background-color: rgba(182, 224, 251, 0.6);
 }
 
-.completed {
-  opacity: 0.5;
-  text-decoration: line-through;
+.side-bar:hover {
+  border: 1.5px solid rgba(0, 0, 0, 0.2);
+}
+
+/* Долгосрочные задачи */
+.calendar-section1 {
+  flex: 3;
+  display: flex;
+  flex-direction: row;
+  width: 100%;
 }
 
 .month-section {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 10px;
-}
-
-.month-header {
   display: flex;
-  justify-content: space-between;
+  width: 84%;
+  max-height: 100%;
+  flex-direction: column;
+  background-color: #d9d9d9;
+  gap: 1px;
+  overflow-x: auto;
+  scrollbar-width: none;
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
 }
 
 .months {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-width: calc(100% / 3);
+  background-color: #ffffff;
+  height: 100%;
+}
+
+.top-bar {
+  position: absolute;
+  top: 35%;
+  left: 0%;
+  display: flex;
+  flex-direction: row;
+  border-radius: 3px;
+  width: 45%;
+  height: 30%;
+  align-items: center;
+  justify-content: center;
   text-align: center;
-  font-weight: bold;
+  z-index: 10;
 }
 
-.month-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 10px;
+.start-date,
+.end-date {
+  position: absolute;
+  top: 100%;
+  font-size: 12px;
+  color: black;
+  white-space: nowrap;
 }
 
-.task-bar {
-  padding: 10px;
-  border-radius: 5px;
-  color: white;
-  font-size: 14px;
+.top-bar:hover {
+  border: 1.5px solid rgba(0, 0, 0, 0.2);
 }
+
+/* Кнопки и формы */
 .add-task {
-  background-color: #f9f9f9;
-  padding: 20px;
-  border-radius: 10px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  top: 15%;
+  left: 35%;
+  width: 404px;
+  height: 470px;
+  font-size: 16px;
+  font-weight: 400;
+  background-color: white;
+  border: 1px solid #ccc;
+  border-radius: 20px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  z-index: 996;
+  overflow: auto;
 }
 
-.at-input, .at-input-i {
+.at-input,
+.at-input-i {
+  display: flex;
+  background-color: white;
+  color: black;
   width: 100%;
-  padding: 10px;
-  margin: 5px 0;
+  height: 40px;
+  margin: 5px 0 5px 0;
   border: 1px solid #ccc;
   border-radius: 5px;
+}
+
+.at-input::placeholder,
+.at-input-i::placeholder {
+  color: #d9d9d9;
 }
 
 .buttons {
   display: flex;
-  justify-content: flex-end;
-  margin-top: 20px;
+  flex-direction: row;
+  height: 30px;
+  justify-content: right;
+  margin-top: 15px;
 }
 
-.cancel-button, .save-button {
-  padding: 10px 20px;
-  border: none;
-  border-radius: 5px;
+.cancel-button,
+.save-button {
+  width: 25%;
+  height: 100%;
+  border-radius: 10px;
   cursor: pointer;
+  border-color: #8364e8;
+  border-width: 1px;
 }
 
 .cancel-button {
-  background-color: #ccc;
-  margin-right: 10px;
+  background-color: white;
+  color: #8364e8;
 }
 
 .save-button {
-  background-color: #8364E8;
+  background-color: #8364e8;
   color: white;
 }
 
-.categories-section {
-  margin-top: 20px;
+/* Медиа-запросы */
+@media (max-width: 1536px) {
+  .container {
+    max-width: 1200px;
+  }
 }
 
-.category {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-
-.modal {
-  display: none;
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.5);
-  justify-content: center;
-  align-items: center;
-}
-
-.modal-content {
-  background-color: white;
-  padding: 20px;
-  border-radius: 10px;
-  width: 300px;
-}
-
-.flex-center {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-
-.log-out {
-  color: red;
-  text-decoration: none;
-}
-
-.rounded {
-  border-radius: 10px;
-}
-
-.hidden {
-  display: none;
+@media (max-width: 1280px) {
+  .container {
+    max-width: 1024px;
+  }
+  .manage-section {
+    transform: scale(0.9);
+  }
 }
