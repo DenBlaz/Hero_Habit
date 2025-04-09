@@ -1,4 +1,3 @@
-
 const modal = document.getElementById("profile-modal");
 const openModalBtn = document.getElementById("open-modal");
 
@@ -80,4 +79,43 @@ document.addEventListener("DOMContentLoaded", function () {
         passwordSection.style.display = "none";
         introSection.style.display = "block";
     });
+
+    // Dynamic Pie Chart Logic
+    const pieChart = document.querySelector(".piechart");
+
+    // Get the values from the data attributes
+    const creativity = parseInt(pieChart.dataset.creativity) || 0;
+    const strength = parseInt(pieChart.dataset.strength) || 0;
+    const intelligence = parseInt(pieChart.dataset.intelligence) || 0;
+
+    // Calculate the total
+    const total = creativity + strength + intelligence;
+
+    // Calculate the angles for each segment (in degrees)
+    let creativityAngle = 0;
+    let strengthAngle = 0;
+    let intelligenceAngle = 0;
+
+    if (total > 0) {
+        creativityAngle = (creativity / total) * 360;
+        strengthAngle = (strength / total) * 360;
+        intelligenceAngle = (intelligence / total) * 360;
+    }
+
+    // Calculate the cumulative angles for the conic-gradient
+    const creativityEnd = creativityAngle;
+    const strengthEnd = creativityEnd + strengthAngle;
+    const intelligenceEnd = strengthEnd + intelligenceAngle; // Should be 360, but included for clarity
+
+    // Define the colors
+    const creativityColor = "#fbb6e0"; // Pink
+    const strengthColor = "#9ffbb6"; // Green
+    const intelligenceColor = "#b6e0fb"; // Blue
+
+    // Apply the conic-gradient dynamically
+    pieChart.style.backgroundImage = `conic-gradient(
+        ${intelligenceColor} 0deg ${creativityEnd}deg,
+        ${strengthColor} ${creativityEnd}deg ${strengthEnd}deg,
+        ${creativityColor} ${strengthEnd}deg 360deg
+    )`;
 });

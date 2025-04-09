@@ -175,12 +175,9 @@
           <button id="toggle-icon" class="icon">
             <img src="/static/dashboard/image/settings.svg" height="30px" />
           </button>
-          <!-- took the "panel" from here -->
-
           <button id="open-modal" class="icon">
             <img src="/static/dashboard/image/account.svg" height="40px" />
           </button>
-          <!--Actual user profile photo has to replace default picture-->
           <div id="overlay"></div>
         </div>
       </div>
@@ -232,7 +229,13 @@
             <div class="alltasks rounded">
               <p class="left-top semi-bold">Completed tasks for all time</p>
               <div class="chart">
-                <div class="piechart"></div>
+                <!-- Add data attributes to store the values -->
+                <div
+                  class="piechart"
+                  data-creativity="{{ creativity|default:100 }}"
+                  data-strength="{{ strength|default:8 }}"
+                  data-intelligence="{{ intelligence|default:22 }}"
+                ></div>
               </div>
               <div class="completed">
                 <div class="semi-bold hide">The number of completed tasks</div>
@@ -242,21 +245,21 @@
                     <img src="/static/dashboard/image/pink-ellipse.svg" height="20px" />
                     <span class="hide">Creativity</span>
                   </div>
-                  <span>100</span>
+                  <span>{{ creativity|default:100 }}</span>
                 </div>
                 <div class="attr inline">
                   <div>
                     <img src="/static/dashboard/image/green-ellipse.svg" height="20px" />
                     <span class="hide">Strength</span>
                   </div>
-                  <span>8</span>
+                  <span>{{ strength|default:8 }}</span>
                 </div>
                 <div class="attr inline">
                   <div>
                     <img src="/static/dashboard/image/blue-ellipse.svg" height="20px" />
                     <span class="hide">Intelligence</span>
                   </div>
-                  <span>22</span>
+                  <span>{{ intelligence|default:22 }}</span>
                 </div>
               </div>
             </div>
@@ -296,7 +299,6 @@
             <img class="levelimg" src="/static/dashboard/image/level.svg" height="60px" />
             <span class="level bold">10</span>
             <span class="username">{{ request.user.nickname }}</span>
-            <!--Has to be replaced by an actual level, name and character-->
           </div>
 
           <div class="achievements rounded">
