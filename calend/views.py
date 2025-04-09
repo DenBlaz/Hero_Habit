@@ -6,7 +6,7 @@ from datetime import datetime, timedelta
 
 @login_required
 def calend(request):
-    today = datetime.today()
+    today = datetime.today().date()  # Отримуємо тільки дату
     start_of_week = today - timedelta(days=today.weekday())
     end_of_week = start_of_week + timedelta(days=6)
     week_dates = [start_of_week + timedelta(days=i) for i in range(7)]
@@ -28,6 +28,7 @@ def calend(request):
         'daily_tasks': daily_tasks,
         'long_tasks': long_tasks,
         'week_dates': week_dates,
+        'today': today,
     })
 
 @login_required

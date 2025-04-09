@@ -233,7 +233,7 @@
                   {% if task.due_date == date %}
                     <div
                       class="task-block {% if task.characteristic == 'Creativity' %}pink-bar{% elif task.characteristic == 'Strength' %}green-bar{% else %}blue-bar{% endif %} {% if task.completed %}completed{% endif %}"
-                      style="grid-row: {{ task.start_time|time:'H'|add:1 }} / {{ task.finish_time|time:'H'|add:1 }};"
+                      style="grid-row: {{ task.start_time.hour|add:1 }} / {{ task.finish_time.hour|add:1 }};"
                       data-task-id="{{ task.id }}"
                       data-tooltip="{{ task.title }}: {{ task.description|default:'No description' }} ({{ task.start_time|time:'H:i' }} - {{ task.finish_time|time:'H:i' }})"
                     >
@@ -257,14 +257,16 @@
             </div>
             <div class="month-grid">
               {% for task in long_tasks %}
-                <div
-                  class="task-bar {% if task.characteristic == 'Creativity' %}pink-bar{% elif task.characteristic == 'Strength' %}green-bar{% else %}blue-bar{% endif %}"
-                  style="grid-column: {{ task.start_date|date:'n'|add:-1 }} / {{ task.finish_date|date:'n'|add:1 }};"
-                  data-task-id="{{ task.id }}"
-                  data-tooltip="{{ task.title }}: {{ task.description|default:'No description' }} ({{ task.start_date|date:'d.m.Y' }} - {{ task.finish_date|date:'d.m.Y' }})"
-                >
-                  {{ task.title }}
-                </div>
+                {% with start_col=task.start_date|date:'n' finish_col=task.finish_date|date:'n'|add:1 %}
+                  <div
+                    class="task-bar {% if task.characteristic == 'Creativity' %}pink-bar{% elif task.characteristic == 'Strength' %}green-bar{% else %}blue-bar{% endif %}"
+                    style="grid-column: {% if start_col < 1 %}1{% else %}{{ start_col }}{% endif %} / {% if finish_col > 4 %}4{% else %}{{ finish_col }}{% endif %};"
+                    data-task-id="{{ task.id }}"
+                    data-tooltip="{{ task.title }}: {{ task.description|default:'No description' }} ({{ task.start_date|date:'d.m.Y' }} - {{ task.finish_date|date:'d.m.Y' }})"
+                  >
+                    {{ task.title }}
+                  </div>
+                {% endwith %}
               {% endfor %}
             </div>
           </div>
