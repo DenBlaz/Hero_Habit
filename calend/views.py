@@ -32,25 +32,29 @@ def calend(request):
 def task_create(request):
     if request.method == 'POST':
         task_type = request.POST.get('task_type')
-        print(f"Task type: {task_type}")
-        print(f"POST data: {request.POST}")
+        task_id = request.POST.get('task_id')
 
         if task_type == 'daily':
-            form = DailyTaskForm(request.POST)
+            if task_id:
+                task = DailyTask.objects.get(id=task_id, user=request.user)
+                form = DailyTaskForm(request.POST, instance=task)
+            else:
+                form = DailyTaskForm(request.POST)
         elif task_type == 'long':
-            form = LongTaskForm(request.POST)
+            if task_id:
+                task = LongTask.objects.get(id=task_id, user=request.user)
+                form = LongTaskForm(request.POST, instance=task)
+            else:
+                form = LongTaskForm(request.POST)
         else:
-            print("Invalid task_type")
             return redirect('calend:calend')
 
         if form.is_valid():
             task = form.save(commit=False)
             task.user = request.user
             task.save()
-            print("Task saved successfully")
             return redirect('calend:calend')
         else:
-            print(f"Form errors: {form.errors}")
             daily_tasks = DailyTask.objects.filter(user=request.user)
             long_tasks = LongTask.objects.filter(user=request.user)
             return render(request, 'calend/calend-for-all.html', {
@@ -61,7 +65,6 @@ def task_create(request):
             })
     else:
         form = DailyTaskForm()
-        print("GET request, showing empty form")
     return render(request, 'calend/calend-for-all.html', {
         'form': form,
         'daily_tasks': DailyTask.objects.filter(user=request.user),

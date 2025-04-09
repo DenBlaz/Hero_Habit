@@ -169,6 +169,7 @@
             <form action="{% url 'calend:taskcreate' %}" method="post" id="taskForm">
               {% csrf_token %}
               <input type="hidden" name="task_type" id="taskType" value="daily" />
+              <input type="hidden" name="task_id" id="taskId" value="" />
               <div class="add-task" id="addTaskForm" style="display: none">
                 <div class="title-task">
                   <p>Add a task</p>
@@ -261,8 +262,10 @@
                 <div
                   class="task-bar {% if task.characteristic == 'Creativity' %}pink-bar{% elif task.characteristic == 'Strength' %}green-bar{% else %}blue-bar{% endif %}"
                   style="grid-column: {{ task.start_date|date:'n' }} / {{ task.finish_date|date:'n' | add:1 }};"
+                  data-task-id="{{ task.id }}"
+                  data-tooltip="{{ task.title }}: {{ task.description|default:'No description' }} ({{ task.start_date|date:'d.m.Y' }} - {{ task.finish_date|date:'d.m.Y' }})"
                 >
-                  {{ task.title }}: {{ task.start_date|date:"d.m.Y" }} - {{ task.finish_date|date:"d.m.Y" }}
+                  {{ task.title }}
                 </div>
               {% endfor %}
             </div>
@@ -290,13 +293,12 @@
                 {% for task in daily_tasks %}
                   {% if task.due_date|date:"l" == day %}
                     <div
-                      class="task-block {% if task.characteristic == 'Creativity' %}pink-bar{% elif task.characteristic == 'Strength' %}green-bar{% else %}blue-bar{% endif %}"
+                      class="task-block {% if task.characteristic == 'Creativity' %}pink-bar{% elif task.characteristic == 'Strength' %}green-bar{% else %}blue-bar{% endif %} {% if task.completed %}completed{% endif %}"
                       style="grid-row: {{ task.start_time|time:'H' | add:1 }} / {{ task.finish_time|time:'H' | add:1 }};"
+                      data-task-id="{{ task.id }}"
                     >
                       <p class="semi-bold font16px">{{ task.title }}</p>
-                      <p class="font12px">
-                        {{ task.start_time|time:"H:i" }} - {{ task.finish_time|time:"H:i" }}
-                      </p>
+                      <p class="font12px">{{ task.start_time|time:"H:i" }} - {{ task.finish_time|time:"H:i" }}</p>
                     </div>
                   {% endif %}
                 {% endfor %}
@@ -380,11 +382,23 @@
           profileSection.style.display = "none";
           passwordSection.style.display = "block";
         });
+
+        // Анимация появления задач
+        const taskBlocks = document.querySelectorAll(".task-block, .task-bar");
+        taskBlocks.forEach((block, index) => {
+          block.style.opacity = "0";
+          block.style.transform = "translateY(10px)";
+          setTimeout(() => {
+            block.style.transition = "opacity 0.3s ease, transform 0.3s ease";
+            block.style.opacity = "1";
+            block.style.transform = "translateY(0)";
+          }, index * 100);
+        });
       });
 
       const timeColumns = document.querySelectorAll(".time-column");
       timeColumns.forEach((column) => {
-        for (let i = 0; i <= 23; i++) { // Полный день: с 0:00 до 23:59
+        for (let i = 0; i <= 23; i++) {
           const timeSlot = document.createElement("div");
           timeSlot.className = "time-slot";
           if (column.id === "time-column") {
@@ -423,7 +437,7 @@
       const inputFields = document.querySelectorAll(".add-task input, .add-task textarea");
       if (taskForm) taskForm.style.display = "none";
 
-      function toggleTaskForm(changeTitle = false, changePlaceholder = false) {
+      function toggleTaskForm(changeTitle = false, changePlaceholder = false, taskData = null) {
         if (taskForm.style.display === "none" || taskForm.style.display === "") {
           taskForm.style.display = "block";
           if (changeTitle && titleText) titleText.textContent = "Edit Task";
@@ -433,6 +447,29 @@
               input.style.color = "black";
             });
           }
+          if (taskData) {
+            document.getElementById("taskId").value = taskData.id;
+            document.getElementById("taskType").value = taskData.type;
+            document.querySelector("input[name='title']").value = taskData.title || "";
+            document.querySelector("input[name='description']").value = taskData.description || "";
+            if (taskData.type === "daily") {
+              document.getElementById("dueDate").value = taskData.due_date || "";
+              document.querySelector("input[name='start_time']").value = taskData.start_time || "";
+              document.querySelector("input[name='finish_time']").value = taskData.finish_time || "";
+            } else {
+              document.getElementById("startDate").value = taskData.start_date || "";
+              document.getElementById("finishDate").value = taskData.finish_date || "";
+            }
+            document.getElementById("characteristic").value = taskData.characteristic || "Creativity";
+            document.querySelectorAll(".at-icon").forEach(img => {
+              img.src = img.dataset.default;
+              img.classList.remove("chosen");
+              if (img.dataset.category === taskData.characteristic) {
+                img.src = img.dataset.chosen;
+                img.classList.add("chosen");
+              }
+            });
+          }
         } else {
           taskForm.style.display = "none";
           if (titleText) titleText.textContent = "Add a Task";
@@ -440,6 +477,8 @@
             input.style.setProperty("--placeholder-color", "");
             input.style.color = "";
           });
+          document.getElementById("taskId").value = "";
+          taskForm.reset();
         }
       }
 
@@ -447,7 +486,20 @@
         document.querySelectorAll(selector).forEach((element) => {
           element.addEventListener("click", function (event) {
             event.stopPropagation();
-            toggleTaskForm(changeTitle, changePlaceholder);
+            const taskId = element.dataset.taskId;
+            const taskData = {
+              id: taskId,
+              type: element.classList.contains("task-block") ? "daily" : "long",
+              title: element.querySelector(".semi-bold")?.textContent || element.textContent,
+              description: element.dataset.tooltip?.split(": ")[1]?.split(" (")[0] || "",
+              characteristic: element.classList.contains("pink-bar") ? "Creativity" : element.classList.contains("green-bar") ? "Strength" : "Intelligence",
+              due_date: element.dataset.tooltip?.match(/\d{2}\.\d{2}\.\d{4}/)?.[0] || "",
+              start_time: element.querySelector(".font12px")?.textContent.split(" - ")[0] || "",
+              finish_time: element.querySelector(".font12px")?.textContent.split(" - ")[1] || "",
+              start_date: element.dataset.tooltip?.match(/\d{2}\.\d{2}\.\d{4}/g)?.[0] || "",
+              finish_date: element.dataset.tooltip?.match(/\d{2}\.\d{2}\.\d{4}/g)?.[1] || ""
+            };
+            toggleTaskForm(changeTitle, changePlaceholder, taskData);
           });
         });
       }
@@ -515,46 +567,49 @@
 
       toggleButton.addEventListener("click", function () {
         const isMonthlyView = toggleButton.classList.toggle("activebutton");
-        console.log("Switching mode. Is monthly view:", isMonthlyView);
-        if (isMonthlyView) {
-          currentMode = "month";
-          calendarView.classList.add("hidden");
-          taskView.classList.remove("hidden");
-          toggleIcon.classList.add("flip-image");
-          toggleText.textContent = "Show tasks for days";
-          dateDay.classList.add("hidden");
-          dateMonth.classList.remove("hidden");
-          dueDateSection.classList.add("hidden");
-          dueDateInput.removeAttribute("required");
-          startDateInput.setAttribute("required", "");
-          finishDateInput.setAttribute("required", "");
-          taskType.value = "long";
-          addTask.style.height = "370px";
-          console.log("Switched to Long Tasks. taskType:", taskType.value);
-        } else {
-          currentMode = "day";
-          calendarView.classList.remove("hidden");
-          taskView.classList.add("hidden");
-          toggleIcon.classList.remove("flip-image");
-          toggleText.textContent = "Show tasks for months";
-          dateDay.classList.remove("hidden");
-          dateMonth.classList.add("hidden");
-          dueDateSection.classList.remove("hidden");
-          dueDateInput.setAttribute("required", "");
-          startDateInput.removeAttribute("required");
-          finishDateInput.removeAttribute("required");
-          taskType.value = "daily";
-          addTask.style.height = "470px";
-          console.log("Switched to Daily Tasks. taskType:", taskType.value);
-        }
+        calendarView.style.opacity = "0";
+        taskView.style.opacity = "0";
+        setTimeout(() => {
+          if (isMonthlyView) {
+            currentMode = "month";
+            calendarView.classList.add("hidden");
+            taskView.classList.remove("hidden");
+            taskView.style.opacity = "1";
+            toggleIcon.classList.add("flip-image");
+            toggleText.textContent = "Show tasks for days";
+            dateDay.classList.add("hidden");
+            dateMonth.classList.remove("hidden");
+            dueDateSection.classList.add("hidden");
+            dueDateInput.removeAttribute("required");
+            startDateInput.setAttribute("required", "");
+            finishDateInput.setAttribute("required", "");
+            taskType.value = "long";
+            addTask.style.height = "370px";
+          } else {
+            currentMode = "day";
+            calendarView.classList.remove("hidden");
+            taskView.classList.add("hidden");
+            calendarView.style.opacity = "1";
+            toggleIcon.classList.remove("flip-image");
+            toggleText.textContent = "Show tasks for months";
+            dateDay.classList.remove("hidden");
+            dateMonth.classList.add("hidden");
+            dueDateSection.classList.remove("hidden");
+            dueDateInput.setAttribute("required", "");
+            startDateInput.removeAttribute("required");
+            finishDateInput.removeAttribute("required");
+            taskType.value = "daily";
+            addTask.style.height = "470px";
+          }
+        }, 150);
       });
 
       function setTaskMode(mode) {
-        console.log("Setting initial mode to:", mode);
         if (mode === "month") {
           currentMode = "month";
           calendarView.classList.add("hidden");
           taskView.classList.remove("hidden");
+          taskView.style.opacity = "1";
           toggleIcon.classList.add("flip-image");
           toggleText.textContent = "Show tasks for days";
           dateDay.classList.add("hidden");
@@ -569,6 +624,7 @@
           currentMode = "day";
           calendarView.classList.remove("hidden");
           taskView.classList.add("hidden");
+          calendarView.style.opacity = "1";
           toggleIcon.classList.remove("flip-image");
           toggleText.textContent = "Show tasks for months";
           dateDay.classList.remove("hidden");
@@ -580,12 +636,10 @@
           taskType.value = "daily";
           addTask.style.height = "470px";
         }
-        console.log("Initial taskType:", taskType.value);
       }
       setTaskMode("{{ task_type|default:'day' }}");
 
       const images = document.querySelectorAll(".at-icon");
-      images[0].src = images[0].dataset.chosen;
       images.forEach((img) => {
         img.addEventListener("click", () => {
           images.forEach((i) => {
