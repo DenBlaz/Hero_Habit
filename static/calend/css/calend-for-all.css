@@ -1,9 +1,106 @@
+
+.container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.header1, .header2 {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 0;
+}
+
+.bold {
+  font-weight: bold;
+}
+
+.navigation ul {
+  list-style: none;
+  display: flex;
+  gap: 20px;
+}
+
+.navigation a {
+  text-decoration: none;
+  color: #000;
+}
+
+.active-page {
+  font-weight: bold;
+  color: #8364E8;
+}
+
+.icon {
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.settings-button {
+  background-color: #8364E8;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.invisible-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+}
+
+.calendar-section {
+  margin-top: 20px;
+}
+
+.days-section {
+  display: flex;
+  justify-content: space-between;
+  background-color: #f0f0f0;
+  padding: 10px;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
+
+.space {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 10px;
+}
+
+.space:hover {
+  background-color: rgba(228, 222, 249, 0.5);
+}
+
 .time-section {
   display: grid;
-  grid-template-columns: 50px repeat(7, 1fr); /* Колонка времени + 7 дней */
-  grid-template-rows: repeat(24, 50px); /* 24 строки по 50px для каждого часа */
-  height: 600px; /* Фиксированная высота */
-  overflow-y: scroll; /* Включаем прокрутку по вертикали */
+  grid-template-columns: 50px repeat(7, 1fr);
+  grid-template-rows: repeat(24, 50px);
+  overflow-y: scroll;
+  background-color: #fff;
+  border: 1px solid #ccc;
+}
+
+.time-column {
+  display: contents;
+}
+
+.time-slot {
+  height: 50px;
+  border-bottom: 1px solid #ccc;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  color: #666;
 }
 
 .task-block {
@@ -13,6 +110,7 @@
   color: white;
   font-size: 12px;
   overflow: hidden;
+  margin: 2px;
 }
 
 .pink-bar {
@@ -32,11 +130,116 @@
   text-decoration: line-through;
 }
 
-.time-slot {
-  height: 50px;
-  border-bottom: 1px solid #ccc;
+.month-section {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+}
+
+.month-header {
+  display: flex;
+  justify-content: space-between;
+}
+
+.months {
+  text-align: center;
+  font-weight: bold;
+}
+
+.month-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+}
+
+.task-bar {
+  padding: 10px;
+  border-radius: 5px;
+  color: white;
+  font-size: 14px;
+}
+.add-task {
+  background-color: #f9f9f9;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.at-input, .at-input-i {
+  width: 100%;
+  padding: 10px;
+  margin: 5px 0;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.buttons {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 20px;
+}
+
+.cancel-button, .save-button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.cancel-button {
+  background-color: #ccc;
+  margin-right: 10px;
+}
+
+.save-button {
+  background-color: #8364E8;
+  color: white;
+}
+
+.categories-section {
+  margin-top: 20px;
+}
+
+.category {
   display: flex;
   align-items: center;
+  gap: 10px;
+}
+
+.modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
   justify-content: center;
-  font-size: 12px;
+  align-items: center;
+}
+
+.modal-content {
+  background-color: white;
+  padding: 20px;
+  border-radius: 10px;
+  width: 300px;
+}
+
+.flex-center {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.log-out {
+  color: red;
+  text-decoration: none;
+}
+
+.rounded {
+  border-radius: 10px;
+}
+
+.hidden {
+  display: none;
 }
