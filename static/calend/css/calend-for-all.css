@@ -1,4 +1,4 @@
-
+/* Общие стили */
 * {
   margin: 0;
   padding: 0;
@@ -24,6 +24,7 @@ body {
   gap: 5px;
 }
 
+/* Хедеры */
 .header1 {
   display: flex;
   height: 5%;
@@ -39,6 +40,7 @@ body {
   padding: 0px 0px 0px 10px;
 }
 
+/* Навигация */
 .navigation {
   flex: 2;
   overflow: hidden;
@@ -79,6 +81,7 @@ body {
   flex-direction: column;
 }
 
+/* Дни недели */
 .days-section {
   display: flex;
   height: 10%;
@@ -91,6 +94,7 @@ body {
   border-top-left-radius: 10px;
 }
 
+/* Временные слоты */
 .time-section {
   display: flex;
   height: 90%;
@@ -137,6 +141,7 @@ body {
   align-items: center;
 }
 
+/* Задачи */
 .task-block {
   position: absolute;
   padding: 5px;
@@ -162,6 +167,7 @@ body {
   border: 1.5px solid rgba(0, 0, 0, 0.2);
 }
 
+/* Долгосрочные задачи */
 .calendar-section1 {
   flex: 3;
   display: flex;
@@ -219,6 +225,8 @@ body {
 .top-bar:hover {
   border: 1.5px solid rgba(0, 0, 0, 0.2);
 }
+
+/* Кнопки и формы */
 .add-task {
   display: flex;
   flex-direction: column;
@@ -281,6 +289,44 @@ body {
   background-color: #8364e8;
   color: white;
 }
+
+/* Дополнительные стили для стабильности */
+.modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  justify-content: end;
+  align-items: start;
+  z-index: 995;
+  padding: 115px 40px 0px 0px;
+}
+
+.modal-content {
+  background-color: #ffffff;
+  padding: 10px 15px;
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.2);
+  width: 100%;
+  max-width: 400px;
+  align-items: start;
+  display: flex;
+  flex-direction: column;
+}
+
+#overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 998;
+}
+
+/* Медиа-запросы */
 @media (max-width: 1536px) {
   .container {
     max-width: 1200px;
